@@ -69,3 +69,7 @@ atlassian*
 /generated/*
 !/generated/.htaccess
 .DS_Store
+nejiDB030123.sql
+vendor.zip
+pub.zip
+*.sql
