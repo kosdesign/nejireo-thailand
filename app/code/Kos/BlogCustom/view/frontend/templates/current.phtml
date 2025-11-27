@@ -1,0 +1,246 @@
+<?php
+
+$postCollectionLast = $block->getBlogLast();
+
+$postData = $this->helper('Mageplaza\Blog\Helper\Data'); 
+
+$category = $postData->getTree();
+
+$categoryCurrent = __('All Categories');
+
+
+
+foreach($category as $value)  {
+    if($postData->getParameters() == $value['id']) {
+        $categoryCurrent = $value['text'];
+    }
+}
+
+?>
+<div class="blog-header">
+    <div class="row blog-cope no-gutters">
+        <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 blog-cope-item">
+            <h1 class="header-text"><?= __('Blog') ?></h1>
+        </div>
+        <div class="col-12 col-sm-9 col-md-9 col-lg-6  col-xl-6 blog-cope-item" style="padding-right: 5%;">
+            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('blog-content')->toHtml();?>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-3  col-xl-3 blog-cope-item">
+        <div class="header head-switching">
+        <div class="card-switching">
+            <div class="cs-select" tabindex="0">
+                <span class="cs-placeholder"><?= $categoryCurrent ?></span>
+                <div class="cs-options">
+                    <ul>
+                        <li>
+                            <a href="?categoryId=0">
+                                <span>  
+                                    <?= __('All Categories') ?>
+                                </span>
+                            </a>
+                        </li>
+                        <?php foreach ($category as $key => $value) : ?>
+                        <li>
+                            <a href="?categoryId=<?= $value['id'] ?>">
+                                <span>  
+                                    <?= $value['text'] ?>
+                                </span>
+                            </a>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+
+        </div>
+    </div>
+</div>
+
+<style>
+
+
+
+
+
+.kos-blog-list {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  
+}
+
+.blog-header {
+        background-color: #024D77;
+        width: 100%;
+        height: 560px;
+        color: white;
+        margin-top: 50px;
+}
+.blog-cope {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 130px;
+}
+.blog-header  .header-text {
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+    margin: unset;
+}
+
+.blog-current {
+    background-color: white;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -256px;
+    height: 466px;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+.blog-current .post-image a img {
+    height: 426px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.blog-current .post-info-wraper-title {
+    padding: 100px;
+    padding-bottom: 50px;
+}
+.post-info-wraper .post-info {
+    color: #1D3557;
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.post-info-wraper .post-link-title {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.post-info-wraper .mp-post-meta-info {
+    margin-top: 30px;
+}
+
+.post-info-wraper .mp-post-meta-info .actions {
+    position: relative;
+}
+
+.post-info-wraper .mp-post-meta-info .actions .mp-read-more {
+    width: 195px;
+    height: 50px;
+    background-color: #E6552F;
+    color: white !important;
+    position: absolute;
+    text-align: center;
+    padding: 18px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding-right: 35px;
+}
+
+.post-info-wraper .mp-post-meta-info .actions .mp-read-more::after {
+    content: '+';
+    color: #E6552F;
+    font-size: 15px;
+    line-height: 14px;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background-color: white;
+    margin-left: 10px;
+    border-radius: 20px;
+    letter-spacing: 0px;
+} 
+
+
+.blog-header .head-switching{
+    width: 220px;
+    float: right;
+}
+
+.blog-header .head-switching .cs-select {
+    height: 62px;
+    color: black;
+    font-size: 14px;
+    padding: 22px;
+}
+
+.blog-header .head-switching .cs-select .cs-options{
+    width: 100%;
+    left: 0;
+    color: black;
+}
+
+.blog-header .header .cs-select .cs-options ul > li {
+    padding: 10px 35px;
+}
+
+@media only screen and (max-width: 1230px) {
+    .blog-current {
+        height: auto;
+    }
+
+    .blog-current .post-info-wraper-title {
+        padding: 25px;
+        padding-bottom: 50px;
+    }
+}
+
+
+
+@media only screen and (max-width: 1024px) {
+    .blog-cope {
+        padding-top: 90px;
+    }
+
+    .blog-cope-item {
+        margin-top: 15px;
+    }
+}
+@media only screen and (max-width: 652px) {
+    .blog-cope {
+        padding-top: 40px;
+    }
+    
+    .blog-header .head-switching{
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 575px) {
+    .blog-header {
+        height: 620px;
+    }
+
+    
+
+    .blog-cope {
+        padding-top: 20px;
+    }
+
+    .blog-current .post-image {
+        min-height: auto;
+    }
+    .blog-current .post-image a img {
+        height: 200px;
+    }
+
+    .kos-blog .post-item-wraper .post-image a img {
+        height: 180px;
+    }
+    .kos-blog .post-item-wraper .post-image {
+        min-height: 180px;
+    }
+}
+
+</style>

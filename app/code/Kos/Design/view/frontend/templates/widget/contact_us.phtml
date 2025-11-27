@@ -1,0 +1,44 @@
+<div class="content-top">
+    <div class="row">
+        <div class="col-md-5">
+            <h1><?php if ($block->getData('title')) { echo $block->getData('title'); } ?></h1>
+        </div>
+        <div class="col-md-7"><?php if ($block->getData('body_text')){ echo html_entity_decode($block->getData('body_text')); }?></div>
+    </div>
+</div>
+<div class="content-contact-list">
+    <div class="row" style="margin-bottom: 50px;">
+        <?php $i = 1; while ($i <= 3) :?>
+            <div class="col-lg-4 contact-item mb-4 mb-lg-0">
+                <div class="title"><?php echo $block->getData('title'.$i); ?></div>
+                <?php if ($block->getData('typeline'.$i) == 'Tel') {?>
+                    <div class="data"><a href="tel:"<?php echo $block->getData('text'.$i); ?>><?php echo $block->getData('text'.$i); ?></a></div>
+                <?php }else if($block->getData('typeline'.$i) == 'Fax'){ ?>
+                    <div class="data"><a href="tel:"<?php echo $block->getData('text'.$i); ?>><?php echo $block->getData('text'.$i); ?></a></div>
+                <?php }else{ ?>
+                    <div class="data smaller"><a href="mailto:"<?php echo $block->getData('text'.$i); ?>><?php echo $block->getData('text'.$i); ?></a></div>
+                <?php } ?>
+                <div class="note"><?php if ($block->getData('note'.$i.'_1')) { echo $block->getData('note'.$i.'_1'); } ?></div>
+                <div class="note"><?php if ($block->getData('note'.$i.'_2')) { echo $block->getData('note'.$i.'_2'); } ?></div>
+            </div>
+        <?php $i++; endwhile; ?>
+    </div>
+    <div class="row">
+        <?php $i = 4; while ($i <= 6) :?>
+            <?php if ($block->getData('text'.$i) != '') {?>
+                <div class="col-lg-4 contact-item mb-4 mb-lg-0">
+                    <div class="title"><?php echo $block->getData('title'.$i); ?></div>
+                    <?php if ($block->getData('typeline'.$i) == 'Tel') {?>
+                        <div class="data"><a href="tel:"<?php echo $block->getData('text'.$i); ?>><?php echo $block->getData('text'.$i); ?></a></div>
+                    <?php }else if($block->getData('typeline'.$i) == 'Fax'){ ?>
+                        <div class="data"><a href="tel:"<?php echo $block->getData('text'.$i); ?>><?php echo $block->getData('text'.$i); ?></a></div>
+                    <?php }else{ ?>
+                        <div class="data smaller"><a href="mailto:"<?php echo $block->getData('text'.$i); ?>><?php echo $block->getData('text'.$i); ?></a></div>
+                    <?php } ?>
+                    <div class="note"><?php if ($block->getData('note'.$i.'_1')) { echo $block->getData('note'.$i.'_1'); } ?></div>
+                    <div class="note"><?php if ($block->getData('note'.$i.'_2')) { echo $block->getData('note'.$i.'_2'); } ?></div>
+                </div>
+            <?php }?>
+        <?php $i++; endwhile; ?>
+    </div>
+</div>

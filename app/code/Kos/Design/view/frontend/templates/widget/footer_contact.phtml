@@ -1,0 +1,28 @@
+<?php //$data = $block->filterParameters(); 
+?>
+<?php //print_r($data); 
+?>
+
+
+<div class="card-title text-center">
+    <?php if ($block->getData('title')) : ?> <h2><?= $block->getData('title') ?></h2><?php endif; ?>
+</div>
+<div class="card-cols">
+    <div class="card-item">
+        <?php if ($block->getData('email_title')) : ?>
+            <div class="title"><?= $block->getData('email_title') ?></div>
+        <?php endif; ?>
+        <?php if ($block->getData('email')) : ?>
+            <div class="data"><a href="mailto:<?= $block->getData('email') ?>"><?= $block->getData('email') ?></a></div>
+        <?php endif; ?>
+    </div>
+    <div class="card-or d-none d-lg-block"><?= __('or')?></div>
+    <div class="card-item">
+        <?php if ($block->getData('tel_title')) : ?>
+            <div class="title"><?= $block->getData('tel_title') ?></div>
+        <?php endif; ?>
+        <?php if ($block->getData('tel')) : ?>
+            <div class="data"><a href="tel:+66-2-502-2000"><?= $block->getData('tel') ?></a></div>
+        <?php endif; ?>
+    </div>
+</div>

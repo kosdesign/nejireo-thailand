@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Combined Shape Copy 5</title>
+    <defs>
+        <rect id="path-1" x="215" y="519" width="1170" height="466"></rect>
+        <filter x="-1.0%" y="-1.7%" width="102.1%" height="106.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="10" operator="erode" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="12" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="12" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.528173439   0 0 0 0 0.539592009   0 0 0 0 0.613812713  0 0 0 0.535120397 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Hanshin_Blog-V2" transform="translate(-1061.000000, -856.000000)">
+            <g id="Rectangle">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+            <g id="Group-4" transform="translate(916.000000, 616.000000)">
+                <polygon id="Rectangle" fill="#E6552F" points="0 222 195 222 195 272 0 272"></polygon>
+                <path d="M152.5,240 C156.642136,240 160,243.357864 160,247.5 C160,251.642136 156.642136,255 152.5,255 C148.357864,255 145,251.642136 145,247.5 C145,243.357864 148.357864,240 152.5,240 Z M153,243 L152,243 L152,247 L148,247 L148,248 L151.999,248 L152,252 L153,252 L152.999,248 L157,248 L157,247 L153,247 L153,243 Z" id="Combined-Shape-Copy-5" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

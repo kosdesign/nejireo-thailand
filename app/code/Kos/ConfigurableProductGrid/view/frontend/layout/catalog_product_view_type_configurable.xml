@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="kos_product_list_custom"/>
+        </referenceContainer>
+        <referenceContainer name="product.info.main" htmlClass="product-info-main product-configurable" />
+        <referenceContainer name="product.info.actions">
+            <block class="Magento\Catalog\Block\Product\View" name="addtocart.additional" as="product.info.addtocart.hs"
+                   template="Magento_Catalog::product/view/additional-addtocart.phtml" before="-"/>
+        </referenceContainer>
+        <referenceBlock name="product.info" remove="true"/>
+    </body>
+</page>

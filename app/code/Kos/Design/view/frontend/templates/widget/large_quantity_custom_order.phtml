@@ -1,0 +1,26 @@
+<div class="page-subpage-content mt-4 mb-5">
+    <div class="page-wrapper">
+        <div class="background-white">
+            <div class="page-title">
+                <div class="container">
+                    <h1><?php if ($block->getData('text1')) { echo $block->getData('text1'); } ?></h1>
+                </div>
+            </div>
+            <div class="page-content">
+                <div class="container">
+                    <div class="card-banner" style=" width: 100%"><img class="w-100" src="/pub/media/<?= $block->getData('image') ?>" alt=""></div>
+                    <div class="card-text-content">
+                        <div class="card-content-row">
+                            <div class="row">
+                                <div class="col-md-4 offset-md-1">
+                                    <div class="card-title font-bold text-body-40 text-body-lg-34 text-body-sm-24 color-body-40"><?php if ($block->getData('text2')) { echo $block->getData('text2'); } ?></div>
+                                </div>
+                                <div class="col-md-6 card-content"><?php if ($block->getData('body_text')) { echo html_entity_decode($block->getData('body_text')); } ?></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

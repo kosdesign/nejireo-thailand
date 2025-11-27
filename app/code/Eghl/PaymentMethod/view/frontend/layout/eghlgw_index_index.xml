@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>
+            Redirecting to eGHL Payment Gateway
+        </title>
+		<css src="Eghl_PaymentMethod/css/loader.css" />
+		<css src="Eghl_PaymentMethod/css/eghl_custom.css" />
+		<script src="Eghl_PaymentMethod/js/eghlgw.js"/>
+    </head>
+	<body>
+        <referenceContainer name="content">
+            <block class="Eghl\PaymentMethod\Block\Terminal" name="eghl.payment.content" template="Eghl_PaymentMethod::index/index.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

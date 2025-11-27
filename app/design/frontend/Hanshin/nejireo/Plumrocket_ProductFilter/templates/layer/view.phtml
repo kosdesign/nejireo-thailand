@@ -1,0 +1,209 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2018 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<?php /** @var \Magento\LayeredNavigation\Block\Navigation $block */ ?>
+
+<?php if ($block->canShowBlock()) : ?>
+    <?php
+    /** @var \Plumrocket\ProductFilter\Helper\Data $helper */
+    $helper = $this->helper(\Plumrocket\ProductFilter\Helper\Data::class);
+    $filters = $helper->breakByGroup($block->getFilters());
+
+    if ($helper->getPlacement() == \Plumrocket\ProductFilter\Model\Config\Source\Placement::PLACEMENT_TOOLBAR) {
+        $activeFilters = false;
+        $multi = false;
+    } else {
+        $activeFilters = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // Opened by default
+        $multi = true;
+    }
+
+    $accordionSettings = [
+        "openedState" => "active",
+        "collapsible" => true,
+        "active" => $activeFilters,
+        "multipleCollapsible" => $multi
+    ];
+
+    $aSettings = json_encode($accordionSettings);
+
+    $collectionSize = $block->getLayer()->getProductCollection()->getSize();
+    ?>
+    <div class="block filter filter-category card-list" id="layered-filter-block"
+         data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+        <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
+        <div class="block__filter card-category-nav-list">
+            <div class="category-title font-bold text-body-18 color-black text-sm-left text-center toggle-title"><?= __('Filter') ?></div>
+            <div class="category-list">
+                <div class="block-title filter-title color-black" data-count="<?php /* @escapeNotVerified */ echo $filtered; ?>">
+                    <strong data-role="title"><?php /* @escapeNotVerified */ echo __('Specification/Dimensions') ?></strong>
+                </div>
+                <div class="block-content filter-content">
+                    <?php echo $block->getChildHtml('state') ?>
+                    <?php $wrapOptions = false; ?>
+                    <?php foreach ($filters as $code => $filter) : ?>
+                        <?php if (!$wrapOptions) : ?>
+                            <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php /* @escapeNotVerified */ echo __('Shopping Options') ?></strong>
+                            <div class="filter-options" id="narrow-by-list" data-role="content"  data-mage-init='{"accordion":<?php echo $aSettings; ?>}'>
+                            <?php $wrapOptions = true; ?>
+                        <?php endif; ?>
+                        <?php if (is_array($filter)) : ?>
+                            <div class="filter-group-container">
+                                <div data-role="collapsible" class="filter-options-item">
+                                    <div data-role="title" class="filter-options-title"><?php /* @escapeNotVerified */ echo __($code) ?></div>
+                                    <div data-role="content" class="filter-options-content">
+                                        <?php if ($helper->canShowSearchInput($filter, $helper->stringToIndex($code))) : ?>
+                                            <div class="pf_search">
+                                                <input type='text' class="pf_search_text" data-request="<?php echo $helper->getImplodedCodes($filter); ?>" placeholder="<?php echo __("Enter text to search"); ?>"/>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php foreach ($filter as $item) : ?>
+                                            <?php if ($item->getItemsCount() || ($item['pf_attribute_code'] == 'price')) : ?>
+                                                <div class="filter-group-option-title"><?php /* @escapeNotVerified */ echo __($item->getName()) ?></div>
+                                                <?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($item); ?>
+                                            <?php endif; ?>
+                                         <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php else : ?>
+                            <?php if ($filter->getItemsCount() || ($code == 'price')) : ?>
+                                <div data-role="collapsible" class="filter-options-item">
+                                    <div class="title"><?= __($filter->getName()) ?></div>
+                                    <div class="action-select-wrap">
+                                        <div data-role="title" class="filter-options-title <?= $filter->getAttributeModel()->getAttributeCode() ?>">
+                                            <span class="text"><?= __('Select...') ?></span>
+                                        </div>
+                                        <div class="action-menu">
+                                            <div data-role="content" class="filter-options-content">
+                                                <?php if ($helper->canShowSearchInput($filter, $filter->getPfAttributeCode())) : ?>
+                                                    <div class="pf_search">
+                                                        <input type='text' class="pf_search_text"
+                                                               data-request="<?php echo $code; ?>"
+                                                               placeholder="<?php echo __("Enter text to search"); ?>"/>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <div class="col-md-8 col-actions">
+                        <?php if (!$helper->isAutoMode()) : ?>
+                        <span class="content"><?= __('To display results please select and click update') ?></span>
+                        <div class="main-actions">
+                            <button class="action manual-filter primary action-secondary hs-btn-action" id="manual-filter" title="Update">
+                                <span><?= __('Update') ?></span>
+                            </button>
+                        </div>
+                        <?php endif; ?>
+                        <div class="block-actions filter-actions">
+                            <a id="product-filter-clear" href="<?php /* @escapeNotVerified */ echo $block->getClearUrl() ?>" class="action clear filter-clear action-tertiary action-clear">
+                                <span><?php /* @escapeNotVerified */ echo __('Clear All') ?></span>
+                            </a>
+                        </div>
+                    </div>
+                <?php if ($wrapOptions) : ?>
+                </div>
+                <?php else : ?>
+                    <script>
+                        require([
+                            'jquery'
+                        ], function ($) {
+                            $('#layered-filter-block').addClass('filter-no-options');
+                        });
+                    </script>
+                <?php endif; ?>
+                </div>
+                <script>
+                    require([
+                        'jquery',
+                        'Plumrocket_ProductFilter/js/search/highlight'
+                    ], function ($) {
+                        "use strict";
+
+                        $('a.page,a.action.next,a.action.previous,' +
+                            'select#limiter.limiter-options.hsSelectConvert,' +
+                            'button#manual-filter.action.manual-filter.primary,' +
+                            'a#product-filter-clear.action.clear.filter-clear').click(function (e) {
+                            var current = $(window).scrollTop();
+                            $(window).scroll(function () {
+                                $(window).scrollTop(current);
+                            });
+                        });
+                        $(window).off('scroll');
+                        $('.pf_search_text').bind('keyup change', function () {
+                            var searchText = $(this).val().toLowerCase();
+                            var request = $(this).data('request');
+                            var searchArea = $(this).parent().parent();
+
+                            $('.' + $(this).parent().parent().attr('class')).removeHighlight(searchText);
+                            if (request && request.indexOf(',') !== -1) {
+                                var selector = [];
+                                request.split(',').forEach(function (code) {
+                                    selector.push(getPrFilterSelector(code));
+                                });
+                                prFilterHighlight(searchText, searchArea, selector.join(', '));
+                            } else {
+                                prFilterHighlight(searchText, searchArea, getPrFilterSelector(request));
+                            }
+                        });
+
+                        function prFilterHighlight(searchText, searchArea, searchList) {
+                            if (searchText === "") {
+                                $(searchList).parent().show();
+                            } else {
+                                $(searchList).each(function () {
+                                    var text = $(this).contents()[0].textContent.toLowerCase().trim();
+                                    (text.indexOf(searchText) >= 0) ? $(this).parent().show() : $(this).parent().hide();
+                                });
+                                $(searchArea).highlight(searchText);
+                            }
+                        }
+
+                        function getPrFilterSelector(code) {
+                            return 'li>a[data-request=' + getPrFilterRequestCode(code) + ']>span, #layered-filter-block .swatch-attribute[attribute-code=' + getPrFilterRequestCode(code) + '] a>div';
+                        }
+
+                        function getPrFilterRequestCode(code) {
+                            return code == 'category' ? 'cat' : code;
+                        }
+
+                        var cardCategoryNavListElm = $('.card-category-nav-list');
+                        if($( window ).width() <= 991){
+                            cardCategoryNavListElm.find('.category-title').show();
+                            cardCategoryNavListElm.find('.category-title').addClass('mobile-filter');
+                            cardCategoryNavListElm.find('.category-list').hide();
+                            cardCategoryNavListElm.find('.category-item.parent > a').append("<span class='arrow-mb'></span>");
+                            cardCategoryNavListElm.find('.mobile-filter').unbind('click').bind('click', function (e) {
+                                e.preventDefault();
+                                $(this).parent().toggleClass('toggle-active');
+                                $(this).parent().find('.category-list').toggle('show');
+                                $(this).parent().find('.subcat-link-list').hide();
+                            });
+                        }else {
+                            cardCategoryNavListElm.find('.category-title').hide();
+                        };
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

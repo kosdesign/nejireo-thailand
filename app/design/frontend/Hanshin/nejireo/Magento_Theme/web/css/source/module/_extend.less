@@ -1,0 +1,136 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+& when (@media-common = true) {
+    .generate-size(100);
+    .generate-size(@n, @i: 10) when (@i =< @n) {
+        .text-body-@{i} {
+            .lib-font-size(@i);
+        }
+        .generate-size(@n, (@i + 1));
+    }
+
+    .generate-width(1200);
+    .generate-width(@n, @i: 50) when (@i =< @n) {
+        .max-width-@{i} {
+            max-width:@i*1px;
+        }
+        .generate-width(@n, (@i + 10));
+    }
+
+    .text-uppercase,
+    .uppercase {
+        text-transform: uppercase;
+    }
+
+    .font-regular {
+        .lib-css(font-weight, @font-weight__regular);
+    }
+
+    .font-medium {
+        .lib-css(font-weight, @font-weight__heavier);
+    }
+
+    .font-bold {
+        .lib-css(font-weight, @font-weight__bold);
+    }
+
+    .color-orange {
+        color: #E6552F !important;
+    }
+    .small-title {
+        font-size: 10px;
+        color: #000;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .text-body-18 {
+        font-size: 18px;
+    }
+
+    .text-sm-left {
+        text-align: left !important;
+    }
+
+    .color-black {
+        color: @color-black;
+    }
+
+    .color-navy {
+        color: @color-navy;
+    }
+
+    .color-body-40 {
+        color: rgba(135, 138, 157, 0.4);
+    }
+
+    .background-white {
+        background-color: @color-white;
+    }
+
+    .background-navy-3 {
+        background-color: @color-navy-3;
+    }
+
+    .center,
+    .text-center {
+        text-align: center;
+    }
+
+    a {
+        .transition(all 0.3s);
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .generate-size(30);
+    .generate-size(@n, @i: 5) when (@i =< @n) {
+        .text-body-sm-@{i} {
+            .lib-font-size(@i);
+        }
+        .generate-size(@n, (@i + 1));
+    }
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .generate-size(50);
+    .generate-size(@n, @i: 10) when (@i =< @n) {
+        .text-body-lg-@{i} {
+            .lib-font-size(@i);
+        }
+        .generate-size(@n, (@i + 1));
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .text-lg-right {
+        text-align: right;
+    }
+
+    .row-md {
+        .flexwrap();
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+}

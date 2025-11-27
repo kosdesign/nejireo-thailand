@@ -1,0 +1,67 @@
+<?php
+/**
+ * @var \Kos\Design\Block\Category\Navigation $block
+ */
+$allcategory = $block->getCategoryLevelOne();
+?>
+<div class="card-category-nav-list">
+    <div class="card-title font-bold d-none d-lg-block text-body-18 color-black"><?php echo __('Categories'); ?></div>
+    <div class="card-title card-title-toggle font-bold d-lg-none text-body-18 color-black toggle-pop" data-pop="category-list-nav"><?php echo __('Categories'); ?></div>
+    <div class="card-list list-nav-toggle" id="category-list-nav" data-action="slide">
+        <div class="cat-nav-content">
+            <ul>
+                <?php foreach($allcategory as $_allcategory){
+                    $_allcat = $block->getCategoryById($_allcategory->getId());
+                    if($_allcat->getChildren()){
+                        $_allcate = explode(',', $_allcat->getChildren());
+                        foreach($_allcate as $category){
+                            $_category = $block->getCategoryById($category);?>
+                            <li>
+                                <a href="<?php echo $_category->getUrl(); ?>"><?php echo $_category->getName(); ?></a>
+                                <?php if($_category->getChildren()){
+                                    $subcategories = explode(',', $_category->getChildren());
+                                    //echo '<pre>';print_r($subcategories);echo '</pre>';?>
+                                    <div class="subcat-list">
+                                        <div>
+                                            <div class="subcat-image">
+                                                <div class="image" style="background-image:url(<?php echo $_category->getImageUrl(); ?>)"></div>
+                                            </div>
+                                            <div class="subcat-link-list">
+                                                <ul>
+                                                    <?php foreach($subcategories as $subcat){
+                                                        $_subcat = $block->getCategoryById($subcat); ?>
+                                                        <li>
+                                                            <a href="<?php echo $_subcat->getUrl() ?>"><span><?php echo $_subcat->getName(); ?></span></a>
+                                                            <?php if($_subcat->getChildren()){
+                                                                $_subcategories = explode(',', $_subcat->getChildren());?>
+                                                                <div class="subcat-list subcat-list--level-2">
+                                                                    <div>
+                                                                        <div class="subcat-image">
+                                                                            <div class="image" style="background-image:url(<?php echo $_subcat->getImageUrl(); ?>)"></div>
+                                                                        </div>
+                                                                        <div class="subcat-link-list">
+                                                                            <ul>
+                                                                                <?php foreach($_subcategories as $_subcat){
+                                                                                    $_subcat2 = $block->getCategoryById($_subcat); ?>
+                                                                                    <li><a href="<?php echo $_subcat2->getUrl(); ?>"><span><?php echo $_subcat2->getName(); ?></span></a></li>
+                                                                                <?php }?>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            <?php }?>
+                                                        </li>
+                                                    <?php }?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php }?>
+                            </li>
+                        <?php }?>
+                    <?php }?>
+                <?php }?>
+            </ul>
+        </div>
+    </div>
+</div>

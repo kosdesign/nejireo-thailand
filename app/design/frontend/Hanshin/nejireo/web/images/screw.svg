@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="33px" viewBox="0 0 60 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>screw all cat</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="search-bar-main" transform="translate(-257.000000, -30.000000)" fill="#E1E1E1">
+            <g id="Group-2">
+                <g id="screw-all-cat" transform="translate(257.000000, 29.000000)">
+                    <g id="screw" stroke-width="1" transform="translate(21.000000, 1.000000)">
+                        <polygon id="Path" fill-rule="nonzero" points="0 7.04 8.03401963 7.04 8.03401963 10.912 0 10.912"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="2.112 13 5.97509084 13 5.97509084 15 2.112 15"></polygon>
+                        <polygon id="Path-Copy" fill-rule="nonzero" points="2.112 17 5.97509084 17 5.97509084 19 2.112 19"></polygon>
+                        <polygon id="Path-Copy-2" fill-rule="nonzero" points="2.112 21 5.97509084 21 5.97509084 23 2.112 23"></polygon>
+                        <polygon id="Path-Copy-3" fill-rule="nonzero" points="2.112 25 5.97509084 25 5.97509084 27 2.112 27"></polygon>
+                        <polygon id="Path-Copy-4" fill-rule="nonzero" points="2.112 29 5.97509084 29 5.97509084 31 2.112 31"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="18.304 29.812992 19.712 32.160128 21.12 29.812992 21.12 26.683008 18.304 27.809408"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="18.304 25.852992 21.12 24.726592 21.12 22.723008 18.304 23.849408"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="18.304 22.332992 21.12 21.206592 21.12 19.203008 18.304 20.329408"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="18.304 11.772992 21.12 10.646592 21.12 7.04 18.304 7.04"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="32.384 19.516992 35.2 18.390592 35.2 16.387008 32.384 17.513408"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="32.384 15.996992 35.2 14.870592 35.2 12.867008 32.384 13.993408"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="32.384 23.036992 35.2 21.910592 35.2 19.907008 32.384 21.033408"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="32.384 26.556992 35.2 25.430592 35.2 23.427008 32.384 24.553408"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="32.384 12.476992 35.2 11.350592 35.2 9.347008 32.384 10.473408"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="32.384 8.956992 35.2 7.830592 35.2 4.224 32.384 4.224"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="18.304 18.812992 21.12 17.686592 21.12 15.683008 18.304 16.809408"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="30.003072 2.816 37.580928 2.816 38.988928 -2.22044605e-16 28.595072 -2.22044605e-16"></polygon>
+                        <polygon id="Path" fill-rule="nonzero" points="18.304 15.292992 21.12 14.166592 21.12 12.163008 18.304 13.289408"></polygon>
+                        <path d="M21.824,2.816 L17.6,2.816 C16.4335746,2.816 15.488,3.76157461 15.488,4.928 L15.488,5.632 L23.936,5.632 L23.936,4.928 C23.936,3.76157461 22.9904254,2.816 21.824,2.816 Z" id="Path" fill-rule="nonzero"></path>
+                        <polygon id="Path" fill-rule="nonzero" points="32.384 29.812992 33.792 32.160128 35.2 29.812992 35.2 27.387008 32.384 28.513408"></polygon>
+                    </g>
+                    <path d="M11.9995051,18 L16,24.999 L16,25.002 L11.9995051,32 L3.99950513,32 L0,25 L3.99950513,18 L11.9995051,18 Z M8,21 C5.790861,21 4,22.790861 4,25 C4,27.209139 5.790861,29 8,29 C10.209139,29 12,27.209139 12,25 C12,22.790861 10.209139,21 8,21 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

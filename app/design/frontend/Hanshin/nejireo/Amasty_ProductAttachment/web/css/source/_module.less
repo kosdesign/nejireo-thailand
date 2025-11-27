@@ -1,0 +1,67 @@
+@amfile-line__margin-bottom: 5px;
+@amfile-line__height: 30px;
+
+& when (@media-common = true) {
+    .am-attachments {
+        .am-fileline {
+            .lib-css(margin-bottom, @amfile-line__margin-bottom);
+
+            .am-fileicon {
+                .lib-css(margin-right, 10px);
+                .lib-css(max-height, @amfile-line__height);
+                .lib-css(vertical-align, middle);
+            }
+
+            .am-filelink {
+                .lib-css(line-height, @amfile-line__height);
+                .lib-css(height, @amfile-line__height);
+            }
+
+            .am-filesize {
+                .lib-css(font-size, 90%);
+            }
+        }
+    }
+
+    .hs-am-filelink {
+        width: 100%;
+        display: inline-table;
+        vertical-align: top;
+        position: relative;
+
+        .am-filelink {
+            &:extend(.hs-action-button-as-link all);
+            background-color: transparent;
+            border: 1px solid @color-orange;
+            color: @color-orange;
+            .lib-css(font-weight, @font-weight__regular);
+            line-height: 18px;
+            padding: @indent__s + 2 @indent__m;
+            &:hover {
+                background-color: @color-orange;
+                color: @color-white;
+            }
+
+            &.disabled {
+                pointer-events: none;
+            }
+
+            .icon {
+                display: inline-table;
+                vertical-align: middle;
+            }
+        }
+
+        .popup-login {
+            right: 0;
+            width: 100%;
+        }
+
+        &:hover,
+        &:active {
+            .popup-login {
+                display: block;
+            }
+        }
+    }
+}

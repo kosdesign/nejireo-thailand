@@ -1,0 +1,36 @@
+
+    <div class="page-wrapper">
+        <div class="background-white">
+            <div class="page-title">
+                <div class="container">
+                    <h1 class="title color-black font-bold text-body-36 text-body-sm-30"><?php if ($block->getData('title')) { echo html_entity_decode($block->getData('title')); } ?></h1>
+                </div>
+            </div>
+            <div class="page-content">
+                <div class="container">
+                    <div class="card-text-content">
+                        <div class="card-content-row">
+                            <div class="row">
+                                <div class="col-md-4 offset-md-1">
+                                    <div class="card-title font-bold text-body-40 text-body-lg-34 text-body-sm-24 color-body-40"><?php if ($block->getData('sub_title_1')) { echo $block->getData("sub_title_1"); } ?></div>
+                                </div>
+                                <div class="col-md-6 card-content">
+                                    <?php if ($block->getData('detail_title_1')) { echo html_entity_decode($block->getData('detail_title_1')); } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content-row">
+                            <div class="row">
+                                <div class="col-md-4 offset-md-1">
+                                    <div class="card-title font-bold text-body-40 text-body-lg-34 text-body-sm-24 color-body-40"><?php if ($block->getData('sub_title_2')) { echo $block->getData("sub_title_2"); } ?></div>
+                                </div>
+                                <div class="col-md-6 card-content">
+                                    <?php if ($block->getData('detail_title_2')) { echo html_entity_decode($block->getData('detail_title_2')); } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

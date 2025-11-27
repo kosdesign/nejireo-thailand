@@ -1,0 +1,36 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Cart $block */
+
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+/** @var \Magento\Wishlist\ViewModel\AllowedQuantity $viewModel */
+$viewModel = $block->getData('allowedQuantityViewModel');
+$allowedQty = $viewModel->setItem($item)->getMinMaxQty();
+?>
+<?php foreach ($block->getChildNames() as $childName) : ?>
+    <?= /* @noEscape */ $block->getLayout()->renderElement($childName, false) ?>
+<?php endforeach;?>
+<div class="actions-cart">
+    <?php if ($product->isSaleable()) : ?>
+        <button type="button" data-role="tocart" onclick='window.location="<?= /* @noEscape */ $block->getItemConfigureUrl($item) ?>"' title="<?= $block->escapeHtmlAttr(__('Select to Cart')) ?>" data-item-id="<?= $block->escapeHtmlAttr($item->getId()) ?>">
+        <i class="icomoon-cart"></i>
+            <span><?= $block->escapeHtml(__('Select to Cart')) ?></span>
+        </button>
+    <?php else : ?>
+        <?php if ($product->getIsSalable()) : ?>
+            <p class="available stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                <span><?= $block->escapeHtml(__('In stock')) ?></span>
+            </p>
+        <?php else : ?>
+            <p class="unavailable stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+            </p>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

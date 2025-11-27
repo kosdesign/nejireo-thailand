@@ -1,0 +1,59 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_OneStepCheckout
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<div class="payment-option opc-payment-additional discount-code cart-summary">
+    <div class="block discount">
+        <div class="title" data-role="title">
+            <strong id="block-discount-heading" role="heading" aria-level="2"><!-- ko i18n: 'Have a promo code?'--><!-- /ko --></strong>
+        </div>
+        <div class="payment-option-content" data-role="content">
+            <!-- ko foreach: getRegion('messages') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <form class="form form-discount" id="discount-form">
+                <div class="payment-option-inner">
+                    <div class="fieldset coupon">
+                        <div class="field">
+                            <label for="discount-code" class="label"><span><!-- ko i18n: 'PLEASE LOG IN TO USE OUR PROMOTION.'--><!-- /ko --></span></label>
+                            <div class="control">
+                                <input class="input-text"
+                                       type="text"
+                                       id="discount-code"
+                                       name="discount_code"
+                                       data-validate="{'required-entry':true}"
+                                       data-bind="value: couponCode, attr:{placeholder: $t('Enter discount code')} " />
+                                <div class="primary">
+                                    <!-- ko ifnot: isApplied() -->
+                                    <button class="action action-apply apply primary" type="submit" data-bind="'value': $t('Apply'), click: apply">
+                                        <span><!-- ko i18n: 'Apply'--><!-- /ko --></span>
+                                    </button>
+                                    <!-- /ko -->
+                                    <!-- ko if: isApplied() -->
+                                    <button class="action action-cancel cancel primary" type="submit" data-bind="'value': $t('Cancel'), click: cancel">
+                                        <span><!-- ko i18n: 'Cancel'--><!-- /ko --></span>
+                                    </button>
+                                    <!-- /ko -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

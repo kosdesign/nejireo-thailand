@@ -1,0 +1,22 @@
+<?php $data = $block->filterParameters(); ?>
+<?php //print_r($data); 
+?>
+
+<div class="content-about-naraya">
+    <div class="container">
+        <div class="content-row">
+            <div class="row justify-content-between">
+                <?php if ($block->getData('image')) : ?>
+                    <div class="col-lg-6 col-image">
+                        <img src="/pub/media/<?= $block->getData('image') ?>" alt="" />
+                    </div>
+                <?php endif; ?>
+                <?php if ($block->getData('naraya_detail')) : ?>
+                    <div class="col-lg-5 col-text">
+                        <?= html_entity_decode($block->getData('naraya_detail')) ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

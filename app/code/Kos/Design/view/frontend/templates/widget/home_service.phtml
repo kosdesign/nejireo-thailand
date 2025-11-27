@@ -1,0 +1,15 @@
+
+<div class="col-lg-3 col-sm-6 col-item">
+    <div>
+    <?php if ($block->getData('image')) : ?>
+            <div class="col-image">
+                <img src="<?php echo $this->getViewFileUrl('images/' . $block->getData('image')); ?>" alt="" />
+            </div>
+        <?php endif; ?>
+        <?php if ($block->getData('body_text')) : ?>
+            <div class="col-text">
+                <?= html_entity_decode($block->getData('body_text')) ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

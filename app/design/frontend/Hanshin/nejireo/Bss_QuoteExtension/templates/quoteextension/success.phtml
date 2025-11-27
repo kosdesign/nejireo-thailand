@@ -1,0 +1,19 @@
+<?php
+$quote = $block->getQuote();
+?>
+<?php
+/** @var $block \Bss\QuoteExtension\Block\QuoteExtension\Success */
+?>
+<div class="image-top" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut2.png'); ?>);"></div>
+<h1 class="text-center"><img src="<?php echo $this->getViewFileUrl('images/screw.svg'); ?>" width="125" /></h1>
+<h1 class="text-center"><?php echo __('Your quote request has been received!'); ?></h1>
+<?php if ($quote->getIncrementId()) :?>
+    <p class="text-center">
+        <?= $block->escapeHtml(__('Your Quote Request # is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->getViewUrl($quote), $quote->getIncrementId())), ['a', 'strong']) ?><br />
+        <?= $block->escapeHtml(__('Thank you for your interest!')) ?><br />
+    </p>
+<?php endif;?>
+<div class="action-button">
+    <button type="button" onclick="window.location='<?=$this->getUrl()?>'"><span><?= $block->escapeHtml(__('Visit Homepage')) ?></span></button>
+</div>
+<div class="image-bottom" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut1.png'); ?>)"></div>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="kos_design" translate="label" sortOrder="10">
+            <label>Kos Design</label>
+        </tab>
+        <section id="upload_file" translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>File Upload</label>
+            <tab>kos_design</tab>
+            <resource>Kos_UploadDocument::config</resource>
+            <group id="group_a" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="custom_upload_file" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>File Upload</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                    <upload_dir config="system">CustomUploadDir</upload_dir>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

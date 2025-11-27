@@ -1,0 +1,183 @@
+"LEARN MORE","เรียนรู้เพิ่มเติม"
+"Login","Sign In"
+"Logout","Sign Out",
+"Shipping & Handling:","Shipping & Handling:"
+"The maximum you may purchase is %1.","The maximum you may purchase is %1. Please request for quote"
+"Sign In","เข้าสู่ระบบ"
+"Sign Out","ออกจากระบบ"
+"Register","สมัครสมาชิก","module","Magento_Catalog"
+"Enter your email and password to sign in to your Neijireo account.","โปรดระบุอีเมลและรหัสผ่านเพื่อเข้าสู่บัญชีของคุณ","module","Magento_Customer"
+"Forgot Your Password?","หากคุณลืมรหัสผ่าน คลิกที่นี่","module","Magento_Customer"
+"Don't have an account?","หากคุณยังไม่มีบัญชี กรุณาคลิกที่นี่เพื่อนสมัครสมาชิก","module","Magento_Customer"
+"Forgot Your Password","หากคุณลืมรหัสผ่าน","module","Magento_Customer"
+"Please enter your email address below to receive a password reset link.","โปรดระบุอีเมลของคุณเพื่อรับลิงก์แก้ไขรหัสผ่าน","module","Magento_Customer"
+"Email","อีเมล","module","Magento_Customer"
+"Reset My Password","ตั้งค่ารหัสผ่านใหม่","module","Magento_Customer"
+"Already have an account?","หากคุณมีบัญชีอยู่แล้ว","module","Magento_Customer"
+"Register to find out more about us and enjoy your benefits. Once you become a registered user on Nejireo you can: save your favorite items to your personal list, view your customized account information, track your order status and view your order history.","ลงทะเบียนเพื่อเรียนรู้เพิ่มเติมเกี่ยวกับเรา พร้อมกับได้รับสิทธิประโยชน์ที่มากขึ้น เพียงแค่คุณลงทะเบียนเพียงครั้งเดียวกับเว็บไซต์ของเรา คุณก็สามารถบันทึกสินค้าที่ถูกใจไว้ได้ในรายการโปรดของคุณ สามารถปรับแต่งข้อมูลส่วนตัวในระบบบัญชีของคุณได้ทุกเมื่อ พร้อมทั้งสามารถติดตามสถานะการส่งสินค้า และดูประวัติการสั่งสินค้าของคุณได้ในหน้าประวัติการซื้อ","module","Magento_Customer"
+"First Name","ชื่อจริง","module","Magento_Customer"
+"Last Name","นามสกุล","module","Magento_Customer"
+"Phone Number","เบอร์โทรศัพท์","module","Magento_Customer"
+"Position","ตำแหน่ง","module","Magento_Customer"
+"Company","บริษัท","module","Magento_Customer"
+"Tax/VAT Number","เลขที่ผู้เสียภาษี","module","Magento_Customer"
+"Password","รหัสผ่าน","module","Magento_Customer"
+"Sign-in Information","ข้อมูลการเข้าสู่ระบบ","module","Magento_Customer"
+"Confirm Password","ยืนยันรหัสผ่าน","module","Magento_Customer"
+"Create an Account","สร้างบัญชีห","module","Magento_Customer"
+"Personal Information","ข้อมูลส่วนตัว","module","Magento_Customer"
+"Home","หน้าแรก","module","Magento_Customer"
+"My Account","บัญชีของฉัน","module","Magento_Customer"
+"Account Information","ข้อมูลบัญชี","module","Magento_Customer"
+"My Quotation","ใบเสนอราคาของฉัน","module","Magento_Customer"
+"Order History","ประวัติการสั่งซื้อ","module","Magento_Customer"
+"Wish List","รายการโปรดของฉัน","module","Magento_Customer"
+"Shopping Cart","ตะกร้าสินค้าของฉัน","module","Magento_Customer"
+"Terms & Conditions","ข้อกำหนดและเงื่อนไข","module","Magento_Customer"
+"Contact Information","ข้อมูลการติดต่อ","module","Magento_Customer"
+"Edit","แก้ไขข้อมูล","module","Magento_Customer"
+"Change Password","เปลี่ยนรหัสผ่าน","module","Magento_Customer"
+"Address Book","ที่อยู่","module","Magento_Customer"
+"Manage Addresses","จัดการที่อยู่","module","Magento_Customer"
+"Default Billing Address","ที่อยู่ค่าเริ่มต้นในการออกใบกำกับภาษี","module","Magento_Customer"
+"Default Shipping Address","ที่อยู่ค่าเริ่มต้นในการจัดส่งสินค้า","module","Magento_Customer"
+"Edit Address","แก้ไขที่อยู่","module","Magento_Customer"
+"Here you may edit your account details and change your user email and password. You can also view the billing and shipping information of your recent orders.","คุณสามารถแก้ไขรายละเอียดข้อมูลบัญชี อีเมล และรหัสผ่านผู้ใช้งาน รวมถึงสามารถดูข้อมูลรายละเอียดค่าใช้จ่ายและการ จัดส่งสินค้าของรายการสั่งซื้อล่าสุด","module","Magento_Customer"
+"Recent Orders","การสั่งซื้อล่าสุด","module","Magento_Customer"
+"View All","ดูทั้งหมด","module","Magento_Customer"
+"Order #","เลขที่รายการ","module","Magento_Customer"
+"Date","วันที่","module","Magento_Customer"
+"Order Total","ยอดรวม","module","Magento_Customer"
+"Status","สถานะ","module","Magento_Customer"
+"Action","การดำเนินการ","module","Magento_Customer"
+"canceled","ยกเลิก","module","Magento_Customer"
+"on processing","กำลังดำเนินการ","module","Magento_Customer"
+"completed","เสร็จสมบูรณ์","module","Magento_Customer"
+"View Order","ดูรายการ","module","Magento_Customer"
+"Reorder","สั่งซื้ออีกครั้ง","module","Magento_Customer"
+"Quote #","เลขที่ใบเสนอราคา","module","Magento_Customer"
+"Created Date","วันที่สร้าง","module","Magento_Customer"
+"Last Update","วันที่แก้ไขล่าสุด","module","Magento_Customer"
+"Current Total","ยอดรวมปัจจุบัน","module","Magento_Customer"
+"View Quote","ดูใบเสนอราคา","module","Magento_Customer"
+"Pending","รอดำเนินการ","module","Magento_Customer"
+"Closed","เสร็จสมบูรณ์","module","Magento_Customer"
+"Show","การแสดงรายการ","module","Magento_Customer"
+"per page","ต่อหน้า","module","Magento_Customer"
+"Let's get in touch! Send us your enquiry and we will get back to you as soon as possible.","มาทำความรู้จักกันเถอะ! ส่งคำถามมาให้พวกเรานะ แล้วเราจะติดต่อกลับหาคุณโดยเร็วที่สุด!","module","Magento_Customer"
+"Name","ชื่อ","module","Magento_Customer"
+"Email Address","ที่อยู่อีเมล","module","Magento_Customer"
+"Messages","ข้อความ","module","Magento_Customer"
+"Submit","ส่งข้อมูล","module","Magento_Customer"
+"Contact Form","แบบฟอร์มช่องทางการติดต่อ"
+"SEARCH","ค้นหา","module"
+"Contact Us","ติดต่อเรา"
+"All Categories","ดูรายการสินค้าทั้งหมด"
+"Company","บริษัท","module","Magento_Customer"
+"Consult fasteners experts on","โทรปรึกษาผู้เชี่ยวชาญด้านนอต สกรู และสลักภัณฑ์อื่นๆ ในวันเวลาทำการ"
+"Free fasteners consultation!","โทรปรึกษาผู้เชี่ยวชาญได้ฟรี ที่เบอร์โทรศัพท์นี้"
+"Consult with fasteners expert via Messenger","ปรึกษากับผู้เชี่ยวชาญด้านนอต สกรู สลักภัณฑ์อื่นๆ ผ่านช่องทาง Messenger"
+"Consult with fasteners expert via Line@","ปรึกษากับผู้เชี่ยวชาญด้านนอต สกรู และสลักภัณฑ์อื่นๆ ผ่านช่องทาง Line"
+"What are you looking for…","คุณกำลังมองหาอะไร...",
+"Welcome","ยินดีต้อนรับ",
+"My cart","ตะกร้าของฉัน",
+"My cart,","ตะกร้าของฉัน,",
+"DETAIL","ข้อมูลสินค้า",
+"QTY","จำนวน",
+"TOTAL","ราคาสินค้า",
+"item","ชิ้น",
+"items","ชิ้น",
+"Cart Subtotal","ยอดรวมทั้งสิ้น",
+"view cart","ดูตะกร้าสินค้า",
+"Check out","ชำระเงิน",
+"Proceed to Checkout","ดำเนินการชำระเงิน",
+"Continue Shopping","เลือกซื้อสินค้าต่อ",
+"Have a promo code?","คุณมีโค้ดส่วนลดหรือไม่ ?",
+"PLEASE LOG IN TO USE OUR PROMOTION.","กรุณาเข้าสู่ระบบเพื่อใช้โปรโมชั่นของเรา",
+"Subtotal","ยอดรวมทั้งสิ้น",
+"Shipping & Handling:","ค่าจัดส่ง:",
+"VAT 7%","ภาษีมูลค่าเพิ่ม 7%",
+"Tax","ภาษีมูลค่าเพิ่ม 7%",
+"Total Price","	รวมราคาสินค้า",
+"Days to Ship","วันที่จะจัดส่ง",
+"Unit price","ราคาสินค้า",
+"Shipping Address","ที่อยู่จัดส่ง",
+"Shipping Methods","ค่าจัดส่ง",
+"New Address","ที่อยู่จัดส่งใหม่",
+"Payment Method","ตัวเลือกการชำระเงิน",
+"My billing and shipping address are the same","ที่อยู่บิลและจัดส่งที่เดียวกัน",
+"Credit Card & Online Banking","บัตรเครดิตและออนไลน์แบงค์กิ้ง",
+"Bank Transfer","โอนเงิน",
+"Review Order","ตรวจสอบคำสั่งซื้อ",
+"Enter discount code","ระบุโค้ดส่วนลด",
+"Apply","ยืนยัน",
+"Forgot an Item?","ลืมสินค้าอื่น ๆ หรือเปล่า ?",
+"Edit your cart","แก้ไขตะกร้าสินค้า"
+"You have no items in your shopping cart.","คุณไม่มีสินค้าอยู่ในตะกร้าสินค้า",
+"Click here to continue shopping","คลิกที่นี่เพื่อดำเนินการซื้อสินค้าต่อ",
+"You have no items in your quote","คุณไม่มีสินค้าอยู่ในใบเสนอราคา",
+"Select & Add to Cart","เลือกและเพิ่มในตะกร้าสินค้า",
+"DRAWING DOWNLOAD","ดาวน์โหลดข้อมูลสินค้า",
+"Spec Information","รายละเอียดสินค้า",
+"Basic Information","ข้อมูลทั่วไป",
+"Material (Info)","วัสดุ",
+"Thread Type","ประเภทเกลียว",
+"Standard","มาตรฐาน",
+"Surface Treatment","ผิวชุบ",
+"Specification/Dimensions","ข้อมูลจำเพราะ/ขนาด",
+"Select...","เลือก",
+"Material","วัสดุ",
+"Plating","ผิวชุบ",
+"Diameter","ขนาดเส้นผ่านศูนย์กลาง",
+"Length","ความยาว",
+"Clear all","ล้างตัวเลือก",
+"Add to Cart","เพิ่มลงตะกร้า",
+"Add  to Quote","เพิ่มในใบเสนอราคา",
+"Add to Quote","เพิ่มในใบเสนอราคา",
+"Add to Wish List","เพิ่มในรายการที่ชื่นชอบ",
+"Recently Viewed Products","สินค้าที่พึ่งรับชม",
+"Prev","ก่อนหน้า",
+"Next","ถัดไป",
+"Product Details","ข้อมูลสินค้า",
+"Part Number","หมายเลขสินค้า",
+"VAT Number","หมายเลขประจำตัวผู้เสียภาษี",
+"Street Address","ที่อยู่",
+"Country","ประเทศ",
+"City","เมือง",
+"Zip/Postal Code","รหัสไปรษณีย์",
+"Shipping","จัดส่ง",
+"Result :","ผลลัพธ์ :",
+"Day to Ship","ระยะเวลาจัดส่ง",
+"Qty","จำนวน",
+"Volume Price","ราคาตามปริมาณ",
+"Days","วัน",
+"Please %1 Sign In %2 to download drawing","กรุณา %1 เข้าสู่ระบบ %2 เพื่อดาวน์โหลดข้อมูลสินค้า",
+"Done", "เลือก",
+"Enter promo code", "ระบุโค้ดส่วนลด",
+"Secure and Simple Checkout", "ระบบชำระเงินอย่างง่าย",
+"For registered and business customers please login to complete your purchase","เพื่อง่ายต่อการติดตามตำสั่งซื้อของคุณกรุณาเข้าสู่ระบบ",
+"You already have an account with us. Sign in or continue as guest.","คุณมีบัญชีกับเราแล้ว เข้าสู่ระบบหรือดำเนินการในกรณีไม่ต้องการเข้าสู่ระบบ",
+"Sign In","เข้าสู่ระบบ",
+"Login","เข้าสู่ระบบ",
+"You can create an account after checkout.","คุณสามารถสร้างบัญชีหลังจากชำระเงินแล้ว",
+"Create New Account","สร้างบัญชีใหม่",
+"Please %1 Sign In %2 to add to quote","กรุณา %1 เข้าสู่ระบบ %2 เพื่อเพิ่มในใบเสนอราคา",
+"Please type the letters and numbers below","กรุณาพิมพ์ตัวอักษรและตัวเลขในช่องทางด้านล่าง",
+"Additional Address Entries","ที่อยู่อื่นๆ",
+"Add New Address","เพิ่มที่อยู่ใหม่",
+"You have no other address entries in your address book.","คุณไม่มีที่อยู่อื่นๆ ในหน้าสมุดที่อยู่ของคุณ",
+"Change Shipping Address","เปลี่ยนที่อยู่จัดส่ง",
+"Change Billing Address","เปลี่ยนที่อยู่ใบเสร็จรับเงิน",
+"Default Addresses","ที่อยู่เริ่มต้น",
+"Address Information","ข้อมูลที่อยู่",
+"Address","ที่อยู่",
+"Use as my default billing address","ใช้เป็นที่อยู่ใบเสร็จรับเงินเริ่มต้น",
+"Use as my default shipping address","ใช้เป็นที่อยู่จัดส่งเริ่มต้น",
+"Save in address book","บันทึกที่อยู่ลงในระบบ",
+"For delivery questions.","สำหรับคำถามการจัดส่ง",
+"Ship here","จัดส่งที่นี่",
+"Cancel","ยกเลิก",
+"The coupon code isn't valid. Verify the code and try again.","รหัสโค้ดส่วนลดไม่ถูกต้อง ตรวจสอบรหัสโค้ดส่วนลดและลองใหม่",
+"You have no items in your quote.","คุณไม่มีสินค้าอยู่ในใบเสนอราคา",
+"Categories","หมวดหมู่",
+"SHOW ALL","แสดงทั้งหมด",

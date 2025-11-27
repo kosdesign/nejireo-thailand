@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit */
+?>
+
+<?php
+$product = $this->getItem()->getProduct();
+if($product->getTypeId() == 'configurable') {
+    $productUrl = $product->getProductUrl();
+}else {
+    $productUrl = $block->escapeUrl($block->getConfigureUrl());
+}
+?>
+<?php if ($block->isProductVisibleInSiteVisibility()) :?>
+    <a class="action action-edit"
+       href="<?= $productUrl ?>"
+       title="<?= $block->escapeHtmlAttr(__('Edit item parameters')) ?>">
+        <span><?= $block->escapeHtml(__('Edit')) ?></span>
+    </a>
+<?php endif ?>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+		<meta name="x_ua_compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="address=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<css src="css/font-awesome.min.css"/>
+		<css src="css/bootstrap-grid.min.css"/>
+	</head>
+</page>	

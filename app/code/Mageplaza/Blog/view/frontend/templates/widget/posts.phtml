@@ -1,0 +1,47 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Blog\Block\Widget\Posts $block */
+
+$posts = $block->getCollection();
+?>
+
+    <div class="row">
+        <?php foreach ($posts as $post): ?>
+            <div class="col-md-4">
+                <?php if ($post->getImage()): ?>
+                    <a href="<?= $post->getUrl() ?>">
+                            <img class="img-responsive" style="height: 370px"
+                                    src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
+                                    alt="<?= $block->escapeHtml($post->getName()); ?>"/>
+                        </a>
+                <?php endif; ?>
+                <div class="content">
+                    <p class="name"><?= $post->getName(); ?></p> 
+                    <p class="desc"><?= $post->getShortDescription(); ?></p>   
+                    <a class="read-more" href="<?= $post->getUrl(); ?>" title="<?= __('Read More'); ?>">
+                        <?= __('Read more'); ?>
+                    </a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+

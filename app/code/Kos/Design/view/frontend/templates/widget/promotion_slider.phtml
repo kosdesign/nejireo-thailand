@@ -1,0 +1,18 @@
+<?php //$data = $block->filterParameters(); 
+?>
+<?php //print_r($data); 
+?>
+
+<div class="card-item">
+    <div>
+        <?php if ($block->getData('subtitle')) : ?><h3 class="card-sub-title"><?= $block->getData('subtitle') ?></h3><?php endif; ?>
+        <?php if ($block->getData('title')) : ?>
+            <h2 class="card-title"><?= $block->getData('title') ?></h2>
+        <?php endif; ?>
+        <?php if ($block->getData('link')) : ?>
+            <div class="d-flex justify-content-center">
+                <div class="card-link link-box--arrow"><a href="<?= $block->getData('link') ?>"><span><?php echo ($block->getData('linktext')) ? $block->getData('linktext') : 'Read More'; ?></span></a></div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

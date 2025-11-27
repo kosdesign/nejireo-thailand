@@ -1,0 +1,34 @@
+<?php $data = $block->filterParameters(); ?>
+<?php //print_r($data); 
+?>
+
+<div class="card-item">
+    <div class="card-image image-double-size" data-image="/pub/media/<?= $block->getData('image') ?>" data-desktop-image="/pub/media/<?= $block->getData('image') ?>" data-mobile-image="<?php if ($block->getData('image_mobile')) : ?>/pub/media/<?= $block->getData('image_mobile') ?>
+                <?php else : ?>/pub/media/<?= $block->getData('image') ?><?php endif; ?>">&nbsp;</div>
+    <div class="card-text">
+        <div class="pl-container">
+            <div class="text-wrapper">
+                <div>
+                    <?php if ($block->getData('subtitle')) : ?>
+                        <div class="card-sub-title effect bottom-to-top delay-10 
+                        <?php if ($block->getData('textclass')) : ?><?= $block->getData('textclass') ?><?php endif; ?>
+                            "><?= $block->getData('subtitle') ?></div>
+                    <?php endif; ?>
+                    <?php if ($block->getData('title')) : ?>
+                        <div class="card-title effect bottom-to-top delay-20 
+                        <?php if ($block->getData('textclass')) : ?><?= $block->getData('textclass') ?><?php endif; ?> 
+                            <?php if ($block->getData('titleclass')) : ?><?= $block->getData('titleclass') ?><?php endif; ?>">
+                            <?= $block->getData('title') ?></div>
+                    <?php endif; ?>
+                </div>
+                <?php if ($block->getData('link_url')) : ?>
+                    <div class="card-link link-box--arrow effect bottom-to-top delay-30">
+                        <a href="<?= $this->getUrl($block->getData('link_url')); ?>" target="_blank">
+                            <span><?= $block->getData('link_text') ?></span>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

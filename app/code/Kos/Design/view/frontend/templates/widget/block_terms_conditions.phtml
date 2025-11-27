@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="card-text-content">
+        <div class="card-content-row">
+            <div class="row">
+                <div class="col-md-5">
+                    <h1 class="title color-black font-bold text-body-34 text-body-sm-30">
+                        <?php if ($block->getData('title')) { echo $block->getData('title');}?>
+                    </h1>
+                </div>
+                <div class="col-md-6 card-content">
+                    <?php if ($block->getData('content')) { echo html_entity_decode($block->getData('content'));}?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

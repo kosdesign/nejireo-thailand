@@ -1,0 +1,15 @@
+<span><?php if ($block->getData('title')) : echo $block->getData('title'); endif; ?></span>
+<div class="content">
+    <ul>
+        <li><a href="mailto:<?php if ($block->getData('email')) : echo $block->getData('email'); endif; ?>">
+                <span class="icon"><em class="icomoon-mail"></em></span>
+                <span class="text"><?php if ($block->getData('email')) : echo $block->getData('email'); endif; ?></span>
+            </a>
+        </li>
+        <li><a href="tel:<?php if ($block->getData('telephone')) : echo $block->getData('telephone'); endif; ?>">
+                <span class="icon"><em class="icomoon-phone"></em></span>
+                <span class="text"><?php if ($block->getData('telephone')) : echo $block->getData('telephone'); endif; ?></span>
+            </a>
+        </li>
+    </ul>
+</div>

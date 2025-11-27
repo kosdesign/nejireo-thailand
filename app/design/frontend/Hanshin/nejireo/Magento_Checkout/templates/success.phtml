@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<div class="image-top" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut2.png'); ?>);"></div>
+<h1 class="text-center"><img src="<?php echo $this->getViewFileUrl('images/screw.svg'); ?>" width="125" /></h1>
+<h1 class="text-center"><?php echo __('Thank you'); ?></h1>
+<?php if ($block->getOrderId()) :?>
+    <p class="text-center">
+        <?php if ($block->getCanViewOrder()) :?>
+            <?= $block->escapeHtml(__('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?><br />
+        <?php  else :?>
+            <?= $block->escapeHtml(__('Your order # is: <span>%1</span>.', $block->getOrderId()), ['span']) ?><br />
+        <?php endif;?>
+        <?= $block->escapeHtml(__('We\'ll email you an order confirmation with details and tracking info.')) ?><br />
+    </p>
+<?php endif;?>
+<?= $block->getAdditionalInfoHtml() ?>
+<div class="action-button">
+    <button type="button" onclick="window.location='<?=$this->getUrl()?>'"><span><?= $block->escapeHtml(__('Visit Homepage')) ?></span></button>
+    <?= $block->getChildHtml('order_success_additional_button') ?>
+</div>
+<div class="image-bottom" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut1.png'); ?>)"></div>

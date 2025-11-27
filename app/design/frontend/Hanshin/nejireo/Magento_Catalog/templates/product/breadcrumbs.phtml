@@ -1,0 +1,61 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$getCategoryIds = $product->getCategoryIds();
+rsort($getCategoryIds);
+if (isset($getCategoryIds[0])) :
+    $category = $objectManager->create('Magento\Catalog\Model\Category')->load($getCategoryIds[0]);
+    $explodedPath = explode("/", $category->getPath());?>
+    <div class="card-breadcrumbs">
+        <div class="page-wrapper">
+            <ul>
+                <li>
+                    <a href="<?= $block->escapeUrl($this->getUrl()) ?>"
+                    title="<?= $block->escapeHtmlAttr(__('Home')) ?>">
+                        <?= $block->escapeHtml(__('Home')) ?>
+                    </a>
+                </li>
+                <?php foreach ($explodedPath as $key => $value) : 
+                    if ($key > 1) :
+                        $_category = $objectManager->create('Magento\Catalog\Model\Category')->load($value);?>
+                        <li>
+                            <a href="<?= $block->escapeUrl($_category->getUrl()) ?>"
+                            title="<?= $block->escapeHtmlAttr($_category->getName()) ?>">
+                                <?= $block->escapeHtml($_category->getName()) ?>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <li>
+                    <span><?= $block->escapeHtml($product->getName()) ?></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+<?php else : ?>
+    <?php
+    /**
+     * Copyright © Magento, Inc. All rights reserved.
+     * See COPYING.txt for license details.
+     */
+    /** @var \Magento\Theme\Block\Html\Breadcrumbs $block */
+    /** @var \Magento\Catalog\ViewModel\Product\Breadcrumbs $viewModel */
+    $viewModel = $block->getData('viewModel');
+    ?>
+    <div class="card-breadcrumbs"><div class="page-wrapper"></div></div>
+    <?php
+    $widget = $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonDecode($viewModel->getJsonConfigurationHtmlEscaped());
+    $widgetOptions = $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonEncode($widget['breadcrumbs']);
+    ?>
+    <script type="text/x-magento-init">
+        {
+            ".card-breadcrumbs .page-wrapper": {
+                "breadcrumbs": <?= /* @noEscape */ $widgetOptions ?>
+            }
+        }
+    </script>
+<?php endif; ?>

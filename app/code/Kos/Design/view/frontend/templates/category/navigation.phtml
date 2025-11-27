@@ -1,0 +1,72 @@
+<?php
+/**
+ * @var \Kos\Design\Block\Category\Navigation $block
+ */
+$allcategory = $block->getCategoryLevelOne();
+?>
+<div class="card-category-nav-list card-category-list pt-5 pt-sm-0">
+    <div class="card-title font-bold text-body-18 color-black text-sm-left text-center"><?php echo __('Categories'); ?></div>
+    <div class="card-list">
+        <div class="cat-scroll cat-nav-content">
+            <ul>
+                <?php foreach($allcategory as $_allcategory){
+                    $_allcat = $block->getCategoryById($_allcategory->getId());
+                    if($_allcat->getChildren()){
+                        $_allcate = explode(',', $_allcat->getChildren());
+                        foreach($_allcate as $category){
+                            $_category = $block->getCategoryById($category);?>
+                            <li>
+                                <a href="<?php echo $_category->getUrl(); ?>"><?php echo $_category->getName(); ?></a>
+                                <?php if($_category->getChildren()){
+                                    $subcategories = explode(',', $_category->getChildren());
+                                    //echo '<pre>';print_r($subcategories);echo '</pre>';?>
+                                    <div class="subcat-list">
+                                        <div>
+                                            <div class="subcat-image">
+                                                <div class="image" style="background-image:url(<?php echo $_category->getImageUrl(); ?>)"></div>
+                                            </div>
+                                            <div class="subcat-link-list">
+                                                <ul>
+                                                    <?php foreach($subcategories as $subcat){
+                                                        $_subcat = $block->getCategoryById($subcat); ?>
+                                                        <li>
+                                                            <a href="<?php echo $_subcat->getUrl() ?>"><span><?php echo $_subcat->getName(); ?></span></a>
+                                                            <?php if($_subcat->getChildren()){
+                                                                $_subcategories = explode(',', $_subcat->getChildren());?>
+                                                                <div class="subcat-list subcat-list--level-2">
+                                                                    <div>
+                                                                        <div class="subcat-image">
+                                                                            <div class="image" style="background-image:url(<?php echo $_subcat->getImageUrl(); ?>)"></div>
+                                                                        </div>
+                                                                        <div class="subcat-link-list">
+                                                                            <ul>
+                                                                                <?php foreach($_subcategories as $_subcat){
+                                                                                    $_subcat2 = $block->getCategoryById($_subcat); ?>
+                                                                                    <li><a href="<?php echo $_subcat2->getUrl(); ?>"><span><?php echo $_subcat2->getName(); ?></span></a></li>
+                                                                                <?php }?>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            <?php }?>
+                                                        </li>
+                                                    <?php }?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php }?>
+                            </li>
+                        <?php }?>
+                    <?php }?>
+                <?php }?>
+            </ul>
+        </div>
+    </div>
+    <div class="card-all">
+        <a href="<?php echo $this->getUrl('all-categories'); ?>">
+            <span><i class="icomoon-screw text-body-26 color-orange"></i></span>
+            <span class="text small-title"><?php echo __('All Categories'); ?></span>
+        </a>
+    </div>
+</div>

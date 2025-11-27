@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php if ($crumbs && is_array($crumbs)) : ?>
+<?php
+    $currentPage = $this->getRequest()->getFullActionName();
+?>
+<div class="card-breadcrumbs">
+    <div class="page-wrapper">
+        <ul>
+            <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+                <?php
+                    if (!empty($currentPage) && $currentPage == 'quoteextension_index_index') {
+                        if ($crumbName == 'Checkout') {
+                            continue;
+                        }
+                    }
+                ?>
+                <li>
+                <?php if ($crumbInfo['link']) : ?>
+                    <a href="<?= $block->escapeUrl($crumbInfo['link']) ?>"
+                    title="<?= $block->escapeHtmlAttr($crumbInfo['title']) ?>">
+                        <?= $block->escapeHtml($crumbInfo['label']) ?>
+                    </a>
+                <?php elseif ($crumbInfo['last']) : ?>
+                    <span><?= $block->escapeHtml($crumbInfo['label']) ?></span>
+                <?php else : ?>
+                    <?= $block->escapeHtml($crumbInfo['label']) ?>
+                <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+<?php endif; ?>

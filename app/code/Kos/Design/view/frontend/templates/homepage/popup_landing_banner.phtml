@@ -1,0 +1,15 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Kos\Design\Block\Widget\LandingBanner $block */
+$cookie_timeout = $block->getCookieTimeout();
+?>
+<div id="modal-popup-landing-banner" style="display: none;">
+    <?php echo $block->getPopupLandingBannerCMSBlock(); ?>
+</div>
+<button id="modal-popup-landing-banner-button" data-mage-init='{"popup-landing-banner-modal": {"target": "#modal-popup-landing-banner","cookie_timeout": "<?= $cookie_timeout ?>"}}' style="display: none;">
+    Open modal
+</button>

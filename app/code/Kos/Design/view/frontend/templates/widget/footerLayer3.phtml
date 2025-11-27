@@ -1,0 +1,21 @@
+
+    <div class="col-lg-6 col-payment p-lg-0 mb-4 mb-lg-0">
+        <a href="https://dbdregistered.dbd.go.th/api/public/verifiedinfo/0205558019482/71764" target="_blank">
+            <img src="/pub/media/<?= $block->getData('footer_logo') ?>" alt="">
+        </a>
+    </div>
+    <div class="col-lg-6 col-payment p-lg-0 mb-4 mb-lg-0"><img src="/pub/media/<?= $block->getData('image') ?>" alt="" style="margin-top:1.5em"></div>
+    <div class="col-lg-6 col-copyright text-lg-right">
+        <div class="text-body-12 color-grey-92 mb-3" style="float:left;margin-left: -1em;line-height: 4em"><?php if ($block->getData('body_text')) { ?><p><?php echo html_entity_decode($block->getData('body_text')); ?></p><?php } ?></div>
+    </div>
+    <div class="kos color-black font-medium text-body-12" id="designed_by">Designed By <a href="https://www.kos.co.th" target="_blank" rel="noopener" style="line-height: 4em;">KOS&nbsp;Design</a></div>
+<style>
+	#designed_by a:visited{
+		color: #000000;
+	}
+	@media only screen and (min-width: 768px) {
+	#designed_by{
+		padding-left: 31em;
+		}
+	}
+</style>

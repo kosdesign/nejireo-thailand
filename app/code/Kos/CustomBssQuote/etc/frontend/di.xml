@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Bss\QuoteExtension\Observer\ApplyAddToQuoteCollection" type="Kos\CustomBssQuote\Observer\ApplyAddToQuoteCollection" />
+<!--    Customize max qty quote-->
+    <type name="Bss\QuoteExtension\Model\Session">
+        <plugin name="set_quote_is_super_mode" type="Kos\CustomBssQuote\Plugin\MaxQtyQuote\Session" sortOrder="15"/>
+    </type>
+<!--    End-->
+</config>

@@ -1,0 +1,171 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_QuoteExtension
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+/** @var $block \Bss\QuoteExtension\Block\QuoteExtension\Quote\Item\Renderer */
+
+$item = $block->getItem();
+$product = $item->getProduct();
+$isVisibleProduct = $product->isVisibleInSiteVisibility();
+/** @var \Magento\Msrp\Helper\Data $helper */
+$helper = $this->helper('Magento\Msrp\Helper\Data');
+$canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+/** @var \Kos\QuoteCart\Helper\Data $helperKos */
+$helperKos = $this->helper(Kos\QuoteCart\Helper\Data::class);
+?>
+<?php
+if($product->getTypeId() == 'configurable') {
+    $product = $helperKos->getChildProduct($this->getItem());
+}
+$dayToShip = $helperKos->getDaytoShip($product,$block->getQty());
+
+?>
+<tr class="item-info">
+    <td data-th="<?php echo $block->escapeHtml(__('Image')); ?>" class="col item col-image">
+        <span class="product-item-photo"><?php echo $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml(); ?></span>
+    </td>
+    <td class="col" data-th="<?php echo $block->escapeHtml(__('Part Number')); ?>">
+        <?= $block->escapeHtml($product->getData('part_number')); ?>
+    </td>
+    <td data-th="<?php echo $block->escapeHtml(__('Name')); ?>" class="col name">
+        <div class="product-item-details">
+            <strong class="product-item-name">
+                <a href="<?= $block->escapeUrl($block->getProductUrl()) ?>"
+                   title="<?= $block->escapeHtmlAttr($product->getName()) ?>"
+                   tabindex="-1"
+                   class="product-item-photo">
+                    <?= $block->escapeHtml($product->getName()) ?>
+                </a>
+            </strong>
+            <?php if ($messages = $block->getMessages()) : ?>
+                <?php foreach ($messages as $message) : ?>
+                    <div class="cart item message <?php echo $message['type'] ?>">
+                        <div><?php echo $block->escapeHtml($message['text']) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+            <?php if ($addInfoBlock) : ?>
+                <?php echo $addInfoBlock->setItem($item)->toHtml() ?>
+            <?php endif; ?>
+        </div>
+        <?php $cols = 1; ?>
+    </td>
+    <td class="col" data-th="<?php echo $block->escapeHtml(__('Material')); ?>">
+        <?= $block->escapeHtml($product->getAttributeText('material')); ?>
+    </td>
+    <td class="col" data-th="<?php echo $block->escapeHtml(__('Plating')); ?>">
+        <?= $block->escapeHtml($product->getAttributeText('plating')); ?>
+    </td>
+    <td class="col" data-th="<?php echo $block->escapeHtml(__('Diameter')); ?>">
+        <?= $block->escapeHtml($product->getAttributeText('diameter')); ?>
+    </td>
+    <td class="col" data-th="<?php echo $block->escapeHtml(__('Length')); ?>">
+        <?= $block->escapeHtml($product->getAttributeText('length')); ?>
+    </td>
+    <?php if ($product->getCanShowPrice() !== false): ?>
+        <?php if ($canApplyMsrp) : ?>
+            <td class="col msrp" data-th="<?php echo $block->escapeHtml(__('Unit Price')); ?>">
+                <span class="pricing msrp">
+                    <span class="msrp notice"><?php echo __('See price before order confirmation.'); ?></span>
+                    <?php $helpLinkId = 'cart-msrp-help-' . $item->getId(); ?>
+                    <a href="#" class="action help map" id="<?php echo($helpLinkId); ?>"
+                        <?php
+                        $json = '{"addToCart":{"helpLinkId": "#';
+                        $json .= $helpLinkId;
+                        $json .= '","productName": "';
+                        $json .= $product->getName();
+                        $json .= '","showAddToCart": false}}';
+                        ?>
+                       data-mage-init='<?php echo $json; ?>'>
+                        <span><?php echo __("What's this?"); ?></span>
+                    </a>
+                </span>
+                <?php $cols++; ?>
+            </td>
+        <?php else : ?>
+            <td class="col" data-th="<?php echo $block->escapeHtml(__('Unit price')); ?>">
+                <?= $block->getUnitPriceHtml($item); ?>
+                <?php $cols++; ?>
+            </td>
+        <?php endif; ?>
+    <?php else : ?>
+        <td class="col" data-th="<?php echo $block->escapeHtml(__('Unit Price')); ?>">
+            <?php $cols++; ?>
+        </td>
+    <?php endif ?>
+    <td class="col" data-th="<?php echo $block->escapeHtml(__('Days to Ship')); ?>">
+        <?= $block->escapeHtml($dayToShip); ?>
+    </td>
+    <td class="col qty box-tocart col-qty" data-th="<?php echo $block->escapeHtml(__('QTY')); ?>">
+        <div class="field qty">
+            <label class="label" for="cart-<?php echo $item->getId() ?>-qty">
+                <span><?php echo __('QTY') ?></span>
+            </label>
+
+            <div class="control qty">
+                <input id="cart-<?php echo $item->getId() ?>-qty"
+                       name="cart[<?php echo $item->getId() ?>][qty]"
+                       data-cart-item-id="<?php echo $item->getSku() ?>"
+                       value="<?php echo $block->getQty() ?>"
+                       type="number"
+                       size="4"
+                       title="<?php echo $block->escapeHtml(__('Qty')); ?>"
+                       class="input-text qty"
+                       maxlength="12"
+                       data-validate="{required:true,'validate-greater-than-zero':true}"
+                       data-role="cart-item-qty"/>
+                <button type="submit" name="update_quote_action"
+                        value="update_qty"
+                        title="<?php echo $block->escapeHtml(__('Update')); ?>"
+                        class="action update"
+                        id="update_quote_button-<?= $item->getId(); ?>">
+                    <span><?php echo __('Update'); ?></span>
+                </button>
+                <div class="qty-changer">
+                    <a href="javascript:void(0)" class="qty-inc"><span class="hs-icon-up-dir"></span></a>
+                    <a href="javascript:void(0)" class="qty-dec"><span class="hs-icon-down-dir"></span></a>
+                </div>
+            </div>
+
+        </div>
+        <?php $cols++; ?>
+    </td>
+    <td class="col subtotal" data-th="<?= $block->escapeHtml(__('Total Price')) ?>">
+        <?php if ($product->getCanShowPrice() !== false): ?>
+            <?php if ($canApplyMsrp): ?>
+                <span class="cart msrp subtotal">--</span>
+            <?php else: ?>
+                <?= $block->getRowTotalHtml($item) ?>
+            <?php endif; ?>
+        <?php endif; ?>
+        <?php $cols++; ?>
+    </td>
+    <td class="col item-actions col-actions">
+        <div class="actions-toolbar">
+            <?php echo $block->getActions($item) ?>
+        </div>
+    </td>
+</tr>
+<script type="text/x-magento-init">
+    {
+        ".item-info": {
+            "Magento_Theme/js/component/qty-changer": {}
+        }
+    }
+
+</script>

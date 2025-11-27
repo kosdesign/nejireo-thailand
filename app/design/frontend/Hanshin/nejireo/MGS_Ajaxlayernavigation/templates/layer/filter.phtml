@@ -1,0 +1,19 @@
+<?php $helper = $this->helper('\Magento\Catalog\Helper\Data'); ?>
+<?php foreach ($filterItems as $filterItem): ?>
+    <?php
+        $checked = '';   
+        $select = "";          
+        if($filterItem->getActive()) {
+            $checked = 'checked';
+            $select = "_selected";
+        }     
+    ?>
+    <li class="admin__action-multiselect-menu-inner-item _root" data-role="option-group">
+        <div class="action-menu-item _last _with-checkbox <?= $select ?>">
+            <input class="admin__control-checkbox" name="<?= $filterItem->getFilter()->getRequestVar() ?>" type="radio" tabindex="-1" value="<?= $filterItem->getValue() ?>" <?= $checked ?>/>
+            <label class="admin__action-multiselect-label">
+                <span><?= $filterItem->getLabel() ?></span>
+            </label>
+        </div>
+    </li>
+<?php endforeach ?>

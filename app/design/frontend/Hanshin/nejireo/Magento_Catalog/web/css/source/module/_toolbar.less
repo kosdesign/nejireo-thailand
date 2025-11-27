@@ -1,0 +1,279 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  ---------------------------------------------
+
+@toolbar-mode-icon-font-size: 24px;
+@toolbar-element-background: @panel__background-color;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .page-products {
+        .columns {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    .toolbar {
+        &:extend(.abs-add-clearfix all);
+    }
+
+    .toolbar-amount {
+        display: block;
+        line-height: @toolbar-mode-icon-font-size + 2;
+        margin: 0;
+        padding: 8px 0 0;
+        vertical-align: middle;
+
+        .products.wrapper ~ .toolbar & {
+            display: none;
+        }
+    }
+
+    .toolbar-products {
+        margin-bottom: @indent__xl;
+        padding: 0;
+        text-align: center;
+        border-bottom: @border-hs;
+        padding-bottom: 15px;
+        &:extend(.abs-add-clearfix all);
+
+        .pages {
+            display: none;
+
+            .products.wrapper ~ & {
+                display: block;
+            }
+        }
+
+        .limiter {
+            .control {
+                display: inline-block;
+            }
+        }
+    }
+
+    .modes {
+        display: inline-block;
+        float: left;
+        margin-right: @indent__base;
+
+        .products.wrapper ~ .toolbar & {
+            display: none;
+        }
+    }
+
+    .products.wrapper ~ .toolbar & {
+        margin-top: 50px;
+        border-bottom: none;
+    }
+
+    .admin__control-content {
+        .products.wrapper ~ .toolbar & {
+            display: none;
+        }
+    }
+
+    .sorter {
+        padding: 4px 0 0;
+
+        .products.wrapper ~ .toolbar & {
+            display: none;
+        }
+
+        .sorter-action {
+            position: relative;
+            top: -2px;
+        }
+    }
+
+    .sorter-options {
+        margin: 0 0 0 7px;
+        width: auto;
+    }
+
+    .sorter-action {
+        vertical-align: top;
+        .lib-icon-font(
+                @icon-arrow-up,
+            @_icon-font-size: 28px,
+            @_icon-font-line-height: 32px,
+            @_icon-font-color: @header-icons-color,
+            @_icon-font-color-hover: @header-icons-color-hover,
+            @_icon-font-text-hide: true
+        );
+    }
+
+    .sorter {
+        .sort-desc {
+            &:before {
+                content: @icon-arrow-down;
+            }
+        }
+    }
+
+    .modes {
+        display: none;
+    }
+
+    .hs-select {
+        padding: @indent__s @indent__base;
+        border: @border-hs;
+        .limiter-options {
+            margin: 0;
+            width: auto;
+            border: none;
+        }
+    }
+
+    .limiter-label {
+        font-weight: @font-weight__regular;
+    }
+
+    .limiter {
+        .page-products .toolbar & {
+            margin-top: @indent__l;
+            display: none;
+        }
+    }
+
+    .toolbar-products {
+        .limiter {
+            .control {
+                position: relative;
+                label {
+                    position: absolute;
+                    top: 50%;
+                    padding-left: @indent__s;
+                    .transform(translateY(-50%));
+                }
+
+                select {
+                    border: @border-hs;
+                    width: 100%;
+                    text-indent: 45px;
+                    height: 48px;
+                    color: @color-body;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .toolbar {
+        .products.wrapper ~ & .pages {
+            margin-bottom: @indent__l;
+        }
+
+        .products.wrapper ~ & .limiter {
+            .control {
+                display: block;
+            }
+        }
+    }
+
+    .toolbar {
+        .products.wrapper ~ & .limiter {
+            display: block;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .modes-label {
+        &:extend(.abs-visually-hidden-desktop all);
+    }
+
+    .modes-mode {
+        .lib-css(color, @text__color__muted);
+        border: 1px solid @border-color__base;
+        border-right: 0;
+        float: left;
+        font-weight: @font-weight__regular;
+        line-height: 1;
+        padding: 7px 10px;
+        text-align: center;
+
+        &:not(.active) {
+            &:hover {
+                .lib-css(color, @text__color__muted);
+                background: darken(@toolbar-element-background, 7%);
+            }
+        }
+
+        &:last-child {
+            border-right: 1px solid @border-color__base;
+        }
+
+        &.active {
+            .lib-css(color, @primary__color__light);
+        }
+
+        .lib-icon-font(
+                @icon-grid,
+            @_icon-font-size: @toolbar-mode-icon-font-size,
+            @_icon-font-text-hide: true,
+            @_icon-font-color: @text__color__muted,
+            @_icon-font-color-hover: @text__color__muted
+        );
+    }
+
+    .mode-list {
+        .lib-icon-font-symbol(@icon-list);
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .toolbar {
+        .products.wrapper ~ & .pages {
+            float: left;
+        }
+    }
+
+    .toolbar-amount {
+        float: left;
+    }
+
+    .sorter {
+        float: right;
+    }
+
+    .toolbar-products {
+        .limiter {
+            .control {
+                select {
+                    width: 133px;
+                }
+            }
+        }
+    }
+
+    .toolbar {
+        .products.wrapper ~ & .limiter {
+            display: inline-block;
+            margin-top: 0;
+            float: right;
+        }
+    }
+}

@@ -1,0 +1,68 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+?>
+<?php if ($_additional = $block->getAdditionalData()) :?>
+    <h2 class="title font-bold text-body-18 text-body-sm-15"><?= $block->escapeHtml(__('Spec Information')) ?></h2>
+    <span class="content-title"><span><?= __('Basic Information'); ?></span></span>
+    <div class="additional-attributes-wrapper table-wrapper content-data">
+        <div class="row clearfix">
+            <?php
+                $countItems = count($_additional);
+                $separate = ($countItems > 2 && CEIL($countItems/2) >= 2)? true : false;
+                $i = 1;
+            ?>
+            <?php if($separate): ?>
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <table class="data table additional-attributes" id="product-attribute-specs-table">
+                        <tbody>
+                            <?php foreach ($_additional as $_data) :?>
+                                <tr>
+                                    <th class="label" scope="row"><?= $block->escapeHtml($_data['label']) ?></th>
+                                    <td class="data" data-th="<?= $block->escapeHtmlAttr($_data['label']) ?>">
+                                        <?= /* @noEscape */ $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
+                                    </td>
+                                </tr>
+                                <?php if($i == CEIL($countItems/2)): //Separate 2 columns ?>
+                                    </tbody></table></div>
+                                    <div class="col-md-6 mb-4 mb-md-0">
+                                        <table class="data table additional-attributes" id="product-attribute-specs-table-col-2">
+                                    <tbody>
+                                <?php endif; ?>
+                            <?php $i++; endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php else: ?>
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <table class="data table additional-attributes" id="product-attribute-specs-table">
+                        <tbody>
+                        <?php foreach ($_additional as $_data) :?>
+                            <tr>
+                                <th class="label" scope="row"><?= $block->escapeHtml($_data['label']) ?></th>
+                                <td class="data" data-th="<?= $block->escapeHtmlAttr($_data['label']) ?>">
+                                    <?= /* @noEscape */ $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif;?>
+        </div>
+    </div>
+<?php endif;?>

@@ -1,0 +1,160 @@
+<?php $data = $block->filterParameters(); ?>
+<?php //print_r($data); 
+?>
+
+
+
+
+    <div id="kMap"></div>
+    <div class="actions-list">
+        <ul>
+            <?php if ($block->getData('image_map')) : ?>
+                <li><a class="link-navy" data-fancybox href="/pub/media/<?= $block->getData('image_map') ?>">
+                        <span> <i class="icomoon-search text-body-18 pr-3"></i><span><?= __('See GRAPHIC MAP')  ?></span></span></a>
+                </li>
+            <?php endif; ?>
+            <?php if ($block->getData('latitude') && $block->getData('longitude')) : ?>
+                <li>
+                    <a target="_blank" href="https://www.google.com/maps?q=<?= $block->getData('latitude') ?>,<?= $block->getData('longitude') ?>">
+                        <span>
+                            <i class="text-body-26 icomoon-directions pr-3"></i>
+                            <span><?= __('Get Directions')  ?></span>
+                        </span>
+                    </a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+<script>
+require([
+    'jquery',
+    'mage/url',
+    'https://maps.google.com/maps/api/js?key=<?= $block->getData('api') ?>'
+], function ($) {
+    $(document).ready(function () {
+        MapInit();
+    });
+    function MapInit() {
+        var kMap = document.getElementById("kMap");
+        if (kMap) {
+            var latitude = <?= $block->getData('latitude'); ?>;
+            var longitude = <?= $block->getData('longitude'); ?>;
+            var myOptions = {
+                disableDefaultUI: true,
+                scrollwheel: false,
+                draggable: true,
+                zoom: 17,
+                center: new google.maps.LatLng(latitude, longitude),
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.SMALL,
+                },
+            };
+            var theMap = new google.maps.Map(kMap, myOptions);
+
+
+            landingMapStyles = [{
+                featureType: "administrative",
+                elementType: "labels",
+                stylers: [{
+                    hue: "#F7F7F7"
+                }, {
+                    lightness: -10
+                }, {
+                    saturation: -100
+                }]
+            }, {
+                featureType: "administrative.locality",
+                elementType: "labels",
+                stylers: [{
+                    visibility: "off"
+                }]
+            }, {
+                featureType: "landscape.natural",
+                elementType: "all",
+                stylers: [{
+                    hue: "#F7F7F7"
+                }, {
+                    lightness: 0
+                }, {
+                    saturation: -100
+                }]
+            }, {
+                featureType: "transit.station",
+                elementType: "all",
+                stylers: [{
+                    hue: "#F7F7F7"
+                }, {
+                    lightness: -10
+                }, {
+                    saturation: -100
+                }]
+            }, {
+                featureType: "road",
+                elementType: "all",
+                stylers: [{
+                    hue: "#FFF"
+                }, {
+                    lightness: -10
+                }, {
+                    saturation: -100
+                }]
+            }, {
+                featureType: "administrative.country",
+                elementType: "geometry",
+                stylers: [{
+                    hue: "#a0a0a0"
+                }, {
+                    lightness: 0
+                }, {
+                    saturation: 0
+                }, {
+                    gamma: 0
+                }]
+            }, {
+                featureType: "landscape.man_made",
+                elementType: "all",
+                stylers: [{
+                    visibility: "off"
+                }]
+            }, {
+                featureType: "poi",
+                elementType: "all",
+                stylers: [{
+                    visibility: "on"
+                }, {
+                    hue: "#FFF"
+                }, {
+                    lightness: -10
+                }, {
+                    saturation: -100
+                }]
+            }, {
+                featureType: "water",
+                elementType: "all",
+                stylers: [{
+                    hue: "#FFF"
+                }, {
+                    lightness: -10
+                }, {
+                    saturation: -100
+                }]
+            }];
+            styledMapOptions = {
+                name: "landingMap"
+            };
+            landingMapType = new google.maps.StyledMapType(landingMapStyles, styledMapOptions);
+            theMap.mapTypes.set('landingMap', landingMapType);
+            theMap.setMapTypeId('landingMap');
+
+            var marker = new google.maps.Marker({
+                map: theMap,
+                icon: '/pub/media/<?= $block->getData('pin') ?>',
+                draggable: false,
+                position: new google.maps.LatLng(latitude, longitude),
+                visible: true
+            });
+        }
+    }
+});
+</script>

@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+?>
+<div class="admin__control-content clearfix">
+    <div class="admin__control-support-text product-result-total">
+        <label><span><?= __('Result :'); ?></span></label>
+        <?php if($block->getTotalNum() == 1): ?>
+            <span class="count-items"><?= $block->getTotalNum().' '; ?><span><?= __('item'); ?></span></span>
+        <?php else: ?>
+            <span class="count-items"><?= $block->getTotalNum().' '; ?><span><?= __('items'); ?></span></span>
+        <?php endif; ?>
+
+    </div>
+</div>

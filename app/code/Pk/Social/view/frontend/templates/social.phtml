@@ -1,0 +1,90 @@
+<?php /** @var Pk\Social\Block\SocialButton $block */ ?>
+
+<div class="social-button">
+    <div class="social-button-container">
+        <ul class="social">
+            <li class="tel">
+                <img src="<?= $this->getViewFileUrl('Pk_Social::images/Tell.svg'); ?>" alt=""/>
+                <div class="social-tel-detail">
+                    <div class="tel work-time">
+                        <strong><?= $block->escapeHtml(__('Consult fasteners experts on'))?></strong>
+                        <div class="working-time-data">
+                            <span><?= $block->getWorkingTime(); ?></span>
+                        </div>
+                    </div>
+                    <div class="tel phone-number">
+                        <strong><?= $block->escapeHtml(__('Free fasteners consultation!'))?></strong>
+                        <div class="phone-number-data">
+                            <?php
+                            $phoneNumbers = $block->getTelInfo();
+                            $numItems = count($phoneNumbers);
+                            $i = 0;
+                            foreach($phoneNumbers as $key => $phoneNumber) {
+
+                                if(++$i === $numItems) {
+                                    echo " ";
+                                    echo " or <span>".$phoneNumber ."</span>";
+                                }else{
+                                    echo "<span> ". $phoneNumber ." ,</span>";
+                                }
+
+                            }
+                            ?>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            <li class="messenger">
+                <a href="<?= $block->getMessenger() ?>">
+                    <img src="<?= $this->getViewFileUrl('Pk_Social::images/Messenger.svg'); ?>" alt=""/>
+                    <div class="social-messenger-detail">
+                        <span><?= $block->escapeHtml(__('Consult with fasteners expert via Messenger'))?></span>
+                    </div>
+                </a>
+            </li>
+            <li class="line">
+                <a href="<?= $block->getLineInfo() ?>">
+                    <img src="<?= $this->getViewFileUrl('Pk_Social::images/Line.svg'); ?>" alt=""/>
+                    <div class="social-line-detail">
+                        <span><?= $block->escapeHtml(__('Consult with fasteners expert via Line@'))?></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="social-button-image">
+            <img class="open-content" src="<?= $this->getViewFileUrl('Pk_Social::images/Group27.svg'); ?>" alt=""/>
+            <img class="close" src="<?= $this->getViewFileUrl('Pk_Social::images/X.svg'); ?>" alt=""/>
+        </div>
+        <div class="social-bg"></div>
+    </div>
+</div>
+
+<script>
+    require(["jquery"], function ($) {
+        $('.social-button-image').on('click', function () {
+            $('.social').toggleClass('show');
+            if($(this).not('show') && $('.social-tel-detail').hasClass('active')){
+                $('.social-tel-detail').toggleClass('active');
+            }
+            $('.social-button-image').toggleClass('active');
+            $('.social-bg').toggleClass('show');
+
+        });
+
+        $('.social-button .tel > img').on('click', function () {
+            $('.social-tel-detail').toggleClass('active');
+        });
+
+        $('.social-bg').on('click', function () {
+            $('.social-bg').removeClass('show');
+            $('.social-button-image').removeClass('active');
+            $('.social').removeClass('show');
+            if($('.social-button-image') && $('.social-tel-detail').hasClass('active')){
+                $('.social-tel-detail').toggleClass('active');
+            }
+        });
+
+    });
+
+</script>

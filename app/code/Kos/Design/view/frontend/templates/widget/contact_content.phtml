@@ -1,0 +1,38 @@
+<?php //$data = $block->filterParameters(); 
+?>
+<?php //print_r($data); 
+?>
+
+<div class="col-text col-md-6">
+    <div class="content-title">
+        <?php if ($block->getData('title')) : ?>
+            <h2><?= $block->getData('title') ?></h2>
+        <?php endif; ?>
+    </div>
+    <div class="address-list">
+        <?php if ($block->getData('address')) : ?>
+            <div class="address-item">
+                <?= html_entity_decode($block->getData('address')) ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($block->getData('email')) : ?>
+            <div class="address-item">
+                <h4>Email</h4>
+                <h3><a href="mailto:<?= $block->getData('email') ?>"><?= ($block->getData('email')) ?></a></h3>
+            </div>
+        <?php endif; ?>
+        <?php if ($block->getData('tel')) : ?>
+            <div class="address-item">
+                <h4>Tel</h4>
+                <h3><a href="tel:<?= $block->getData('tel') ?>"><?= ($block->getData('tel')) ?></a></h3>
+            </div>
+        <?php endif; ?>
+        <?php if ($block->getData('fax')) : ?>
+            <div class="address-item">
+                <h4>Fax</h4>
+                <h3><a href="tel:<?= $block->getData('fax') ?>"><?= ($block->getData('fax')) ?></a></h3>
+            </div>
+        <?php endif; ?>
+    </div>
+
+</div>

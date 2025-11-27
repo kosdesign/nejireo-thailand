@@ -1,0 +1,105 @@
+<?php
+/**
+ * @var \Kos\Design\Block\Category\Navigation $block
+ */
+$allcategory = $block->getCategoryLevelOne();
+?>
+<div class="card-product-list">
+    <div class="page-wrapper">
+        <?php foreach($allcategory as $group){
+            $_group = $block->getCategoryById($group->getId());
+            if($_group->getUrlKey()!='group-other'){
+                $img = explode('-', $_group->getUrlKey());
+                $name_image = isset($img[0]) ? $img[0] : '';
+
+                $products = $block->getProductsPosition($_group);?>
+                <div class="card-product-group background-white">
+                    <div class="card-product-row">
+                        <div class="col-banner-info">
+                            <div class="card-banner" style="background-image:url(<?php echo $_group->getImageUrl(); ?>)"></div>
+                            <div class="card-title">
+                                <img src="<?php echo $this->getViewFileUrl('images/icon/'.$name_image.'.svg'); ?>" alt="" />
+                                <span class="font-bold color-white text-body-40  text-body-lg-34 text-body-sm-30 "><?php echo $_group->getName(); ?></span>
+                            </div>
+                            <div class="card-link">
+                                <a href="<?= $_group->getUrl() ?>"><span><?php echo __('SHOW ALL'); ?></span></a>
+                            </div>
+                        </div>
+                        <div class="col-attribute d-none d-lg-block">
+                            <?php echo $this->helper(Magento\Catalog\Helper\Output::class)->categoryAttribute(
+                                $_group,
+                                $_group->getDescription(),
+                                'description'
+                            ); ?>
+                        </div>
+                        <div class="col-product-list d-none d-sm-block">
+                            <div class="product-item-list row m-0">
+                                <?php $i = 0; foreach ($products as $product) { 
+                                    if ($i < 6) {
+                                        $_product = $block->getProductById($product);?>
+                                        <div class="product-item col-xxl-4 col-6">
+                                            <div class="card-name"><?php echo $_product->getName();?></div>
+                                            <div class="card-product-image">
+                                                <div class="image" style="background-image:url(<?= $block->getUrlImage($_product) ?>)"></div>
+                                            </div>
+                                            <div class="card-link"><span><span><?php echo __('VIEW MORE'); ?></span></span></div>
+                                            <div class="link-overlay"><a href="<?php echo $_product->getProductUrl();?>"></a></div>
+                                            <div class="card-wishlist"><a href="#" data-post='<?php echo $this->helper(Magento\Wishlist\Helper\Data::class)->getAddParams($_product); ?>' data-action="add-to-wishlist"><i class="icomoon-heart"></i></a></div>
+                                        </div>
+                                    <?php $i ++;} ?>
+                                <?php }?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
+    </div>
+</div>
+
+<?php foreach($allcategory as $group){
+    $_group = $block->getCategoryById($group->getId());
+    if($_group->getUrlKey()=='group-other'){
+        $img = explode('-', $_group->getUrlKey());
+        $name_image = isset($img[1]) ? $img[1] : '';
+
+        $products = $block->getProductsPosition($_group);?>
+        <div class="card-others-category mb-5">
+            <div class="page-wrapper">
+                <div class="background-white">
+                    <div class="card-row">
+                        <div class="card-col-title">
+                            <div>
+                            <div class="card-text-title d-flex align-items-center">
+                                <img src="<?php echo $this->getViewFileUrl('images/icon/'.$name_image.'.svg'); ?>" alt="" />
+                                <h3 class="font-bold text-body-40 text-body-lg-34 text-body-sm-30 color-black m-0 pl-4"> <?php echo $_group->getName(); ?></h3>
+                            </div>
+                            <div class="card-link card-link--plus">
+                                <a href="<?= $_group->getUrl() ?>"><span><?php echo __('SHOW ALL'); ?></span></a>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="card-col-list d-none d-sm-block">
+                            <div class="product-item-list row m-0">
+                                <?php $i = 0; foreach ($products as $product) {
+                                    if ($i < 6) {
+                                        $_product = $block->getProductById($product);?>
+                                        <div class="product-item col-md-3 col-sm-6">
+                                            <div class="card-name"><?php echo $_product->getName();?></div>
+                                            <div class="card-product-image">
+                                                <div class="image" style="background-image:url(<?= $block->getUrlImage($_product) ?>)"></div>
+                                            </div>
+                                            <div class="card-link"><span><span><?php echo __('VIEW MORE'); ?> </span></span></div>
+                                            <div class="link-overlay"><a href="<?php echo $_product->getProductUrl();?>"></a></div>
+                                            <div class="card-wishlist"><a href="#" data-post='<?php echo $this->helper(Magento\Wishlist\Helper\Data::class)->getAddParams($_product); ?>' data-action="add-to-wishlist"><i class="icomoon-heart"></i></a></div>
+                                        </div>
+                                    <?php $i ++;} ?>
+                                <?php }?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php }?>
+<?php }?>

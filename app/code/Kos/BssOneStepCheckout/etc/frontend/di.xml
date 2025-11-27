@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="kos_osc_checkout_layout_processor" type="Kos\BssOneStepCheckout\Plugin\Block\Checkout\LayoutProcessor" sortOrder="90" />
+    </type>
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="kos_osc_checkout_config" type="Kos\BssOneStepCheckout\Plugin\Model\ConfigProviderPlugin" />
+    </type>
+</config>

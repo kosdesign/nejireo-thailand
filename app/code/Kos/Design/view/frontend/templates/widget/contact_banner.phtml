@@ -1,0 +1,36 @@
+<?php //$data = $block->filterParameters(); 
+?>
+<?php //print_r($data); 
+?>
+
+<div class="section-topbanner section-topbanner-full">
+    <?php if ($block->getData('image')) : ?>
+        <div class="card-image" style="background-image: url(/pub/media/<?= $block->getData('image') ?>);"></div>
+    <?php endif; ?>
+    <div class="card-text">
+        <div class="container">
+            <?php if ($block->getData('title')) : ?>
+                <h1><?= $block->getData('title') ?></h1>
+            <?php endif; ?>
+            <?php if ($block->getData('text_detail')) : ?>
+                <?= html_entity_decode($block->getData('text_detail')) ?>
+            <?php endif; ?>
+            <div class="social-list">
+                <ul>
+                <?php if ($block->getData('facebook')) : ?>
+                    <li><a href="<?= $block->getData('facebook') ?>"><i class="icomoon-facebook"></i></a></li>
+                    <?php endif; ?>
+                    <?php if ($block->getData('weibo')) : ?>
+                    <li><a href="<?= $block->getData('weibo') ?>"><i class="icomoon-weibo"></i></a></li>
+                    <?php endif; ?>
+                    <?php if ($block->getData('twitter')) : ?>
+                    <li><a href="<?= $block->getData('twitter') ?>"><i class="icomoon-twitter"></i></a></li>
+                    <?php endif; ?>
+                    <?php if ($block->getData('instagram')) : ?>
+                    <li><a href="<?= $block->getData('instagram') ?>"><i class="icomoon-instagram"></i></a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

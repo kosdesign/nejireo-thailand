@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="main.content">
+            <block class="Kos\Design\Block\Category\Navigation" name="top.category.navigation" template="Kos_Design::category/top_navigation.phtml" before="hs.top.search" />
+            <block class="Magento\Framework\View\Element\Template" name="hs.top.search" as="topSearch" template="Magento_Search::form.mini.phtml" before="page.wrapper.hs" />
+        </referenceContainer>
+        <referenceContainer name="columns" htmlTag="div" htmlClass="columns categories-list-all" />
+        <referenceContainer name="sidebar.main">
+            <container name="sidebar.main.top" as="sidebar_main_top" label="Sidebar Main Top" htmlTag="div"
+                       htmlClass="row-top card-row" before="-">
+                <block class="Kos\CatalogExtend\Block\Category\Tree" name="kos.catalog.categories.topnav"
+                       template="Kos_CatalogExtend::category/tree.phtml" ttl="3600" before="-"/>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="page.bottom.content">
+            <block class="Magento\Catalog\Block\Widget\RecentlyViewed"
+                   name="recently_viewed_categories"
+                   template="Magento_Catalog::product/widget/viewed/grid.phtml" after="-">
+                <arguments>
+                    <argument name="uiComponent" xsi:type="string">widget_recently_viewed</argument>
+                    <argument name="page_size" xsi:type="number">8</argument>
+                    <argument name="show_attributes" xsi:type="string">name,image,learn_more</argument>
+                    <argument name="show_buttons" xsi:type="string">add_to_wishlist</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <move element="catalog.leftnav" destination="content" before="-" />
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="category.product.addto.compare" remove="true" />
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceContainer name="category.view.container" remove="true"/>
+
+    </body>
+</page>

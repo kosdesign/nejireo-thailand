@@ -1,0 +1,182 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_QuoteExtension
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var $block \Bss\QuoteExtension\Block\Adminhtml\QuoteExtension\Edit\Info */ ?>
+<?php
+$mageQuote = $block->getMageQuote();
+$quote = $block->getQuoteExtension();
+$helperQuoteStatus = $this->helper('Bss\QuoteExtension\Helper\QuoteExtension\Status');
+$orderAdminDate = $block->formatDate(
+    $block->getQuoteAdminDate($quote->getCreatedAt()),
+    \IntlDateFormatter::MEDIUM,
+    true
+);
+$store = $block->getStore($mageQuote->getStoreId());
+
+$orderStoreDate = $block->formatDate(
+    $quote->getCreatedAt(),
+    \IntlDateFormatter::MEDIUM,
+    true,
+    $block->getTimezoneForStore($store)
+);
+$expired = $quote->getExpiry() ? $block->formatDate($quote->getExpiry(), \IntlDateFormatter::MEDIUM) : null;
+$kosHelper = $this->helper('Kos\CustomBssQuote\Helper\Data');
+$BssQuoteCustomAttribute = $kosHelper->getCustomerCompany($block->getMageQuote()->getCustomerId());
+
+?>
+<section class="admin__page-section order-view-account-information" id="order-infomation">
+    <div class="admin__page-section-title">
+        <strong class="title"><?php echo __('Quote & Account Information') ?></strong>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+            <?php /* Quote Information */?>
+            <div class="admin__page-section-item-title">
+                <span class="title">
+                    <?php echo __('Quote # %1', $quote->getIncrementId()); ?>
+                </span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-information-table">
+                    <tr>
+                        <th><?php echo __('Quote Date') ?></th>
+                        <td><?php echo $orderAdminDate ?></td>
+                    </tr>
+                    <?php if ($orderAdminDate != $orderStoreDate):?>
+                        <tr>
+                            <th><?php echo __(
+                                    'Quote Date (%1)',
+                                    $block->getTimezoneForStore($mageQuote->getStore())
+                                ) ?></th>
+                            <td><?php echo $orderStoreDate ?></td>
+                        </tr>
+                    <?php endif;?>
+                    <tr>
+                        <th><?php echo __('Quote Status') ?></th>
+                        <td>
+                                <span id="order_status">
+                                    <?php echo $helperQuoteStatus->getStatusLabel($quote->getStatus()) ?>
+                                </span>
+                        </td>
+                    </tr>
+                    <?php echo $block->getChildHtml(); ?>
+                    <?php if ($block->isSingleStoreMode() == false):?>
+                        <tr>
+                            <th><?php echo __('Purchased From') ?></th>
+                            <td><?php echo $block->getQuoteStoreName() ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($mageQuote->getRelationChildId()): ?>
+                        <tr>
+                            <th><?php echo __('Link to the New Order') ?></th>
+                            <td><a href="<?php echo $block->getViewUrl($mageQuote->getRelationChildId()) ?>">
+                                    <?php echo $mageQuote->getRelationChildRealId() ?>
+                                </a></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($mageQuote->getRelationParentId()): ?>
+                        <tr>
+                            <th><?php echo __('Link to the Previous Order') ?></th>
+                            <td><a href="<?php echo $block->getViewUrl($mageQuote->getRelationParentId()) ?>">
+                                    <?php echo $mageQuote->getRelationParentRealId() ?>
+                                </a></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($mageQuote->getRemoteIp()): ?>
+                        <tr>
+                            <th><?php echo __('Placed from IP') ?></th>
+                            <td><?php echo $mageQuote->getRemoteIp(); echo($mageQuote->getXForwardedFor()) ? ' (' . $block->escapeHtml($mageQuote->getXForwardedFor()) . ')' : ''; ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <tr>
+                        <th><?php echo __('Expiry Date') ?></th>
+                        <td>
+                            <input id="quote-expiry" type="text" name="expiry" class="input-text admin__control-text" value="<?php echo $expired ? $expired : '' ?>"/>
+                            <script type="text/x-magento-init">
+                                    {
+                                        "#quote-expiry": {
+                                            "adminInputExpiry": {
+                                            }
+                                        }
+                                    }
+                                </script>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="admin__page-section-item order-account-information">
+            <?php /* Account Information */?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php echo __('Account Information') ?></span>
+                <div class="actions"><?php echo $block->getAccountEditLink()?></div>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-account-information-table">
+                    <tr>
+                        <th><?php echo __('Customer Name') ?></th>
+                        <td>
+                            <?php if ($_customerUrl = $block->getCustomerViewUrl()) : ?>
+                                <a href="<?php echo $_customerUrl ?>" target="_blank">
+                                    <span><?php echo $block->escapeHtml($mageQuote->getData('customer_firstname') . ' ' . $mageQuote->getData('customer_lastname')) ?></span>
+                                </a>
+                            <?php else: ?>
+                                <?php echo $block->escapeHtml($mageQuote->getData('customer_firstname') . ' ' . $mageQuote->getData('customer_lastname')) ?>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Email') ?></th>
+                        <td><a href="mailto:<?php echo $block->escapeHtml($mageQuote->getCustomerEmail()) ?>"><?php echo $block->escapeHtml($mageQuote->getCustomerEmail()) ?></a></td>
+                    </tr>
+                    <?php if ($_groupName = $BssQuoteCustomAttribute['customer_group']) : ?>
+                        <tr>
+                            <th><?php echo __('Customer Group') ?></th>
+                            <td><?php echo $_groupName ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($customerCompany = $BssQuoteCustomAttribute['company']) : ?>
+                    <tr>
+                        <th><?php echo __('Company') ?></th>
+                        <td><?php echo $customerCompany ?></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php if ($hs_customer_id = $BssQuoteCustomAttribute['hs_customer_id']) : ?>
+                    <tr>
+                        <th><?php echo __('HS Customer ID') ?></th>
+                        <td><?php echo $hs_customer_id ?></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php foreach ($block->getCustomerAccountData() as $data):?>
+                        <tr>
+                            <th><?php echo $data['label'] ?></th>
+                            <td><?php echo $data['value'] ?></td>
+                        </tr>
+                    <?php endforeach;?>
+                    <tr>
+                        <th> <?php echo __('Email sent') ?> </th>
+                        <td> <?php echo $quote->getEmailSent() ? __('Sent') : __('Not send email') ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

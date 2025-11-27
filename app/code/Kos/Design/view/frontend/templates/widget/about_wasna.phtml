@@ -1,0 +1,32 @@
+<?php $data = $block->filterParameters(); ?>
+<?php //print_r($data); 
+?>
+
+<div class="content-ceo-naraya">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-text mb-5 mb-md-0">
+                <div class="text-toggle-detail">
+                    <?php if ($block->getData('title')) : ?>
+                        <?= html_entity_decode($block->getData('title')) ?>
+                    <?php endif; ?>
+                    <?php if ($block->getData('text_detail')) : ?>
+                        <div class="detail" id="ceo-detail">
+                            <?= html_entity_decode($block->getData('text_detail')) ?>
+                        </div>
+                        <div class="card-toggle-link">
+                            <a href="#" class="toggle-pop" data-pop="ceo-detail">
+                                <span class="read-more"><?= __('Show More')  ?></span>
+                                <span class="show-less"><?= __('Show Less')  ?></span></a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php if ($block->getData('image')) : ?>
+                <div class="col-md-6 col-image">
+                    <img src="/pub/media/<?= $block->getData('image') ?>" alt="" />
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

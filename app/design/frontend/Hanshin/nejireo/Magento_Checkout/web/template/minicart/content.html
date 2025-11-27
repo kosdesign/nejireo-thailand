@@ -1,0 +1,89 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<button type="button"
+        id="btn-minicart-close"
+        class="minicart-close"
+        data-action="close"
+        data-bind="attr: { title: $t('Close') },click: closeMinicart()">
+    <span translate="'Close'"/>
+</button>
+
+<if args="getCartParam('summary_count')">
+    <div class="items-total">
+	 <span translate="'My cart,'"></span>
+        <span class="count" if="maxItemsToDisplay < getCartLineItemsCount()" text="maxItemsToDisplay"/>
+        <translate args="'of'" if="maxItemsToDisplay < getCartLineItemsCount()"/>
+        <span class="count" text="getCartParam('summary_count')"/>
+            <!-- ko if: (getCartLineItemsCount() === 1) -->
+                <span class="count-text" translate="'item'"/>
+            <!--/ko-->
+            <!-- ko if: (getCartLineItemsCount() > 1) -->
+                <span class="count-text" translate="'items'"/>
+            <!--/ko-->
+    </div>
+    
+    <div class="card-table-data">
+        <table>
+            <thead>
+                <tr class="row d-none d-sm-flex">
+                    <th class="col col-image"/>
+                    <th class="col col-name">
+                        <span translate="'DETAIL'"></span>
+                    </th>
+                    <th class="col text-center col-qty">
+                        <span translate="'QTY'"></span>
+                    </th>
+                    <th class="col text-center col-price">
+                        <span translate="'TOTAL'"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="mini-cart" data-bind="foreach: { data: getCartItems(), as: 'item' }">
+            <each args="$parent.getRegion($parent.getItemRenderer(item.product_type))"
+                    render="{name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}}"
+            />
+        </div>
+    </div>
+</if>
+
+<ifnot args="getCartParam('summary_count')">
+    <div class="subtitle empty"
+            data-bind="visible: closeSidebar()"
+            translate="'You have no items in your shopping cart.'"
+    />
+    <if args="getCartParam('cart_empty_message')">
+        <p class="minicart empty text" text="getCartParam('cart_empty_message')"/>
+        <div class="actions">
+            <div class="secondary">
+                <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                    <span translate="'View and Edit Cart'"/>
+                </a>
+            </div>
+        </div>
+    </if>
+</ifnot>
+
+<if args="getCartParam('summary_count')">
+    <div class="card-table-footer">
+        <each args="getRegion('subtotalContainer')" render=""/>
+        <div class="background-orange" if="getCartParam('summary_count')">
+            <div class="button-actions">
+                <div class="button-item"><a data-bind="attr: {href: shoppingCartUrl}"><span translate="'view cart'"/><i class="icomoon-cart"></i></a></div>
+                <div class="button-item"><a data-bind="attr: {href: checkoutUrl}"><span translate="'Check out'"/></a></div>
+            </div>
+        </div>
+        <each args="getRegion('extraInfo')" render=""/>
+    </div>
+</if>
+
+<div id="minicart-widgets" class="minicart-widgets" if="getRegion('promotion').length">
+    <each args="getRegion('promotion')" render=""/>
+</div>
+<each args="getRegion('sign-in-popup')" render=""/>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Home</item>
+                    <item name="label" xsi:type="string" translate="true">Home</item>
+                    <item name="link" xsi:type="string">/home</item>
+                </argument>
+            </action> 
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">quote-success-page</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Thank you for the quote request</item>
+                    <item name="label" xsi:type="string" translate="true">Thank you for the quote request</item>
+                </argument>
+            </action> 
+        </referenceBlock>
+
+        <referenceContainer name="main.content" htmlClass="hs-main"/>
+        <referenceContainer name="columns" htmlClass="page-contact-content page-not-found mt-4"/>
+
+        <referenceContainer name="content">
+            <container name="content.background.white" htmlTag="div" htmlClass="background-white">
+                <container name="content.page.content" htmlTag="div" htmlClass="page-content">
+                    <container name="contact.form.container" label="Contact Form Container" htmlTag="div" htmlClass="container"/>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="page.main.title" remove="true" />
+        <move element="breadcrumbs" destination="columns.top" before="-"/>
+        <move element="quoteextension.success" destination="contact.form.container" before="-"/>
+    </body>
+</page>

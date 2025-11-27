@@ -1,0 +1,42 @@
+<?php $data = $block->filterParameters(); ?>
+<?php //print_r($data); 
+?>
+<div class="section-topbanner section-topbanner-full">
+    <div class="card-image" <?php if ($block->getData('image')) : ?> style="background-image:url(/pub/media/<?= $block->getData('image') ?>)" <?php endif; ?>></div>
+    <div class="card-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-text">
+                    <?php if ($block->getData('smalltitle')) : ?>
+                        <h1><?= $block->getData('smalltitle') ?></h1>
+                    <?php endif; ?>
+                    <?php if ($block->getData('title')) : ?>
+                        <?= html_entity_decode($block->getData('title')) ?>
+                    <?php endif; ?>
+                </div>
+                <div class="col-md-4 col-video">
+                    <div>
+                    <?php if ($block->getData('video_link')) : ?>
+                        <a class="card-video-link" href="<?= $block->getData('video_link') ?>" data-fancybox>
+                            <?php if ($block->getData('video_image')) : ?>
+                                <div class="card-video-image">
+                                    <img src="/pub/media/<?= $block->getData('video_image') ?>" alt="" />
+                                </div>
+                            <?php endif; ?>
+                            <div class="card-video-text">
+                                <div class="card-icon-play"></div>
+                                <div class="card-text-play">
+                                    <h4><?= __('WATCH VIDEO')?></h4>
+                                    <?php if ($block->getData('video_text')) : ?>
+                                    <h3><?= $block->getData('video_text') ?></h3>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

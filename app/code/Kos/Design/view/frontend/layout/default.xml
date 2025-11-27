@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="footer-container">
+            <block class="Magento\Contact\Block\ContactForm" name="hs.popup.contact.form" template="Kos_Design::homepage/contact_form.phtml" after="-">
+                <container name="form.additional.info.popup" label="Form Additional Info">
+                    <block class="Magento\Captcha\Block\Captcha" name="captcha" after="-">
+                        <action method="setFormId">
+                            <argument name="formId" xsi:type="string">contact_us</argument>
+                        </action>
+                        <action method="setImgWidth">
+                            <argument name="width" xsi:type="string">230</argument>
+                        </action>
+                        <action method="setImgHeight">
+                            <argument name="width" xsi:type="string">50</argument>
+                        </action>
+                    </block>
+                </container>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

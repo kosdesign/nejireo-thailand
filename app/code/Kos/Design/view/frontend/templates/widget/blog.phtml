@@ -1,0 +1,5 @@
+<?php if ($block->getData('body_text')) : ?>
+    <div class="head-blog font-medium color-navy d-xl-block">
+        <a href="<?php echo $this->getUrl('blog')?>"><?= $block->getData('body_text') ?></a>
+    </div>
+<?php endif; ?>

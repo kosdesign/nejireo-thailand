@@ -1,0 +1,96 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/**  @var $block \Magento\Checkout\Block\Cart\Grid */
+?>
+<?php
+    $countItem = count($block->getItems());
+?>
+<div class="row">
+    <div class="col-lg-5 mb-4 mb-lg-0">
+        <div class="page-title-wrapper">
+            <h1 class="page-title mb-0">
+                <span class="base" data-ui-id="page-title-wrapper"><?= __('Shopping Cart'); ?></span>
+                <span class="count-item"><?= ($countItem > 0) ? '('.$countItem.')' : '' ?></span>
+            </h1>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="detail">
+            <?= $this->getLayout()
+                ->createBlock('Magento\Cms\Block\Block')
+                ->setBlockId('shopping_cart_top')
+                ->toHtml();
+            ?>
+        </div>
+    </div>
+</div>
+<?php $mergedCells = ($this->helper(Magento\Tax\Helper\Data::class)->displayCartBothPrices() ? 2 : 1); ?>
+<?= $block->getChildHtml('form_before') ?>
+<form action="<?= $block->escapeUrl($block->getUrl('checkout/cart/updatePost')) ?>"
+      method="post"
+      id="form-validate"
+      data-mage-init='{"Magento_Checkout/js/action/update-shopping-cart":
+              {"validationURL" : "<?= $block->escapeUrl($block->getUrl('checkout/cart/updateItemQty')) ?>",
+              "updateCartActionContainer": "#update_cart_action_container"}
+          }'
+      class="form form-cart">
+    <?= $block->getBlockHtml('formkey') ?>
+    <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed' : '' ?>">
+        <?php if ($block->getPagerHtml()) :?>
+            <div class="cart-products-toolbar cart-products-toolbar-top toolbar"
+                 data-attribute="cart-products-toolbar-top"><?= $block->getPagerHtml() ?>
+            </div>
+        <?php endif ?>
+        <table id="shopping-cart-table"
+               class="cart items data table"
+               data-mage-init='{"shoppingCart":{"emptyCartButton": ".action.clear",
+               "updateCartActionContainer": "#update_cart_action_container"}}'>
+            <thead>
+            <tr>
+                <th class="col col-image attr-image" scope="col"></th>
+                <th class="col attr-part-number" scope="col"><span><?php echo __('Part Number') ?></span></th>
+                <th class="col attr-name" scope="col"><span><?php echo __('Name') ?></span></th>
+                <th class="col attr-material" scope="col"><span><?php echo __('Material') ?></span></th>
+                <th class="col attr-plating" scope="col"><span><?php echo __('Plating') ?></span></th>
+                <th class="col attr-diameter" scope="col"><span><?php echo __('Diameter') ?></span></th>
+                <th class="col attr-length" scope="col"><span><?php echo __('Length') ?></span></th>
+                <th class="col attr-price" scope="col"><span><?php echo __('Unit price') ?></span></th>
+                <th class="col attr-day-to-ship" scope="col"><span><?php echo __('Days to Ship') ?></span></th>
+                <th class="col col-qty attr-qty" scope="col"><span><?php echo __('QTY') ?></span></th>
+                <th class="col attr-subtotal" scope="col"><span><?php echo __('Total Price') ?></span></th>
+                <th class="col attr-actions" scope="col"><span></th>
+            </tr>
+            </thead>
+            <tbody class="cart item">
+                <?php foreach ($block->getItems() as $_item) :?>
+                    <?= $block->getItemHtml($_item) ?>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+        <?php if ($block->getPagerHtml()) :?>
+            <div class="cart-products-toolbar cart-products-toolbar-bottom toolbar"
+                 data-attribute="cart-products-toolbar-bottom"><?= $block->getPagerHtml() ?>
+            </div>
+        <?php endif ?>
+    </div>
+</form>
+<?= $block->getChildHtml('checkout.cart.order.actions') ?>
+<?= $block->getChildHtml('shopping.cart.table.after') ?>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($, ui, $t) {
+        ({
+            init: function () {
+                $('main#maincontent .columns').removeClass('page-contact-content page-not-found mt-4');
+            },
+        }).init()
+    });
+</script>
+

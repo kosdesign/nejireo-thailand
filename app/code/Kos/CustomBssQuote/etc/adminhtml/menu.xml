@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <remove id="Bss_Core::bss_core_menu"/>
+        <remove id="Magento_Marketplace::partners"/>
+        <remove id="Amasty_Base::marketplace"/>
+        <remove id="MenuAmasty_Base::menu"/>
+        <remove id="Amasty_Base::extensions"/>
+        <remove id="Amasty_ProductAttachment::files"/>
+        <remove id="Amasty_ProductAttachment::files_list"/>
+        <remove id="Amasty_ProductAttachment::icon"/>
+        <remove id="Amasty_ProductAttachment::import"/>
+        <remove id="Amasty_ProductAttachment::report"/>
+        <remove id="Amasty_ProductAttachment::downloads"/>
+        <update id="Bss_Paymentshipping::menu_head_manage" title="Customer Group Methods" module="Bss_Paymentshipping" sortOrder="70" parent="Magento_Backend::stores" resource="Bss_Paymentshipping::bss_paymentshippingindex"/>
+        <update id="Bss_QuoteExtension::quote_extension" title="Quotations" translate="title" module="Bss_QuoteExtension" sortOrder="100" parent="Magento_Sales::sales" resource="Bss_QuoteExtension::quote_extension" />
+    </menu>
+</config>

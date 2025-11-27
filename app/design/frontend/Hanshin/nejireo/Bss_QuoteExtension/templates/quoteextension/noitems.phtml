@@ -1,0 +1,29 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_QuoteExtension
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+/** @var $block \Bss\QuoteExtension\Block\QuoteExtension */
+?>
+<?php // @codingStandardsIgnoreFile ?>
+
+<div class="image-top" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut2.png'); ?>);"></div>
+<h1 class="text-center"><img src="<?php echo $this->getViewFileUrl('images/screw.svg'); ?>" width="125" /></h1>
+<h1 class="text-center"><?php echo __('You have no items in your quote.'); ?></h1>
+<div class="action-button">
+    <button type="button" onclick="window.location='<?=$block->escapeUrl($block->getContinueShoppingUrl())?>'"><span><?= $block->escapeHtml(__('Click here to continue shopping')) ?></span></button>
+</div>
+<div class="image-bottom" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut1.png'); ?>)"></div>

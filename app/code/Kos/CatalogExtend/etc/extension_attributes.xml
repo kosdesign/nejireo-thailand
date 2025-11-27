@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductTierPriceInterface">
+        <attribute code="day_to_ship" type="string">
+            <join reference_table="catalog_product_entity_tier_price" reference_field="product_id" join_on_field="entity_id">
+                <field>day_to_ship</field>
+            </join>
+        </attribute>
+    </extension_attributes>
+</config>

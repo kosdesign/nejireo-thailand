@@ -1,0 +1,240 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Blog\Block\Frontend $block */
+?>
+
+<?php 
+    $postData = $this->helper('Mageplaza\Blog\Helper\Data');
+    $postCollection = $this->getPostCollection();
+    $count = 0;
+    $postCollectionData = [];
+
+    foreach($postCollection as $value)  {
+        $postCollectionData[] = $value;
+    }
+
+    // var_dump($postData->getParameters());
+
+?>
+ <?php foreach ($postCollectionData as $key => $post): ?>
+    <?php if($key == 0 ) : ?>
+        <div class="blog-current">
+            <div class="row no-gutters">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                    <?php if ($post->getImage()): ?>
+                        <div class="post-image">
+                            <a href="<?= $post->getUrl() ?>">
+                                <img class="img-fluid"
+                                    src="<?= $block->resizeImage($post->getImage()); ?>"
+                                    alt="<?= $block->escapeHtml($post->getName()); ?>"/>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 post-info-wraper-title">
+                    <div class="post-info-wraper">
+                        <div class="post-info">
+                            <?= date( 'd M Y', strtotime($post->getPublishDate())); ?>
+                        </div>
+                        <h2 class="mp-post-title">
+                            <a class="post-link-title" title="<?= $block->escapeHtml($post->getName()); ?>"
+                            href="<?= $post->getUrl() ?>">
+                                <?= $post->getName(); ?>
+                            </a>
+                        </h2>
+                        <div class="post-short-description">
+                            <p><?= $block->maxShortDescription($post->getShortDescription()); ?></p>
+                        </div>
+                    
+                        <div class="mp-clearfix"></div>
+                        <div class="mp-post-meta-info mp-alignright">
+                            <div class="actions">
+                                <a class="mp-read-more" href="<?= $post->getUrl(); ?>"
+                                title="<?= __('LEARN MORE'); ?>">
+                                    <?= __('LEARN MORE'); ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endforeach; ?>
+
+<div class="kos-blog">
+    <?php if ($postCollectionData): ?>
+    <div class="row">
+        <?php foreach ($postCollectionData as $key2 => $post): ?>
+            <?php if($key2 > 0 ) : ?>
+             
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-aos="fade-up">
+                    <div class="post-item-wraper">
+                        <?php if ($post->getImage()): ?>
+                        <div class="post-image">
+                            <a href="<?= $post->getUrl() ?>">
+                                <img class="img-responsive" src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
+                                    alt="<?= $block->escapeHtml($post->getName()); ?>" />
+                            </a>
+                        </div>
+                        <?php endif; ?>
+                        <div class="mp-post-info">
+                            <?php 
+                                $category = $postData->getObjectByParam($post->getCategoryId(), null, 'category');
+                            ?>
+                            <div class="catname"><?= $category->getName() ?></div>
+                            <div class="date"><?= date( 'd M Y', strtotime($post->getPublishDate())); ?></div>
+                            
+                        </div>
+                        <div class="post-info-wraper">
+                            <h2 class="mp-post-title">
+                                <a class="post-link-title" title="<?= $block->escapeHtml($post->getName()); ?>"
+                                    href="<?= $post->getUrl() ?>">
+                                    <?= $post->getName(); ?>
+                                </a>
+                            </h2>
+                            <div class="post-short-description">
+                                <p><?= $block->maxShortDescription($post->getShortDescription()); ?></p>
+                            </div>
+                    
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <div class="col-xl-12">
+            <?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+
+    <?php else: ?>
+    <?= __('There are no posts at this moment'); ?>
+    <?php endif; ?>
+</div>
+
+
+<script>
+require(['jquery'], function($) {
+    $('.limiter').css('float', 'right');
+});
+</script>
+
+<style>
+    .page-wrapper {
+        max-width: unset;
+        padding: 0;
+        background-color: transparent;
+        background: transparent;
+    }
+    .page-wrapper .columns {
+        background-color: transparent;
+    }
+    .kos-blog {
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .blog-current .post-short-description{
+        font-size: 15px;
+        font-weight: 400;
+        color: #6e7185;
+
+    }
+
+    .mp-post-info {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 400;
+        margin-top: -50px;
+        position: absolute;
+
+    }
+
+    .mp-post-info .catname  {
+        background: #024D77;
+        width: 165px;
+        color: white;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mp-post-info .date {
+        background: #E6552F;
+        width: 135px;
+        color: white;
+        height: 50px;
+        text-align: center;
+        padding: 16px;
+    }
+
+    .kos-blog .post-item-wraper .post-image a img{
+        height: 277px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .kos-blog .post-info-wraper .mp-post-title {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    .kos-blog .post-info-wraper .mp-post-title .post-link-title,
+    .blog-current .post-link-title{
+        font-size: 18px;
+        font-weight: 600;
+      
+    }
+
+    .kos-blog .post-info-wraper .mp-post-title .post-link-title:hover{
+        color: #E6552F !important;
+    }
+
+    .kos-blog .post-short-description {
+        font-size: 15px;
+        font-weight: 400;
+        color: #6e7185;
+    }
+   
+    .kos-blog .pages .items{
+        background-color: white;
+    }
+
+    @media only screen and (max-width: 885px) {
+        .mp-post-info {
+            position: relative;
+            margin-top: 0;
+            flex-wrap: wrap;
+        }
+
+        .mp-post-info .catname  {
+            width: 100%;
+        }
+
+        .mp-post-info .date {
+            width: 100%;
+        }
+    }
+
+</style>

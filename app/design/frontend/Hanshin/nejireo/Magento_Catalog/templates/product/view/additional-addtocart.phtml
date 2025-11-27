@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php if ($_product->isSaleable()): ?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <div class="actions">
+                <a href="#link-product-table-options"
+                        title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                        class="action hs-primary tocart"
+                        id="product-addtocart-button" disabled>
+                    <span class=""><i class="icomoon-cart text-body-20 pr-4"></i>
+                    <span><?= /* @escapeNotVerified */ __('Select & Add to Cart') ?></span></span>
+                </a>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

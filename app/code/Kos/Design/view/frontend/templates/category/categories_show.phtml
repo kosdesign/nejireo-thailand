@@ -1,0 +1,30 @@
+<?php
+/**
+ * @var \Kos\Design\Block\Category\Navigation $block
+ */
+$allcategory = $block->getCategoryLevelOne();
+?>
+<div class="card-category-item-list">
+    <div class="card-category-title w-100 mt-0">
+        <h1><?php echo __('All Categories'); ?></h1>
+    </div>
+    <div class="product-item-list row m-0">
+        <?php foreach($allcategory as $_allcategory){
+            $_allcat = $block->getCategoryById($_allcategory->getId());
+            if($_allcat->getChildren()){
+                $_allcate = explode(',', $_allcat->getChildren());
+                foreach($_allcate as $category){
+                    $_category = $block->getCategoryById($category);?>
+                    <div class="product-item col-xl-3 col-md-4 col-6">
+                        <div class="card-name card-name--large"><?php echo $_category->getName(); ?></div>
+                        <div class="card-product-image">
+                            <div class="image" style="background-image:url(<?php echo $_category->getImageUrl(); ?>)"></div>
+                        </div>
+                        <div class="card-link"><span><span><?php echo __('VIEW MORE'); ?> </span></span></div>
+                        <div class="link-overlay"><a href="<?php echo $_category->getUrl(); ?>"></a></div>
+                    </div>
+                <?php }?>
+            <?php }?>
+        <?php }?>
+    </div>
+</div>

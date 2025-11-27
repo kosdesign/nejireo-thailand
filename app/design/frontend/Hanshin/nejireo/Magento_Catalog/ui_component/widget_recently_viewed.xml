@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="widget_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Recently Viewed Products</item>
+                <item name="additionalClasses" xsi:type="string">block-viewed-products-grid products-recently-viewed</item>
+            </item>
+        </argument>
+        <column name="name" sortOrder="1" displayArea="details-top" />
+        <column name="link.overlay" component="Magento_Catalog/js/product/learn-more" sortOrder="2" displayArea="details-top">
+            <settings>
+                <label translate="true">LinkOverlay</label>
+                <bodyTmpl>Magento_Catalog/product/link-overlay</bodyTmpl>
+            </settings>
+        </column>
+    </columns>
+</listing>

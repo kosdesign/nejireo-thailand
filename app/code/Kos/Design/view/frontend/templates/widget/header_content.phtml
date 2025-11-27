@@ -1,0 +1,16 @@
+
+    <div class="head-social-promo-text">
+        <div class="card-social">
+            <div class="link-list">
+                <ul>
+                    <?php if ($block->getData('text1')) {?><li><a href="<?php echo $block->getData('text1'); ?>" target="_blank"><em class="fa fa-facebook"></em></a></li><?php } ?>
+                    <?php if ($block->getData('text2')) {?><li><a href="<?php echo $block->getData('text2'); ?>" target="_blank"><em class="fa fa-instagram"></em></a></li><?php } ?>
+                    <?php if ($block->getData('text3')) {?><li><a href="<?php echo $block->getData('text3'); ?>" target="_blank"><em class="fa fa-youtube"></em></a></li><?php } ?>
+                </ul>
+            </div>
+            <div class="link-text"><a href="<?php echo $this->getUrl($block->getData('link4')); ?>" target="_blank">Line : <?php if ($block->getData('text4')) { echo $block->getData('text4'); } ?></a></div>
+        </div>
+        <div class="card-promo-text">
+            <div><?php if ($block->getData('text5')) { echo $block->getData('text5'); } ?></div>
+        </div>
+    </div>

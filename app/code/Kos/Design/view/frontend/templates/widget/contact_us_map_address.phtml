@@ -1,0 +1,165 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/** @var \Kos\Design\Block\Widget\ContactUsMap $block */
+$address = $block->getContactUsMapAddressBlock();
+?>
+<div class="content-map">
+    <div class="map-address d-none">
+        <a class="d-block" target="_blank" href="https://www.google.com/maps?q=13.124049,100.993706"><img src="<?php echo $this->getViewFileUrl('images/contact/address-hanshin-neji-thailand.png'); ?>" alt="" /></a>
+    </div>
+ <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3885.6073568284496!2d100.9911983!3d13.1240423!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3102c8084470846d%3A0xc6fcc754ecec13ae!2z4Lia4Lij4Li04Lip4Lix4LiXIOC4ruC4seC4meC4iuC4tOC4mSDguYDguJnguIjguLQgKOC4m-C4o-C4sOC5gOC4l-C4qOC5hOC4l-C4oikg4LiI4Liz4LiB4Lix4LiUIEhhbnNoaW4gTmVqaSAoVGhhaWxhbmQpIC8g4LiI4Liz4Lir4LiZ4LmI4Liy4Lii4LiZ4LmH4Lit4LiV4Liq4LiB4Lij4Li5!5e0!3m2!1sen!2sth!4v1747800135416!5m2!1sen!2sth" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <!--  <div id="kMap"></div> -->
+</div>
+<!-- <script src="https://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDU9OUHz2n5mypNEo41aAKyY0II3dNM77I"></script> -->
+<script>
+    function MapInit() {
+        var myOptions = {
+            disableDefaultUI: true,
+            scrollwheel: false,
+            draggable: true,
+            zoom: 13,
+            center: new google.maps.LatLng(13.124049, 100.993706),
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL,
+            },
+        };
+        var theMap = new google.maps.Map(document.getElementById("kMap"), myOptions);
+        landingMapStyles = [{
+            featureType: "administrative",
+            elementType: "labels",
+            stylers: [{
+                hue: "#F7F7F7"
+            }, {
+                lightness: -10
+            }, {
+                saturation: -100
+            }]
+        }, {
+            featureType: "administrative.locality",
+            elementType: "labels",
+            stylers: [{
+                visibility: "off"
+            }]
+        }, {
+            featureType: "landscape.natural",
+            elementType: "all",
+            stylers: [{
+                hue: "#F7F7F7"
+            }, {
+                lightness: 0
+            }, {
+                saturation: -100
+            }]
+        }, {
+            featureType: "transit.station",
+            elementType: "all",
+            stylers: [{
+                hue: "#F7F7F7"
+            }, {
+                lightness: -10
+            }, {
+                saturation: -100
+            }]
+        }, {
+            featureType: "road",
+            elementType: "all",
+            stylers: [{
+                hue: "#FFF"
+            }, {
+                lightness: -10
+            }, {
+                saturation: -100
+            }]
+        }, {
+            featureType: "administrative.country",
+            elementType: "geometry",
+            stylers: [{
+                hue: "#a0a0a0"
+            }, {
+                lightness: 0
+            }, {
+                saturation: 0
+            }, {
+                gamma: 0
+            }]
+        }, {
+            featureType: "landscape.man_made",
+            elementType: "all",
+            stylers: [{
+                visibility: "off"
+            }]
+        }, {
+            featureType: "poi",
+            elementType: "all",
+            stylers: [{
+                visibility: "on"
+            }, {
+                hue: "#FFF"
+            }, {
+                lightness: -10
+            }, {
+                saturation: -100
+            }]
+        }, {
+            featureType: "water",
+            elementType: "all",
+            stylers: [{
+                hue: "#FFF"
+            }, {
+                lightness: -10
+            }, {
+                saturation: -100
+            }]
+        }];
+        styledMapOptions = {
+            name: "landingMap"
+        };
+        landingMapType = new google.maps.StyledMapType(landingMapStyles, styledMapOptions);
+        theMap.mapTypes.set('landingMap', landingMapType);
+        theMap.setMapTypeId('landingMap');
+
+
+        var contentString = `<div class="info-content">
+            <div class="d-md-flex">
+                <div class="col-md-5 col-logo mb-4 mb-md-0">
+                    <img src="<?php echo $this->getViewFileUrl('images/contact/logo-map.svg'); ?>" alt="" />
+                </div>
+                <div class="col-md-7 col-address">
+                    <div>
+                        <?php echo $address; ?>
+                        <a class="d-sm-block d-none link-direction" target="_blank" href="https://www.google.com/maps?q=13.124049,100.993706">Get Direction</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+
+        var marker = new google.maps.Marker({
+            map: theMap,
+            icon: '<?php echo $this->getViewFileUrl('images/contact/pin.png');?>',
+            draggable: false,
+            position: new google.maps.LatLng(13.124049, 100.993706),
+            visible: true
+        });
+
+        infowindow.open(theMap, marker);
+        marker.addListener('click', function() {
+            infowindow.open(theMap, marker);
+        });
+    }
+    require([
+        'jquery',
+    ], function ($) {
+        $(document).ready(function() {
+//            MapInit();
+        });
+    });
+</script>

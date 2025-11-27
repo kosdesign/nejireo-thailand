@@ -1,0 +1,30 @@
+<?php //$data = $block->filterParameters(); 
+?>
+<?php //print_r($data); 
+?>
+
+
+<div class="section-content-top">
+    <?php if ($block->getData('image')) : ?>
+        <div class="banner"><img class="w-100" src="/pub/media/<?= $block->getData('image') ?>" alt=""></div>
+    <?php endif; ?>
+    <div class="container">
+        <div class="content">
+        <?php if ($block->getData('subtitle')) : ?>
+            <h2 class="small-title"><?= $block->getData('subtitle') ?></h2>
+        <?php endif; ?>
+            <div class="row align-items-center">
+                <div class="col-md-6 col-text mb-4 mb-md-0">
+                    <?php if ($block->getData('title')) : ?>
+                        <h1><?= html_entity_decode($block->getData('title')) ?></h1>
+                    <?php endif; ?>
+                </div>
+                <?php if ($block->getData('body_text')) : ?>
+                    <div class="col-md-6 col-detail text-body-18">
+                        <div><?= html_entity_decode($block->getData('body_text')) ?></div>
+                    <?php endif; ?>
+                    </div>
+            </div>
+        </div> 
+    </div>
+</div>

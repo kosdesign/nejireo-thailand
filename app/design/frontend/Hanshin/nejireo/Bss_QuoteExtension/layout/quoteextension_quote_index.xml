@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_QuoteExtension
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Home</item>
+                    <item name="label" xsi:type="string" translate="true">Home</item>
+                    <item name="link" xsi:type="string">/home</item>
+                </argument>
+            </action> 
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">quotation-cart</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Quotation Cart</item>
+                    <item name="label" xsi:type="string" translate="true">Quotation Cart</item>
+                </argument>
+            </action> 
+        </referenceBlock>
+        <referenceContainer name="quoteextension.quote.container" htmlTag="div"
+                            htmlClass="quoteextension cart-container container"/>
+        <referenceBlock name="quoteextension.quote.form">
+            <block class="Magento\Catalog\Pricing\Render" name="product.price.tier.te">
+                <arguments>
+                    <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                    <argument name="price_type_code" xsi:type="string">tier_price</argument>
+                    <argument name="zone" xsi:type="string">item_view</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="quoteextension.quote.submit">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-submit" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="block-totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="shipping" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="title" xsi:type="string" translate="true">Shipping &amp; Handling:</item>
+                                                                <item name="template" xsi:type="string">Bss_QuoteExtension/cart/totals/shipping</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceContainer name="quoteextension.summary" htmlTag="div" htmlClass="cart-summary quote clearfix" />
+        <!--<referenceBlock name="quoteextension.product.comment" remove="true" />-->
+        <referenceBlock name="quoteextension.quote.summary.title" remove="true" />
+    </body>
+</page>

@@ -1,0 +1,21 @@
+<?php $data = $block->filterParameters(); ?>
+<?php //print_r($data); 
+?>
+
+<div class="collection-item">
+    <a href="<?= $this->getUrl($block->getData('url')); ?>" class="card-link">
+        <div class="card-image">
+            <div class="image image-double-size" data-desktop-image="/pub/media/<?= $block->getData('image') ?>"
+            data-mobile-image="<?php if ($block->getData('image_mobile')) : ?>/pub/media/<?= $block->getData('image_mobile') ?><?php else: ?>/pub/media/<?= $block->getData('image') ?><?php endif; ?>"
+             <?php /*if ($block->getData('image')) : ?> style="background-image:url(/pub/media/<?= $block->getData('image') ?>)" <?php endif; */?>></div>
+        </div>
+        <div class="card-text">
+            <div>
+                <div class="card-title "><?= $block->getData('title') ?></div>
+                <div class="link-box d-none d-sm-block"><span><span><?= __('Shop Now')?></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </a>
+</div> 

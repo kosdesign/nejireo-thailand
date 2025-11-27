@@ -1,0 +1,25 @@
+<?php //$data = $block->filterParameters(); ?>
+<?php if ($block->getData('title')) : ?>
+    <p><strong><?= $block->getData('title') ?></strong></p>
+<?php endif; ?>
+<ul>
+    <?php if ($block->getData('line_chat')) : ?>
+        <li><a href="<?= $block->getData('line_chat') ?>" target="_blank"><i class="icomoon-line "></i></a></li>
+    <?php endif; ?>
+    <?php if ($block->getData('facebook')) : ?>
+        <li><a href="<?= $block->getData('facebook') ?>" target="_blank"><i class="icomoon-facebook "></i></a></li>
+    <?php endif; ?>
+    <?php if ($block->getData('youtube')) : ?>
+        <li><a href="<?= $block->getData('youtube') ?>" target="_blank"><i class="icomoon-youtube "></i></a></li>
+    <?php endif; ?>
+    <?php if ($block->getData('weibo')) : ?>
+        <li><a href="<?= $block->getData('weibo') ?>" target="_blank"><i class="icomoon-weibo "></i></a></li>
+    <?php endif; ?>
+    <?php if ($block->getData('twitter')) : ?>
+        <li><a href="<?= $block->getData('twitter') ?>" target="_blank"><i class="icomoon-twitter "></i></a></li>
+    <?php endif; ?>
+    <?php if ($block->getData('instagram')) : ?>
+        <li><a href="<?= $block->getData('instagram') ?>" target="_blank"><i class="icomoon-instagram "></i></a></li>
+    <?php endif; ?>
+</ul>    
+

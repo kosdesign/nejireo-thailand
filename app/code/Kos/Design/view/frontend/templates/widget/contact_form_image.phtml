@@ -1,0 +1,3 @@
+<a href="<?php if($block->getData('url') != '') : echo $this->getUrl($block->getData('url')); else : echo '#'; endif;?>">
+    <img src="/pub/media/<?= $block->getData('image') ?>" alt="">
+</a>

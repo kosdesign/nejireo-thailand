@@ -1,0 +1,185 @@
+<?php
+/**
+ * Copyright © 2016 MB Vienas bitas. All rights reserved.
+ * @website    www.magetrend.com
+ * @package    MT Email for M2
+ * @author     Edvinas Stulpinas <edwin@magetrend.com>
+ */
+
+//@codingStandardsIgnoreFile
+?>
+<?php $_item = $block->getItem() ?>
+<?php $_order = $block->getItem()->getOrder();?>
+<?php $var = $block->getVarModel();?>
+<?php
+/**
+ * @var \Magetrend\Email\Helper\Data $helper
+ */
+$helper = $block->getHelper();
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();  
+$product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId()); 
+$productUrl = $product->getProductUrl();
+$getItemOptions = $block->getItemOptions();
+if($product->getTypeId() == 'configurable') {
+    $configurable = $objectManager->get('\Magento\ConfigurableProduct\Model\Product\Type\Configurable');
+    $superAttribute = array();
+    if (count($block->getItemOptions()) > 0) {
+        foreach ($block->getItemOptions() as $option) {
+            $superAttribute[$option['option_id']] = $option['option_value'];
+        }
+        $product = $configurable->getProductByAttributes($superAttribute ,$product);
+        $getItemOptions = $block->getItemOptions();
+    } else {
+        $orderItem = $objectManager->create('\Magento\Sales\Api\OrderItemRepositoryInterface')->get($_item->getData('order_item_id'));
+        $getProductOptions = $orderItem->getProductOptions();
+        foreach ($getProductOptions['attributes_info'] as $option) {
+            $superAttribute[$option['option_id']] = $option['option_value'];
+        }
+        $product = $configurable->getProductByAttributes($superAttribute ,$product);
+        $getItemOptions = $getProductOptions['attributes_info'];
+    }
+}
+?>
+
+<tr
+    <?php echo $var->getHtmlAttribute('style', 'order_item_row_style', 'background-color: #ffffff;'); ?>
+    <?php echo $var->getHtmlAttribute('bgcolor', 'order_item_row_bgcolor', '#ffffff'); ?>
+    class="mteditor-bgcolor row-bg-color">
+    <td colspan="6" height="5"></td>
+</tr>
+<tr
+    <?php echo $var->getHtmlAttribute('style', 'order_item_row_style', 'background-color: #ffffff;'); ?>
+    <?php echo $var->getHtmlAttribute('bgcolor', 'order_item_row_bgcolor', '#ffffff'); ?>
+    class="mteditor-bgcolor row-bg-color">
+
+    <td></td>
+    <td align="<?php echo $block->isRTL()?'right':'left';?>" height="35">
+        <?php if ($block->showImage()): ?>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td width="60" valign="top"><img alt="pic" src="<?php echo $this->getItemImage($_item);?>" width="60"/> </td>
+                <td width="5"></td>
+                <td>
+        <?php endif; ?>
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; ">
+            <tr>
+                <td
+                    <?php echo $var->getHtmlAttribute('style', 'order_item_name_text', 'color: #707582; font-size: 14px; height:25px!important'); ?>
+                    height="25" colspan="2" class="mteditor-color table-row-color">
+                    <b><?php echo $block->escapeHtml($product->getName()) ?></b>
+                </td>
+            </tr>
+            <tr>
+                <td height="5"></td>
+            </tr>
+        </table>
+        <table cellpadding="0" width="auto" cellspacing="0" border="0" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; ">
+            <?php if (!$helper->hideSku($_item->getStoreId())) :?>
+                <tr
+                    <?php echo $var->getHtmlAttribute('style', 'order_item_options', 'color: #707582; font-size: 14px; line-height: 20px'); ?>
+                        class="mteditor-color product-options-row">
+                    <td height="25"  style="font-weight: bold"
+                        <?php echo $var->getTextEditAttribute('order_item_options_sku_text_1');?>>
+                    <?php echo $block->escapeHtml(__("Part No")) ?></td>
+                    <td>: <?php echo $block->escapeHtml($product->getData('part_number')) ?></td>
+                </tr>
+            <?php endif; ?>
+
+            <?php /* if ($getItemOptions): ?>
+                <?php foreach ($getItemOptions as $option): ?>
+                    <tr
+                        <?php echo $var->getHtmlAttribute('style', 'order_item_options', 'color: #707582; font-size: 14px; line-height: 20px'); ?>
+                            class="mteditor-color product-options-row">
+                        <td height="25" style="font-weight: bold"><?php echo $option['label'] ?>&nbsp;&nbsp;</td>
+                        <td><?php echo nl2br($option['value']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                <tr>
+                    <td colspan="2" height="3"></td>
+                </tr>
+            <?php endif; */ ?>
+
+            <?php if ($links = $block->getLinks()): ?>
+                <?php $links = $links->getPurchasedItems(); ?>
+                <tr>
+                    <td colspan="2" height="5"><div style="font-size: 0; height: 0;">&nbsp;</div></td>
+                </tr>
+                <tr
+                    <?php echo $var->getHtmlAttribute('style', 'order_item_options', 'color: #707582; font-size: 14px; line-height: 20px'); ?>
+                        class="mteditor-color product-options-row">
+                    <td height="25" colspan="2"  style="font-weight: bold"
+                        <?php echo $var->getTextEditAttribute('order_item_options_downloads_text_1');?>>
+                        <?php echo $var->getValue('order_item_options_downloads_text_1', $block->getLinksTitle());?>&nbsp;&nbsp;</td>
+                    </td>
+                </tr>
+
+                <?php foreach ($links as $link): ?>
+                    <tr <?php echo $var->getHtmlAttribute('style', 'order_item_options', 'color: #707582; font-size: 14px; line-height: 20px'); ?>>
+                        <td colspan="2">
+                            <?php echo $block->escapeHtml($link->getLinkTitle()) ?>
+                            (<a style="text-decoration: none;"  href="<?php echo $block->getPurchasedLinkUrl($link) ?>"><?php echo /* @escapeNotVerified */  __('Download') ?></a>)
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </table>
+        <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addInfoBlock) :?>
+            <?php echo $addInfoBlock->setItem($_item)->toHtml(); ?>
+        <?php endif; ?>
+
+        <?php if ($block->showImage()): ?>
+                    </td>
+                </tr>
+            </table>
+    <?php endif; ?>
+    </td>
+
+    <td valign="top"
+        <?php echo $var->getHtmlAttribute('style', 'order_item_name_text_qty', 'color: #707582; font-size: 14px; height:25px!important'); ?>
+        class="mteditor-color table-row-color"
+        align="center" height="35" >
+        <?php if ($_item->getQty() == 0 && $_item->hasData('qty_ordered')) :?>
+            <?php echo $_item->getQtyOrdered()*1 ?>
+        <?php else: ?>
+            <?php echo (int)$_item->getQty()*1 ?>
+        <?php endif; ?>
+    </td>
+    <?php if (!$this->isShipmentItem()): ?>
+        <td
+            valign="top"
+            <?php echo $var->getHtmlAttribute('style', 'order_item_name_text_subtotal', 'color: #707582; font-size: 14px; height:25px!important'); ?>
+            class="mteditor-color table-row-color"
+            align="<?php echo $block->isRTL()?'left':'right';?>"  height="35" >
+            <?php echo /* @escapeNotVerified */  $block->getPrice($_item); ?>
+        </td>
+    <?php endif; ?>
+    <td></td>
+
+</tr>
+<?php if ($_item->getGiftMessageId() && $_giftMessage = $block->helper('Magento\GiftMessage\Helper\Message')->getGiftMessage($_item->getGiftMessageId())): ?>
+<tr
+    <?php echo $var->getHtmlAttribute('style', 'order_item_row_style', 'background-color: #ffffff;'); ?>
+    <?php echo $var->getHtmlAttribute('bgcolor', 'order_item_row_bgcolor', '#ffffff'); ?>
+    class="mteditor-bgcolor row-bg-color">
+    <td colspan="6" >
+        <table class="message-gift">
+            <tr>
+                <td>
+                    <h3><?= /* @escapeNotVerified */  __('Gift Message') ?></h3>
+                    <strong><?= /* @escapeNotVerified */  __('From:'); ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                    <br /><strong><?= /* @escapeNotVerified */  __('To:'); ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                    <br /><strong><?= /* @escapeNotVerified */  __('Message:'); ?></strong>
+                    <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<?php endif; ?>
+<tr
+    <?php echo $var->getHtmlAttribute('style', 'order_item_row_style', 'background-color: #ffffff;'); ?>
+    <?php echo $var->getHtmlAttribute('bgcolor', 'order_item_row_bgcolor', '#ffffff'); ?>
+    class="mteditor-bgcolor row-bg-color">
+    <td colspan="6" height="5"></td>
+</tr>

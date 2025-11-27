@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="mpblog_design"/>
+    <body>
+        <referenceContainer name="breadcrumbs" remove="true" />
+        <referenceContainer name="div.sidebar.main" remove="true" />
+        <referenceBlock name="catalog.compare.link" remove="true" />
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="page.main.title" remove="true"/>
+
+        <referenceBlock name="head.additional">
+            <block class="Mageplaza\Blog\Block\Post\View" name="mpblog.post.head" template="post/head.phtml"/>
+        </referenceBlock>
+
+        <referenceContainer name="main.content" htmlClass="kos-blog-view-header" >
+               <block class="Mageplaza\Blog\Block\Post\View" name="mpblog.post.view.relate" as="related_post" template="Kos_BlogCustom::relatedBlog.phtml"/>
+
+               
+            <block class="Magento\Cms\Block\Block" name="card-seo-banner" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer-blog</argument>
+                </arguments>
+            </block>
+            
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Mageplaza\Blog\Block\Post\View" name="mpblog.post.view" template="post/view.phtml" cacheable="false">
+                <block class="Mageplaza\Blog\Block\Post\RelatedProduct" name="related.category.products" as="related_products" template="Mageplaza_Blog::product/list.phtml"/>
+            </block>
+
+
+        </referenceContainer>
+
+    </body>
+</page>

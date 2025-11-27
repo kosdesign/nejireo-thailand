@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+
+        <referenceContainer name="main.content" htmlClass="hs-main"/>
+        <referenceContainer name="columns" htmlClass="page-contact-content page-not-found mt-4"/>
+
+        <referenceContainer name="content">
+            <container name="content.background.white" htmlTag="div" htmlClass="background-white">
+                <container name="content.page.content" htmlTag="div" htmlClass="page-content">
+                    <container name="contact.form.container" label="Contact Form Container" htmlTag="div" htmlClass="container"/>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="page.main.title" remove="true" />
+        <move element="eghl.payment.content" destination="contact.form.container" before="-"/>
+    </body>
+</page>

@@ -1,0 +1,266 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //Norms Font
+    .lib-font-face(
+        @family-name: @font-family-name__norms,
+        @font-path: '@{baseDir}fonts/tt_norms/thin/typetype_-_tt_norms_thin-webfont',
+        @font-weight: 200,
+        @font-style: normal
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__norms,
+        @font-path: '@{baseDir}fonts/tt_norms/light/typetype_-_tt_norms_light-webfont',
+        @font-weight: 300,
+        @font-style: normal
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__norms,
+        @font-path: '@{baseDir}fonts/tt_norms/regular/typetype_-_tt_norms_regular-webfont',
+        @font-weight: 400,
+        @font-style: normal
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__norms,
+        @font-path: '@{baseDir}fonts/tt_norms/medium/typetype_-_tt_norms_medium-webfont',
+        @font-weight: 500,
+        @font-style: normal
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__norms,
+        @font-path: '@{baseDir}fonts/tt_norms/bold/typetype_-_tt_norms_bold-webfont',
+        @font-weight: 700,
+        @font-style: normal
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__norms,
+        @font-path: '@{baseDir}fonts/tt_norms/black/typetype_-_tt_norms_black-webfont',
+        @font-weight: 900,
+        @font-style: normal
+    );
+
+    //Icomoon Font
+    .lib-font-face(
+        @family-name: @font-family-name__icomoon,
+        @font-path: '@{baseDir}fonts/icomoon/icomoon',
+        @font-weight: normal,
+        @font-style: normal,
+        @font-display: block
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/opensans/light/opensans-300',
+        @font-weight: 300,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/opensans/regular/opensans-400',
+        @font-weight: 400,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/opensans/semibold/opensans-600',
+        @font-weight: 600,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/opensans/bold/opensans-700',
+        @font-weight: 700,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: @font-family__admin-icons,
+        @font-path: '@{baseDir}fonts/admin-icons/admin-icons',
+        @font-weight: 300,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+
+    .lib-font-face(
+        @family-name: @font-family__name_thai,
+        @font-path: '@{baseDir}fonts/NotoSansThai/NotoSansThai-Thin',
+        @font-weight: 100,
+        @font-style: normal
+    );
+    .lib-font-face(
+        @family-name: @font-family__name_thai,
+        @font-path: '@{baseDir}fonts/NotoSansThai/NotoSansThai-ExtraLight',
+        @font-weight: 200,
+        @font-style: normal
+    );
+    .lib-font-face(
+        @family-name: @font-family__name_thai,
+        @font-path: '@{baseDir}fonts/NotoSansThai/NotoSansThai-Light',
+        @font-weight: 300,
+        @font-style: normal
+    );
+    .lib-font-face(
+        @family-name: @font-family__name_thai,
+        @font-path: '@{baseDir}fonts/NotoSansThai/NotoSansThai-Regular',
+        @font-weight: 400,
+        @font-style: normal
+    );
+    .lib-font-face(
+        @family-name: @font-family__name_thai,
+        @font-path: '@{baseDir}fonts/NotoSansThai/NotoSansThai-Medium',
+        @font-weight: 500,
+        @font-style: normal
+    );
+    .lib-font-face(
+        @family-name: @font-family__name_thai,
+        @font-path: '@{baseDir}fonts/NotoSansThai/NotoSansThai-SemiBold',
+        @font-weight: 600,
+        @font-style: normal
+    );
+    .lib-font-face(
+        @family-name: @font-family__name_thai,
+        @font-path: '@{baseDir}fonts/NotoSansThai/NotoSansThai-Bold',
+        @font-weight: 700,
+        @font-style: normal
+    );
+    .lib-font-face(
+        @family-name: @font-family__name_thai,
+        @font-path: '@{baseDir}fonts/NotoSansThai/NotoSansThai-ExtraBold',
+        @font-weight: 800,
+        @font-style: normal
+    );
+    .lib-font-face(
+        @family-name: @font-family__name_thai,
+        @font-path: '@{baseDir}fonts/NotoSansThai/NotoSansThai-Black',
+        @font-weight: 900,
+        @font-style: normal
+    );
+
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    h1 {
+        .lib-css(font-size, @h1__font-size-desktop);
+        .lib-css(margin-bottom, @h1__margin-bottom__desktop);
+    }
+}
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    a:hover {
+        text-decoration: none;
+    }
+
+    ::selection {
+        background-color: #E6552F;
+        color: #fff;
+    }
+    .items {
+        .lib-list-reset-styles();
+    }
+
+    [class^="icomoon-"], [class*=" icomoon-"] {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: @font-family-name__icomoon !important;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .icomoon-cart:before {
+        content: "\e900";
+    }
+    .icomoon-heart:before {
+        content: "\e901";
+    }
+    .icomoon-paper:before {
+        content: "\e902";
+    }
+    .icomoon-user:before {
+        content: "\e903";
+    }
+    .icomoon-screw:before {
+        content: "\e904";
+    }
+    .icomoon-plus:before {
+        content: "\e905";
+    }
+    .icomoon-chat:before {
+        content: "\e906";
+    }
+    .icomoon-mail:before {
+        content: "\e907";
+    }
+    .icomoon-phone:before {
+        content: "\e908";
+    }
+    .icomoon-plus-light:before {
+        content: "\e909";
+    }
+    .icomoon-update:before {
+        content: "\e90a";
+    }
+    .icomoon-close:before {
+        content: "\e90b";
+    }
+    .icomoon-pdf:before {
+        content: "\e90c";
+    }
+    .icomoon-group-squre:before {
+        content: "\e90d";
+    }
+    .icomoon-trash:before {
+        content: "\e90e";
+    }
+    .icomoon-logout:before {
+        content: "\e90f";
+    }
+    .icomoon-paragraph:before {
+        content: "\e910";
+    }
+    .icomoon-history:before {
+        content: "\e911";
+    }
+    .icomoon-save:before {
+        content: "\e912";
+    }
+    .icomoon-dashboard:before {
+        content: "\e913";
+    }
+}

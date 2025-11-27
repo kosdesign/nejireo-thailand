@@ -1,0 +1,12 @@
+<?php /** @var Pk\ProductSchema\Block\Product $block */ ?>
+<?php $currentProduct = $block->getCurrentProduct() ?>
+
+<script type="application/ld+json">
+    {
+        "@type": "Product",
+        "name": "<?php echo $currentProduct->getName() ?>",
+        "image": "<?php echo $block->getImageUrl() ?>",
+        "url": "<?php echo $currentProduct->getProductUrl() ?>"
+    }
+
+</script>

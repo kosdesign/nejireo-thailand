@@ -1,0 +1,20 @@
+<div class="content-static content-number-row">
+    <div class="container">
+        <div class="row mb-5 align-items-center">
+            <div class="col-md-2 number"><?php if ($block->getData('title')) : ?><?= $block->getData('title') ?><?php endif; ?></div>
+            <div class="col-md-10">
+                <div>
+                <?php if ($block->getData('image')) : ?>
+                    <div class="banner mb-4"><img class="w-100" src="/pub/media/<?= $block->getData('image') ?>" alt=""></div>
+                <?php endif; ?>
+                <?php if ($block->getData('subtitle')) : ?><h3><?= $block->getData('subtitle') ?></h3><?php endif; ?>
+
+                <?php if ($block->getData('body_text')) : ?>
+
+                    <?= html_entity_decode($block->getData('body_text')) ?>
+                <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

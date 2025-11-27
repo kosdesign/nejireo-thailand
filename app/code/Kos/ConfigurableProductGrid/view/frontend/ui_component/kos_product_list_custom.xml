@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">kos_product_list_custom.kos_product_list_custom_data_source</item>
+            <item name="deps" xsi:type="string">kos_product_list_custom.kos_product_list_custom_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">products_columns</item>
+    </argument>
+    <dataSource name="kos_product_list_custom_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Kos\ConfigurableProductGrid\Ui\DataProvider\ProductList</argument>
+            <argument name="name" xsi:type="string">kos_product_list_custom_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Kos_ConfigurableProductGrid/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="configurableproductgrid/index/render">
+                        <param name="_current">true</param>
+                    </item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="cacheRequests" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <filters name="listing_filters" template="Kos_ConfigurableProductGrid/grid/filters/filters">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Kos_ConfigurableProductGrid/js/grid/filters/filters</item>
+                <item name="templates" xsi:type="array">
+                    <item name="filters" xsi:type="array">
+                        <item name="select" xsi:type="array">
+                            <item name="component" xsi:type="string">Kos_ConfigurableProductGrid/js/form/element/ui-select</item>
+                            <item name="template" xsi:type="string">
+                                Kos_ConfigurableProductGrid/grid/filters/elements/ui-select
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+    </filters>
+    <listingToolbar name="listing_top" template="Kos_ConfigurableProductGrid/grid/toolbar-top">
+        <paging name="listing_sortby" template="Kos_ConfigurableProductGrid/grid/listing/sort-by">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sizesConfig" xsi:type="array">
+                        <item name="template" xsi:type="string">Kos_ConfigurableProductGrid/grid/paging/sizes</item>
+                    </item>
+                </item>
+            </argument>
+        </paging>
+        <columnsControls name="columns_controls"/>
+    </listingToolbar>
+    <columns name="products_columns" template="Kos_ConfigurableProductGrid/grid/listing">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">kos_productGrid</item>
+                        <item name="target" xsi:type="string">kos_selectProduct</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <column name="part_number">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Part Number</item>
+                    <item name="fieldClass" xsi:type="string" translate="true">col__part-number</item>
+                    <item name="sortOrder" xsi:type="number">1</item>
+                </item>
+            </argument>
+        </column>
+        <column name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                    <item name="fieldClass" xsi:type="string" translate="true">col__name</item>
+                    <item name="sortOrder" xsi:type="number">2</item>
+                </item>
+            </argument>
+        </column>
+        <column name="material">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Kos\ConfigurableProductGrid\Model\Option\Material</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="add_field" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Material</item>
+                    <item name="fieldClass" xsi:type="string" translate="true">col__material</item>
+                    <item name="sortOrder" xsi:type="number">3</item>
+                </item>
+            </argument>
+        </column>
+        <column name="plating">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Kos\ConfigurableProductGrid\Model\Option\Plating</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="add_field" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Plating</item>
+                    <item name="fieldClass" xsi:type="string" translate="true">col__plating</item>
+                    <item name="sortOrder" xsi:type="number">4</item>
+                </item>
+            </argument>
+        </column>
+        <column name="diameter">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Kos\ConfigurableProductGrid\Model\Option\Diameter</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="add_field" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Diameter</item>
+                    <item name="fieldClass" xsi:type="string" translate="true">col__diameter</item>
+                    <item name="sortOrder" xsi:type="number">5</item>
+                </item>
+            </argument>
+        </column>
+        <column name="length">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Kos\ConfigurableProductGrid\Model\Option\Length</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="add_field" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Length</item>
+                    <item name="fieldClass" xsi:type="string" translate="true">col__length</item>
+                    <item name="sortOrder" xsi:type="number">6</item>
+                </item>
+            </argument>
+        </column>
+        <column name="price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="label" xsi:type="string" translate="true">Volume Price</item>
+                    <item name="fieldClass" xsi:type="string" translate="true">col__volume-price</item>
+                    <item name="sortOrder" xsi:type="number">7</item>
+                </item>
+            </argument>
+        </column>
+        <column name="day_to_ship">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="label" xsi:type="string" translate="true">Day to Ship</item>
+                    <item name="fieldClass" xsi:type="string" translate="true">col__day-to-ship</item>
+                    <item name="sortOrder" xsi:type="number">8</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="qty" class="Kos\ConfigurableProductGrid\Ui\Component\Listing\Column\AddToCart">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="label" xsi:type="string" translate="true">Qty</item>
+                    <item name="sortOrder" xsi:type="number">9</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+    <listingToolbar name="listing_footer" template="Kos_ConfigurableProductGrid/grid/toolbar">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="sticky" xsi:type="boolean">false</item>
+            </item>
+        </argument>
+        <paging name="listing_paging" template="Kos_ConfigurableProductGrid/grid/paging/paging">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Kos_ConfigurableProductGrid/js/grid/paging/paging</item>
+                    <item name="sizesConfig" xsi:type="array">
+                        <item name="template" xsi:type="string">Kos_ConfigurableProductGrid/grid/paging/sizes</item>
+                    </item>
+                </item>
+            </argument>
+        </paging>
+        <columnsControls name="columns_controls"/>
+    </listingToolbar>
+</listing>

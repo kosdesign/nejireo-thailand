@@ -1,0 +1,53 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Account\AuthorizationLink $block */
+
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+?>
+<?php if ($block->isLoggedIn()) :
+    $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+    $customerSession = $objectManager->create("Magento\Customer\Model\Session");
+    $customer = $objectManager->get('\Magento\Customer\Model\CustomerFactory')->create()->load($customerSession->getCustomerId());
+    ?>
+    <li class="authorization-link welcome-name" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
+        <a href="<?= /* @noEscape */ $this->getUrl('customer/account'); ?>">
+            <span><?= $block->escapeHtml(__('Welcome')) ?></span><br/>
+            <!--  <strong><?= $customer->getFirstname() ?></strong> -->
+        </a>
+    </li>
+    <style>
+        li.authorization-link.welcome-name {
+            margin-top: 10px;
+        }
+        .header.content .head-account {
+            padding: 0px 20px 10px 20px;
+        }
+        .authorization-link.welcome-name {
+            margin-bottom: 0px;
+        }
+        .authorization-link.reg {
+            margin-top: 1rem;
+        }
+        .authorization-link.welcome-name a span {
+            color: #e6552f;
+        }
+        .authorization-link.welcome-name a strong {
+            text-transform: capitalize;
+        }
+        .header.content .head-account ul li {
+            padding: 0 18px;
+        }
+    </style>
+<?php endif; ?>
+<li class="authorization-link reg" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
+    <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
+        <?= $block->escapeHtml($block->getLabel()) ?>
+    </a>
+</li>

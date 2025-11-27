@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Image $block */
+
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+$imageUrl = $this->helper('Magento\Catalog\Helper\Image')
+    ->init($product, 'product_base_image')
+    ->constrainOnly(TRUE)
+    ->keepAspectRatio(TRUE)
+    ->keepTransparency(TRUE)
+    ->keepFrame(FALSE)
+    ->resize(150, 150)->getUrl();
+?>
+<div class="card-product-image">
+    <div class="image" style="background-image:url(<?= $imageUrl ?>)"></div>
+</div>
+<div class="link-overlay"><a href="<?= $product->getProductUrl() ?>"></a></div>

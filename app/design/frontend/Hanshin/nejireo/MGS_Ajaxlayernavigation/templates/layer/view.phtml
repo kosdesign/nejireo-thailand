@@ -1,0 +1,71 @@
+<?php
+/**
+ * Product list filter template
+ *
+ * @var $block \Kos\CatalogFilter\Block\ListProductFilter
+ */
+?>
+<?php $_helper = $this->helper('MGS\Ajaxlayernavigation\Helper\Config');?>
+<?php $_helperCustom = $this->helper('Kos\CatalogExtend\Helper\Data');?>
+<?php if ($block->canShowBlock()): ?>
+<div class="block__filter card-category-nav-list">
+    <div class="card-title font-bold text-body-18 color-black text-sm-left text-center toggle-title nav-mobile"><?= /* @escapeNotVerified */ __('Filter'); ?></div>
+    <div class="filter-category admin__data-grid-outer-wrap card-list">
+        <div class="title col-md-4 col-title font-bold color-black text-body-18 mb-4 mb-md-0"><?= /* @escapeNotVerified */ __('Specification/Dimensions'); ?></div>
+        <input type="hidden" name="url-page" id="url-page"
+               value="<?= $block->getUrl('*/*/*', ['_use_rewrite' => true, '_forced_secure' => true]) ?>">
+        <div class="admin__data-grid-filters-wrap">
+            <fieldset class="admin__fieldset admin__data-grid-filters">
+                <?php foreach ($block->getFilters() as $filter): ?>
+                    <?php if ($filter->getRequestVar() != "cat") : ?>
+                    <div class="admin__form-field">
+                        <label class="admin__form-field-label" for="JO3HHRN">
+                            <span><?= $block->escapeHtml(__($filter->getName())) ?></span>
+                        </label>
+                        <div class="admin__action-multiselect-wrap action-select-wrap" tabindex="0" id="JO3HHRN">
+                            <div class="action-select admin__action-multiselect">
+                                <div class="admin__action-multiselect-text"><?= /* @escapeNotVerified */ __('Select...'); ?></div>
+                            </div>
+                            <div class="action-menu">
+                                <ul class="admin__action-multiselect-menu-inner _root">
+                                    <?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?>
+                                </ul>
+                                <div class="admin__action-multiselect-actions-wrap">
+                                    <button class="action-default action-done" type="button">
+                                        <span>Done</span>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </fieldset>
+        </div>
+        <div class="admin__data-grid-filters-footer col-md-8 col-actions">
+            <span><?= __('To display results please select and click update'); ?></span>
+            <div class="admin__footer-main-actions">
+                <button class="action-secondary hs-btn-action action-update" type="button">
+                    <span><?= /* @escapeNotVerified */ __('Update'); ?></span>
+                </button>
+            </div>
+            <div class="admin__data-grid-filters-current">
+                <div class="admin__current-filters-actions-wrap">
+                    <button class="action-tertiary action-clear" type="button"><?= /* @escapeNotVerified */ __('Clear all'); ?>
+                        <span class="count-item"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "*":{
+                "MGS_Ajaxlayernavigation/js/filter":{},
+                "Magento_Ui/js/form/element/ui-select":{}
+            }
+        }
+    </script>
+</div>
+<?php endif; ?>

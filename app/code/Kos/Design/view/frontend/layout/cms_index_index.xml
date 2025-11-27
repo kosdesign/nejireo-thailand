@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="cms.banner.contact">
+            <container name="card.banner.slider" htmlTag="div" htmlClass="card-banner-slider" before="-">
+                <block class="Kos\Design\Block\Widget\BannerSlider" name="card-banner-slider" template="Kos_Design::homepage/banner_slider.phtml" before="-" />
+            </container>
+        </referenceContainer>
+        <referenceContainer name="main.content">
+            <block class="Kos\Design\Block\Category\Navigation" name="card-hs-category-group" template="Kos_Design::homepage/category_group.phtml" after="page.wrapper.hs" />
+            <block class="Kos\Design\Block\Widget\LandingBanner" ifconfig="landingbanner/general/enabled" name="homepage.popup.landing.banner" template="Kos_Design::homepage/popup_landing_banner.phtml" after="card-hs-category-group" />
+        </referenceContainer>
+    </body>
+</page>

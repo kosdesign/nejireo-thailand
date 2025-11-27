@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_OneStepCheckout
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">/</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Checkout</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Checkout</item>
+                    <item name="label" xsi:type="string">Checkout</item>
+                </argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="component" xsi:type="string">Kos_BssOneStepCheckout/js/view/onepage</item>
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Kos_BssOneStepCheckout/form/element/email</item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="vat_id" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">65</item>
+                                                                </item>
+                                                                <item name="country_id" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">75</item>
+                                                                </item>
+                                                                <item name="region_id" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">80</item>
+                                                                </item>
+                                                                <item name="city" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">85</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">Kos_BssOneStepCheckout/payment</item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Kos_BssOneStepCheckout/sidebar</item>
+                                    </item>
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="cart_items" xsi:type="array">
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">Kos_BssOneStepCheckout/summary/cart-items</item>
+                                                    </item>
+                                                    <item name="sortOrder" xsi:type="string">200</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="details" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Kos_BssOneStepCheckout/js/view/summary/item/details</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="thumbnail" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">Kos_BssOneStepCheckout/summary/item/details/thumbnail</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="unitprice" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Kos_BssOneStepCheckout/js/view/summary/item/price/unitprice</item>
+                                                                    <item name="displayArea" xsi:type="string">row_unitprice</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">220</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">Kos_BssOneStepCheckout/summary/totals</item>
+                                                    </item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="shipping" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="title" xsi:type="string" translate="true">Shipping &amp; Handling:</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="place-order-btn" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">summary-additional</item>
+                                            <item name="sortOrder" xsi:type="string">999</item>
+                                            <item name="component" xsi:type="string">Kos_BssOneStepCheckout/js/view/place-order-btn</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

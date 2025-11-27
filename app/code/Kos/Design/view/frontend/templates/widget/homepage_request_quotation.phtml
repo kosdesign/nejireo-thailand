@@ -1,0 +1,62 @@
+<div class="card-request-quotation background-white">
+    <div class="container">
+        <h3 class="font-medium color-black text-body-14 mb-4"><?php
+            if ($block->getData('title')) {
+                echo $block->getData('title');
+            }
+            ?></h3>
+        <div class="row">
+            <div class="col-md-7 mb-4 mb-md-0">
+                <div class="max-width-500">
+                    <h2 class="font-regular text-body-40 text-body-lg-30 color-black mb-5"><?php
+                        if ($block->getData('body_text')) {
+                            echo html_entity_decode($block->getData('body_text'));
+                        }
+                        ?><?php
+                            if ($block->getData('display_name')) {
+                            //echo $block->getData('display_name');
+                        }
+                        ?></h2>
+                    <div class="detail has-custom-bullet text-body-18 text-body-lg-16">  
+                        <ul>
+                            <?php
+                            $i = 1;
+                            for ($i <= 1; $i <= 5; $i++) {
+                                ?>
+                                <?php if ($block->getData('steprequest' . $i) != '') { ?>
+                                    <li><?php
+                                        if ($block->getData('steprequest' . $i)) {
+                                            echo $block->getData('steprequest' . $i);
+                                        }
+                                        ?></li>
+                                <?php } ?>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="max-width-400">
+                    <h2 class="font-bold text-body-40 text-body-lg-30 color-black mb-5"><?php
+                        if ($block->getData('title2')) {
+                            echo $block->getData('title2');
+                        }
+                        ?></h2>
+                    <div class="detail text-body-18 text-body-lg-16"><?php
+                        if ($block->getData('body_text2')) {
+                            echo html_entity_decode($block->getData('body_text2'));
+                        }
+                        ?></div>
+                    <div class="card-link card-link--icon"><a class="contact-form-modal-button" href="#" data-mage-init='{&quot;contact-form-modal&quot;: {&quot;target&quot;: &quot;#modal-contact-form&quot;}}'>
+                        <?php
+                            if ($block->getData('display_name')) {
+                            echo $block->getData('display_name');
+                        }
+                        ?>
+                            </a></div>
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .pages {
+        .lib-pager();
+
+        .item {
+            border: @border-hs;
+            border-left: 0;
+            width: 40px;
+
+            &:first-child {
+                border-left: @border-hs;
+            }
+
+            &.pages-item-previous,
+            &.pages-item-next {
+                width: auto;
+
+                &.disabled {
+                    .action {
+                        pointer-events: none;
+                    }
+                }
+            }
+        }
+
+        a.page,
+        strong.page,
+        .action {
+            line-height: 40px;
+            font-size: 14px;
+            font-weight: @font-weight__heavier;
+        }
+
+        .action {
+            &.next,
+            &.previous {
+                > span:not(.label) {
+                    overflow: initial;
+                    height: auto;
+                    width: auto;
+                    position: relative;
+                    padding: 12px 15px;
+                    line-height: 38px;
+                    font-size: 1rem;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    color: @color-orange;
+                }
+
+                &:before {
+                    content: '';
+                }
+            }
+        }
+
+        &-item {
+            &-previous,
+            &-next {
+                &.disabled {
+                    .action {
+                        &.next,
+                        &.previous {
+                            cursor: initial;
+                            span {
+                                color: #aaa;
+                                opacity: 0.5;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .pages {
+        &-items {
+            width: 100%;
+        }
+
+        .item {
+            display: none;
+            &.pages-item-previous {
+                float: left;
+                border-right: @border-hs;
+                display: inline-block;
+            }
+
+            &.pages-item-next {
+                float: right;
+                border-left: @border-hs;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+}

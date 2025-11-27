@@ -1,0 +1,21 @@
+{
+    "name": "kos/module-customer",
+    "description": "Create KOS Customer for Magento2",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "email": "info@kos.co.th",
+            "name": "Kos design"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Kos\\Customer\\": ""
+        }
+    }
+} 

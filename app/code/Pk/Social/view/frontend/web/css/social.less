@@ -1,0 +1,165 @@
+.social-button {
+    opacity: 1;
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    display: block;
+    z-index: 1000001;
+    background-color: transparent;
+    border-radius: unset;
+
+    .social {
+        margin-bottom: 1rem;
+        list-style: none;
+        padding: unset;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.1s ease-out;
+
+        &.show {
+            max-height: 200px;
+            transition: max-height 0.1s ease-in;
+        }
+
+        > li {
+            margin-bottom: 0.5rem;
+        }
+
+        .tel {
+            .social-tel-detail {
+                display: none;
+                position: absolute;
+                transform: translate(-26rem,-25rem);
+                width: 250px;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 14px 14px 0;
+                color: #878A9D;
+
+                &.active {
+                    display: block;
+                }
+
+                .phone-number-data span {
+                    color: #E6552F;
+                }
+
+                .working-time-data {
+                    padding: 20px 0;
+                }
+
+                .phone-number-data {
+                    overflow: hidden;
+                    padding-top: 20px;
+                }
+            }
+        }
+
+        .messenger, .line {
+            a {
+
+                &:hover {
+                    color: unset;
+                }
+
+                > div {
+                    display: none;
+                    position: absolute;
+                    transform: translate(-32rem, -7rem);
+                    width: max-content;
+                    background-color: #fff;
+                    padding: 10px 20px;
+                    border-radius: 14px 14px 0;
+                }
+
+                @media (min-width: 1024px) {
+                    > img:hover ~ div {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .line a > div {
+            transform: translate(-29rem, -7rem);
+        }
+    }
+
+    .social-bg {
+        display: none;
+        position: fixed;
+        background-color: black;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        z-index: -1;
+        left: 0;
+        top: 0;
+
+        &.show {
+            display: block;
+        }
+    }
+
+    .social-button-image {
+        img.close {
+            display: none;
+        }
+
+        &.active {
+            img.close {
+                display: inline;
+            }
+
+            img.open-content {
+                display: none;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .social-button .social-tel-detail {
+
+        &.active{
+            transform: translate(-26rem,-32rem) !important;
+        }
+
+        .phone-number-data {
+            display: grid;
+
+            > span {
+                padding: 10px 0;
+            }
+        }
+    }
+}
+
+html[lang="th"]{
+
+    .social-button{
+        .social{
+
+            .messenger, .line {
+                a {
+
+                    > div {
+                        transform: translate(-46rem,-7rem);
+                    }
+                }
+            }
+
+            .line a > div {
+                transform: translate(-44rem,-7rem);
+            }
+
+        }
+    }
+}
+

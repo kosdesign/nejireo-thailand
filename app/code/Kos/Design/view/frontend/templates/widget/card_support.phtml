@@ -1,0 +1,27 @@
+<div class="card-contact">
+    <a href="<?php if ($block->getData('btn_contact_identifier')) : echo $this->getUrl($block->getData('btn_contact_identifier')); endif; ?>">
+        <div class="icon"><i class="icomoon-chat"></i></div>
+        <div class="text"><?php if ($block->getData('btn_contact_name')) : echo $block->getData('btn_contact_name'); endif; ?></div>
+    </a>
+</div>
+<div class="card-support">
+    <div class="card-title text-body-18 color-grey-9c font-bold text-center"> <?php if ($block->getData('title')) : echo $block->getData('title'); endif; ?></div>
+    <div class="card-list color-grey-92">
+        <div class="card-item">
+            <div class="icon text-body-16 mb-2"><i class="icomoon-mail"></i></div>
+            <div class="text">
+                <a href='mailto:<?php if ($block->getData('email')) : echo $block->getData('email'); endif; ?>'>
+                    <?php if ($block->getData('email')) : echo $block->getData('email'); endif; ?>
+                </a>
+            </div>
+        </div>
+        <div class="card-item">
+            <div class="icon text-body-18 mb-2"><i class="icomoon-phone"></i></div>
+            <div class="text">
+                <a href='tel:<?php if ($block->getData('telephone')) : echo $block->getData('telephone'); endif; ?>'>
+                    <?php if ($block->getData('telephone')) : echo $block->getData('telephone'); endif; ?>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="card-product-list-view card-recently-view">
+    <div class="container">
+        <div class="card-list-title text-center color-black font-bold text-body-30 text-body-sm-24"><?php echo __('Recently Viewed Products'); ?></div>
+        <div class="card-list">
+            <div class="product-item-list card-list-view-slider row m-0">
+                <?php for ($i = 1; $i <= 12; $i++) : ?>
+                    <div class="product-item">
+                        <div class="card-name">Button cap bolt (Ansco)</div>
+                        <div class="card-product-image">
+                            <div class="image" style="background-image:url(<?php echo $this->getViewFileUrl('images/product/Hexagon.jpg'); ?>)"></div>
+                        </div>
+                        <div class="card-link"><span><span><?php echo __('VIEW MORE'); ?> </span></span></div>
+                        <div class="link-overlay"><a href="#"></a></div>
+                        <div class="card-wishlist"><a href="#"><i class="icomoon-heart"></i></a></div>
+                    </div>
+                <?php endfor; ?>
+            </div>
+        </div>
+    </div>
+</div>

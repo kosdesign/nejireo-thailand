@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Checkout\Block\Onepage\Failure */
+?>
+<div class="image-top" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut2.png'); ?>);"></div>
+<h1 class="text-center"><img src="<?php echo $this->getViewFileUrl('images/screw.svg'); ?>" width="125" /></h1>
+<h1 class="text-center"><?php echo __('Something went wrong.'); ?></h1>
+<?php if ($block->getRealOrderId()) :?>
+    <p class="text-center">
+            <?= $block->escapeHtml(__('Your order number <span>%1</span> is canceled, please contact our Customer Support.', $block->getRealOrderId()), ['span']) ?><br />
+    </p>
+<?php endif;?>
+<div class="action-button">
+    <button type="button" onclick="window.location='<?=$block->escapeUrl($block->getContinueShoppingUrl())?>'"><span><?= $block->escapeHtml(__('Click here to continue shopping')) ?></span></button>
+</div>
+<div class="image-bottom" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut1.png'); ?>)"></div>

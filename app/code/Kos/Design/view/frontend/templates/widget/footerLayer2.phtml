@@ -1,0 +1,28 @@
+<div class="card-item pb-5" style="padding-right: 0px;">
+    <h3 class="font-medium text-body-14 color-black mb-3"><?php if ($block->getData('title')) { echo $block->getData('title'); } ?></h3>
+    <div class="detail color-grey-9c text-body-12">
+        <?php if ($block->getData('body_text')) {?>
+            <p><?php echo html_entity_decode($block->getData('body_text')); ?></p>
+        <?php }?>
+        <ul>
+            <?php $i = 1; while ($i <= 5) {?>
+                <?php if ($block->getData('link_contact_line' . $i) != '') {?>
+                    <?php if ($block->getData('typeline' . $i) == 'link') {?>
+                        <li>
+                            <a href="<?php echo $this->getUrl($block->getData('link_contact_line' . $i)); ?>">
+                                <?php echo $block->getData('Label_line' . $i); ?>
+                            </a>
+                        </li>
+                    <?php } else {?>
+                        <li>
+                            <strong><?php echo $block->getData('typeline' . $i); ?> :</strong> 
+                            <a href="<?php if ($block->getData('typeline' . $i) == 'Email') {?>mailto<?php } else {?>tel<?php }?>:<?php echo $block->getData('link_contact_line' . $i);?>">
+                                <?php echo $block->getData('Label_line' . $i); ?>
+                            </a>
+                        </li>
+                    <?php }?>
+                <?php }?>
+            <?php $i++;}?>
+        </ul>
+    </div>
+</div>

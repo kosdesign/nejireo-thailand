@@ -1,0 +1,62 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+$urlInterface = $objectManager->get('\Magento\Framework\UrlInterface');
+$storeRepository = $objectManager->get('\Magento\Store\Model\StoreRepository');
+$baseurl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+$storeList = $storeRepository->getList();
+$url = $storeManager->getStore()->getBaseUrl();
+$lang = '';
+foreach($storeList as $list){
+    if ($url == $baseurl . $list->getCode() . '/') {
+        $lang = $list->getCode();
+    }
+}
+$stv = explode('/'.$lang, $urlInterface->getCurrentUrl());
+$stv0 = isset($stv[1]) ? $stv[0] . '/' : $baseurl;
+if(isset($stv[1])){
+    $stv1 = $stv[1];
+}else{
+    $stv2 = explode($baseurl, $urlInterface->getCurrentUrl());
+    if(isset($stv2[1])){
+        $stv1 = '/' . $stv2[1];
+        $bstv = explode('/'.$lang, $stv1);
+        if(isset($bstv[1])){
+            $stv1 = $bstv[1];
+        }else{
+            $stv1 = $stv1;
+        }
+    }else{
+        $stv1 = '';
+    }
+}
+?>
+<div class="card-switching">
+    <div class="cs-select" tabindex="0">
+        <span class="cs-placeholder"><img src="<?php echo $this->getViewFileUrl('images/flags/'.$lang.'.png'); ?>" alt="" /><?php echo strtoupper($lang); ?></span>
+        <div class="cs-options">
+            <ul>
+                <?php foreach($storeList as $list){
+                    if($list->getId()!=0){?>
+                        <li>
+                            <a href="<?= $stv0 . $list->getCode() . $stv1 ?>">
+                                <span>  
+                                    <img src="<?php echo $this->getViewFileUrl('images/flags/'.$list->getCode().'.png'); ?>" alt="" />
+                                    <?php echo strtoupper($list->getCode()); ?>
+                                </span>
+                            </a>
+                        </li>
+                    <?php }
+                }?>
+            </ul>
+        </div>
+    </div>
+</div>

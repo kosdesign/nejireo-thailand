@@ -1,0 +1,19 @@
+<div class="card-promotion-bar stick-promotion">
+    <div class="stick-close"><i class="icomoon-close"></i></div>
+    <div class="container">
+        <div class="row">
+            <?php if ($block->getData('title')) : ?>
+            <div class="card-title <?php if ($block->getData('body_text')) : ?>col-md-7  d-md-flex justify-content-end<?php else: ?>col-md-12 text-center<?php endif; ?> mb-4 mb-md-0">
+                    <div>
+                        <h3 class="m-0"><?= $block->getData('title') ?></h3>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ($block->getData('body_text')) : ?>
+                <div class="card-detail col-md-5 d-md-flex justify-content-center">
+                    <div><?= html_entity_decode($block->getData('body_text')) ?></div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

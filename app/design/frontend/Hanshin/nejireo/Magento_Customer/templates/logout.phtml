@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<div class="row">
+    <div class="col-md-5">
+        <h1 class="mb-md-5 pb-md-4 mb-3"><?= $block->escapeHtml(__('You are signed out')) ?></h1>
+        <div class="card-image d-none d-md-block"><img src="<?php echo $this->getViewFileUrl('images/banner/nut2.jpg'); ?>" alt=""></div>
+    </div>
+    <div class="col-md-6">
+        <p class="mb-5 d-none d-md-block"><?= $block->escapeHtml(__('You have signed out and will go to our homepage in 5 seconds.')) ?></p>
+    </div>
+</div>
+<p></p>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/logout-redirect": {
+                "url": "<?= $block->escapeJs($block->escapeUrl($block->getUrl())) ?>"
+            }
+        }
+    }
+</script>

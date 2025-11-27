@@ -1,0 +1,45 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Quote\Model\Quote\Item\Updater" type="Kos\CustomBssQuote\Model\Quote\Item\Updater" />
+    <preference for="Bss\QuoteExtension\Block\Adminhtml\QuoteExtension\Edit" type="Kos\CustomBssQuote\Block\Adminhtml\QuoteExtension\Edit"/>
+    <type name="Magento\Checkout\Block\Onepage">
+        <plugin name="kos_checkout_config_quote_extension" type="Kos\CustomBssQuote\Plugin\Block\OnePagePlugin" sortOrder="10"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="bss_quoteextension_add_button" disabled="true"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="ko_quoteextension_add_button" type="Kos\CustomBssQuote\Plugin\Block\Product\AddtoQuoteButton" sortOrder="11"/>
+    </type>
+<!--    Customize max qty Quote-->
+    <type name="Magento\CatalogInventory\Model\Stock\Item">
+        <plugin name="bss_message_max_qty_quote" type="Kos\CustomBssQuote\Plugin\MaxQtyQuote\Item" sortOrder="10"/>
+    </type>
+    <type name="Magento\Quote\Api\CartRepositoryInterface">
+        <plugin name="ignore_check_quote_active" type="Kos\CustomBssQuote\Plugin\MaxQtyQuote\QuoteRepository" sortOrder="15"/>
+    </type>
+    <type name="Magento\ConfigurableProduct\Ui\DataProvider\Product\Form\Modifier\StockData">
+        <plugin name="bss_max_qty_modify_stock" type="Kos\CustomBssQuote\Plugin\MaxQtyQuote\StockData" sortOrder="15"/>
+    </type>
+    <type name="Magento\CatalogInventory\Api\StockStateInterface">
+        <plugin name="check_quote_item_qty" type="Magento\InventorySales\Plugin\StockState\CheckQuoteItemQtyPlugin" disabled="true"/>
+    </type>
+    <type name="Magento\CatalogInventory\Api\StockStateInterface">
+        <plugin name="bss_check_quote_item_qty" type="Kos\CustomBssQuote\Plugin\MaxQtyQuote\CheckQuoteItemQtyPlugin" sortOrder="10"/>
+    </type>
+    <type name="Bss\QuoteExtension\Controller\Quote\Index">
+        <plugin name="before_redirect_quote_index" type="Kos\CustomBssQuote\Plugin\Quote\Index" sortOrder="10"/>
+    </type>
+    <type name="Bss\QuoteExtension\Controller\Quote\UpdateQuote">
+        <plugin name="before_redirect_quote_update" type="Kos\CustomBssQuote\Plugin\Quote\Add" sortOrder="10"/>
+    </type>
+    <type name="Bss\QuoteExtension\Controller\Quote\Add">
+        <plugin name="before_redirect_quote_add" type="Kos\CustomBssQuote\Plugin\Quote\Add" sortOrder="10"/>
+    </type>
+    <type name="Bss\QuoteExtension\Controller\Quote\UpdateItemOptions">
+        <plugin name="before_redirect_quote_updateItem" type="Kos\CustomBssQuote\Plugin\Quote\Add" sortOrder="10"/>
+    </type>
+    <type name="Magento\CatalogInventory\Model\Quote\Item\QuantityValidator">
+        <plugin name="before_validate_quote" type="Kos\CustomBssQuote\Plugin\Quote\QuantityValidator" sortOrder="10"/>
+    </type>
+    <preference for="Bss\QuoteExtension\Controller\Quote\ViewSubmit" type="Kos\CustomBssQuote\Controller\Quote\ViewSubmit" />
+</config>

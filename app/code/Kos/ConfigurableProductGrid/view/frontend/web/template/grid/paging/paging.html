@@ -1,0 +1,24 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="row">
+    <div class="col-left col-md-7">
+        <div class="admin__data-grid-pager clearfix">
+            <button class="action-previous" type="button" attr="title: $t('Previous Page')" click="prev"
+                    disable="isFirst()"><span translate="'Prev'"/></button>
+            <ul data-bind="foreach: new Array(pages)">
+                <li>
+                    <button class="actions"
+                            data-bind='text: $index()+1, click: function () {$parent.setPage($index()+1)}, attr: {page_index: $index()+1}, disable: ($index()+1) === $parent.current ? true : false'/>
+                </li>
+            </ul>
+            <button class="action-next" type="button" attr="title: $t('Next Page')" click="next" disable="isLast()"><span translate="'Next'"/></button>
+        </div>
+    </div>
+    <div class="admin__control-content col-right col-md-5">
+        <scope args="sizes" render=""/>
+    </div>
+</div>

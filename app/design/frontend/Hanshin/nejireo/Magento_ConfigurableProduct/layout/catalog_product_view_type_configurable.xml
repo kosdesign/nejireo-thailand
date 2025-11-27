@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="spec.information.container" htmlTag="div" htmlClass="spec-information" after="product.info.media">
+                <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.attributes.spec.info" as="additional.spec.info"
+                       template="Magento_ConfigurableProduct::product/view/spec-attributes.phtml">
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="product.info.price" remove="true" />
+    </body>
+</page>

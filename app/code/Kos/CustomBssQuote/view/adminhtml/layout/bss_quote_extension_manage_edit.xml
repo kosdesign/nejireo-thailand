@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="items_grid">
+			<action method="setTemplate">
+		        <argument name="template" xsi:type="string">Kos_CustomBssQuote::quoteextension/view/items/grid.phtml</argument>
+		    </action>
+		</referenceBlock>
+        <referenceBlock name="quote_extension_info">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Kos_CustomBssQuote::quoteextension/view/info.phtml</argument>
+            </action>
+        </referenceBlock>
+	</body>
+</page>

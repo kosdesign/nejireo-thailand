@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+                <group id="eghlpayment" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>eGHL Payment</label>
+                    <field id="active" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+					<field id="payment_url" translate="label comment" sortOrder="2" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Payment URL</label>
+                        <source_model>Eghl\PaymentMethod\Model\Config\Source\PaymentURL</source_model>
+                    </field>
+					<!-- <field id="order_status" translate="label comment" sortOrder="3" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>New Order Status</label>
+                        <source_model>Eghl\PaymentMethod\Model\Config\Source\OrderStatuses</source_model>
+                    </field> -->
+					<field id="payment_success_status" translate="label comment" sortOrder="4" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment Success Status</label>
+                        <source_model>Eghl\PaymentMethod\Model\Config\Source\OrderStatuses</source_model>
+                    </field>
+					<field id="payment_cancel_status" translate="label comment" sortOrder="5" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment Cancel Status</label>
+                        <source_model>Eghl\PaymentMethod\Model\Config\Source\OrderStatuses</source_model>
+                    </field>
+					<field id="payment_fail_status" translate="label comment" sortOrder="6" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment Failed Status</label>
+                        <source_model>Eghl\PaymentMethod\Model\Config\Source\OrderStatuses</source_model>
+                    </field>
+					<field id="payment_pending_status" translate="label comment" sortOrder="7" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment Pending Status</label>
+                        <source_model>Eghl\PaymentMethod\Model\Config\Source\OrderStatuses</source_model>
+                    </field>
+					<field id="pay_method" translate="label comment" sortOrder="8" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Payment Method</label>
+                        <source_model>Eghl\PaymentMethod\Model\Config\Source\PayMethods</source_model>
+                    </field>
+					<field id="currency_type" translate="label comment" sortOrder="9" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Currency Type</label>
+                        <source_model>Eghl\PaymentMethod\Model\Config\Source\CurrencyType</source_model>
+                    </field>
+					<field id="mid" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Merchant ID</label>
+						<comment>Merchant/Service ID</comment>
+					</field>
+					<field id="hashpass" translate="label comment" type="password" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Merchant Password</label>
+						<comment>Hash Password</comment>
+					</field>
+					<field id="page_timeout" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Timeout (sec)</label>
+						<comment>Payment Page Timeout</comment>
+					</field>
+					<field id="debug" translate="label comment" sortOrder="13" type="select" showInDefault="9" showInWebsite="1" showInStore="1">
+                        <label>Enable Logging</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+					<field id="title" translate="label comment" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Title</label>
+						<comment>Title to display on frontend</comment>
+					</field>
+                    <field id="fail_payment_email" translate="label comment" sortOrder="15" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Send Email when Payment Failed?</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+						<comment>Send Order Comment Email to customer when Payment Failed?</comment>
+                    </field>
+                </group>
+        </section>
+    </system>
+</config>

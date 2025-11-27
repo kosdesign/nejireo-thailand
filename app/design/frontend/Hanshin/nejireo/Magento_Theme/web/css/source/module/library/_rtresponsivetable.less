@@ -1,0 +1,157 @@
+/* CSS Document */
+/* jQuery rt Responsive Tables - v1.0.6 - 2020-01-13
+* https://github.com/stazna01/jQuery-rt-Responsive-Tables
+*
+* This plugin is built heavily upon the work by Chris Coyier
+* found at http://css-tricks.com/responsive-data-tables/
+*
+* Copyright (c) 2020 Nathan Stazewski; Licensed MIT */
+
+/*
+Generic Styling, for Desktops/Laptops
+*/
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    table {
+        &.rt-responsive-table {
+            tr.data-grid-tr-no-data {
+                td {
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+
+            tr {
+                margin-bottom: @indent__base;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+
+            &.rt-vertical-table {
+                td {
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    table {
+        &.rt-responsive-table {
+            &.rt-vertical-table,
+            &.rt-vertical-table thead,
+            &.rt-vertical-table tbody,
+            &.rt-vertical-table th,
+            &.rt-vertical-table td,
+            &.rt-vertical-table tr {
+                display: block;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                /* BELOW THREE STATEMENTS NEEDED FOR IE9 AND BELOW */
+                float: left;
+                clear: left;
+                width: 100%;
+            }
+
+            tr.data-grid-tr-no-data {
+                td {
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+
+            tr {
+                margin-bottom: @indent__base;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+
+            &.rt-vertical-table {
+                thead {
+                    tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+                }
+
+                tbody {
+                    td {
+                        div.responsive-container {
+                            float: left;
+                            width: 50%;
+                            display: block;
+                        }
+                    }
+                }
+
+                td {
+                    position: relative;
+                    border: @border-hs;
+                    border-bottom: 0;
+
+                    &:last-child {
+                        border-bottom: @border-hs;
+                    }
+
+                    &:before {
+                        /* Now like a table header */
+                        position: relative;
+                        width: 40%;
+                        padding-right: 10px;
+                        word-break: break-all;
+                        float: left;
+                        display: inline-block;
+                        font-weight: @font-weight__bold;
+                    }
+                }
+            }
+        }
+    }
+
+    td {
+        &:not(.data-grid-actions-cell) {
+            .data-grid-cell-content {
+                width: 60%;
+                display: inline-block;
+            }
+        }
+    }
+
+    .product-container {
+        .data-grid {
+            .data-grid-actions-cell {
+                .box-qty {
+                    width: 60%;
+                    display: inline-block;
+                    float: right;
+                }
+            }
+        }
+    }
+
+    table.rt-responsive-table {
+        &.rt-vertical-table {
+            td.data-grid-actions-cell {
+                &:before {
+                    position: absolute;
+                    top: 20px;
+                    left: 10px;
+                }
+            }
+        }
+    }
+}

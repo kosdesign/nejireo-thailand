@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Mageplaza\Blog\Helper\Data" type="Kos\BlogCustom\Helper\Mageplaza\Blog\Data" />
+		
+    <preference for="Mageplaza\Blog\Block\Listpost" type="Kos\BlogCustom\Block\Mageplaza\Blog\Listpost" />
+
+    <preference for="Mageplaza\Blog\Block\Widget\Posts" type="Kos\BlogCustom\Block\Mageplaza\Widget\Posts" />
+		
+</config>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <payment>
+            <eghlpayment>
+                <active>1</active>
+				<debug>0</debug>
+				<fail_payment_email>1</fail_payment_email>
+				<payment_url>https://test2pay.ghl.com/IPGSG/Payment.aspx</payment_url>
+                <order_status>pending_payment</order_status>
+				<payment_success_status>processing</payment_success_status>
+				<payment_cancel_status>canceled</payment_cancel_status>
+				<payment_fail_status>canceled</payment_fail_status>
+				<payment_pending_status>pending_payment</payment_pending_status>
+				<pay_method>ANY</pay_method>
+				<currency_type>Base</currency_type>
+				<mid>SIT</mid>
+				<hashpass>sit12345</hashpass>
+				<page_timeout>780</page_timeout>
+                <title>Credit/Debit Card, Online banking via eGHL</title>
+                <payment_action>true</payment_action>
+                <model>Eghl\PaymentMethod\Model\PaymentMethod</model>
+                <group>offline</group>
+            </eghlpayment>
+            <!-- payment-config -->
+        </payment>
+    </default>
+</config>

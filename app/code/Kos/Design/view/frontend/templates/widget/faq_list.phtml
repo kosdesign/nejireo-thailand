@@ -1,0 +1,14 @@
+<div class="card-item-toggle">
+    <div class="card-title toggle-pop" data-pop="item-<?php echo $block->getData('id'); ?>">
+        <?php if ($block->getData('title')) :
+            echo $block->getData('title');
+        endif; ?>
+    </div>
+    <div id="item-<?php echo $block->getData('id'); ?>" class="card-content" style="display: none;" data-action="slide">
+        <div>
+            <?php if ($block->getData('detail')) :
+                echo html_entity_decode($block->getData('detail'));
+            endif; ?>
+        </div>                            
+    </div>                           
+</div>

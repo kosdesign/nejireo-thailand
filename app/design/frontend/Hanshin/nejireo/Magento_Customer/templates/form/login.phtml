@@ -1,0 +1,58 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<div class="row">
+    <div class="col-md-5">
+        <h1 class="mb-md-5 pb-md-4 mb-3"><?= $block->escapeHtml(__('Sign In')) ?></h1>
+        <div class="card-image d-none d-md-block"><img src="<?php echo $this->getViewFileUrl('images/banner/nut2.jpg'); ?>" alt=""></div>
+    </div>
+    <div class="col-md-6">
+        <p class="mb-5 d-none d-md-block"><?= $block->escapeHtml(__('Enter your email and password to sign in to your Neijireo account.')) ?></p>
+        <form class="form form-login"
+              action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
+              method="post"
+              id="login-form"
+              data-mage-init='{"validation":{}}'>
+            <?= $block->getBlockHtml('formkey') ?>
+            <div class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+                <div class="field email required">
+                    <label class="label d-none" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                    <div class="control">
+                        <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()) : ?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" placeholder="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}">
+                    </div>
+                </div>
+                <div class="field password required">
+                    <label for="pass" class="label d-none"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
+                    <div class="control">
+                        <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()) : ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" placeholder="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
+                    </div>
+                </div>
+                
+                <?= $block->getChildHtml('form_additional_info') ?>
+                <div class="actions-toolbar">
+                    <div class="primary"></div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a class="forget-pass classic-link-hover" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a>
+            </div>
+            <div class="actions-button my-4">
+                <button type="submit" name="send" id="send2"><span><?= $block->escapeHtml(__('Sign In')) ?></span></button>
+            </div>
+            <div class="text-center">
+                <p>
+                    <?= $block->escapeHtml(__('Don\'t have an account?')) ?><br/>
+                    <a class="register-link forget-pass small-title color-orange classic-link-hover" href="<?= $block->escapeUrl($this->getUrl('customer/account/create')) ?>"> 
+                        <?= $block->escapeHtml(__('Register')) ?>
+                    </a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+

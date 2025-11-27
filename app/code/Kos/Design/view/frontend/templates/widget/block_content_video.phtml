@@ -1,0 +1,41 @@
+
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mb-4">
+                <h1><?php if ($block->getData('title')) : ?><?= $block->getData('title') ?><?php endif; ?></h1>
+            </div>
+            <div class="col-md-6">
+                <p><?php echo html_entity_decode($block->getData('detail')); ?></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-seo-banner">
+    <div class="card-content">
+        <div class="card-image" style="background-image: url('/pub/media/<?= $block->getData('image') ?>')">&nbsp;</div>
+        <div class="card-text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h3 class="font-bold color-white text-body-40 text-body-lg-34 mb-5"><?php if ($block->getData('body_text')) { echo html_entity_decode($block->getData('body_text'));} ?></h3>
+                        <div class="detail color-white text-body-18"><?php if ($block->getData('text2')) { echo html_entity_decode($block->getData('text2')); } ?></div>
+                    </div>
+                    <div class="col-md-6 col-video">
+                        <div>
+                            <a class="card-video-link" href="<?php if ($block->getData('video_url')) : echo $block->getData('video_url'); endif; ?>" data-fancybox="">
+                                <div class="card-video-image"><img alt="" src="/pub/media/<?= $block->getData('video_image') ?>"></div>
+                                <div class="card-video-text">
+                                    <div class="card-icon-play"></div>
+                                    <div class="card-text-play">
+                                        <h4 class="m-0"><?php if ($block->getData('video_title')) : echo $block->getData('video_title'); endif; ?></h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

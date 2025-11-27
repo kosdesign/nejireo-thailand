@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Home</item>
+                    <item name="label" xsi:type="string" translate="true">Home</item>
+                    <item name="link" xsi:type="string">/home</item>
+                </argument>
+            </action> 
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">shopping-cart</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Shopping Cart</item>
+                    <item name="label" xsi:type="string" translate="true">Shopping Cart</item>
+                </argument>
+            </action> 
+        </referenceBlock>
+        <referenceContainer name="checkout.cart.container" htmlTag="div" htmlClass="shopping-cart cart-container container">
+            <block class="Magento\Checkout\Block\Cart\Grid" name="checkout.cart.form" as="cart-items" template="Magento_Checkout::cart/form.phtml" before="cart.summary">
+                <block class="Magento\Framework\View\Element\RendererList" name="checkout.cart.item.renderers" as="renderer.list"/>
+                <block class="Magento\Framework\View\Element\Text\ListText" name="checkout.cart.order.actions"/>
+            </block>
+            <container name="checkout.cart.addition" htmlTag="div" htmlClass="cart addition" after="cart.summary" />
+        </referenceContainer>
+        <referenceContainer name="cart.summary">
+            <container name="checkout.cart.summary.left" htmlTag="div" htmlClass="col-md-6 col-left" before="-" />
+            <container name="checkout.cart.summary.right" htmlTag="div" htmlClass="col-md-6 col-right" />
+        </referenceContainer>
+        <referenceContainer name="checkout.cart.methods">
+            <block class="Magento\Checkout\Block\Cart" name="checkout.cart.methods.addition.bottom" template="Magento_Checkout::cart/link.phtml" before="-" />
+        </referenceContainer>
+
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="shipping" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="title" xsi:type="string" translate="true">Shipping &amp; Handling:</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceContainer name="columns" htmlClass="columns page-contact-content page-not-found mt-4"/>
+        
+        <referenceContainer name="checkout.cart.noitems">
+            <container name="content.background.white" htmlTag="div" htmlClass="background-white">
+                <container name="content.page.content" htmlTag="div" htmlClass="page-content">
+                    <container name="contact.form.container" label="Contact Form Container" htmlTag="div" htmlClass="container">
+                        <block class="Magento\Checkout\Block\Cart" name="checkout.cart.empty" before="-" template="Magento_Checkout::cart/noItems.phtml">
+                            <container name="checkout.cart.empty.widget" as="checkout_cart_empty_widget" label="Empty Shopping Cart Content Before"/>
+                        </block>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="page.main.title" remove="true"/>
+        <move element="checkout.cart.coupon" destination="checkout.cart.summary.left" />
+        <move element="checkout.cart.shipping" destination="checkout.cart.summary.right" before="-" />
+        <move element="checkout.cart.totals.container" destination="checkout.cart.summary.right" after="checkout.cart.shipping" />
+        <move element="checkout.cart.methods.bottom" destination="checkout.cart.addition" />
+        <referenceBlock name="checkout.cart.summary.title" remove="true" />
+    </body>
+</page>

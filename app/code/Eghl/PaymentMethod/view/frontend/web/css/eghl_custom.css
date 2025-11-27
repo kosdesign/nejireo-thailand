@@ -1,0 +1,19 @@
+.eGHL_btn {
+	background-image: none;
+	background: #fff;
+	border: 1px solid #1979c3;
+	color: #000;
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+	font-weight: 600;
+	padding: 7px 15px;
+	font-size: 1.4rem;
+	box-sizing: border-box;
+	vertical-align: middle;
+	border-radius: 5px;
+}
+
+.eGHL_btn:hover {
+	color: #1979c3;
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CustomQuote
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <modal name="advanced_inventory_modal">
+        <fieldset name="stock_data">
+            <container name="container_max_qty_quote">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="formElement" xsi:type="string">container</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                        <item name="sortOrder" xsi:type="number">100</item>
+                        <item name="dataScope" xsi:type="string">qty_data</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+                <field name="bss_max_qty_quote">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="visible" xsi:type="boolean">true</item>
+                            <item name="label" xsi:type="string" translate="true">Maximum Qty Allowed in Quote Cart</item>
+                            <item name="dataScope" xsi:type="string">bss_max_qty_quote</item>
+                            <item name="disabled" xsi:type="boolean">false</item>
+                            <item name="scopeLabel" xsi:type="string">[GLOBAL]</item>
+                            <item name="comment" xsi:type="string">If the value goes blank, the quantity in quote cart won't be limited</item>
+                            <item name="value" xsi:type="object">Kos\CustomBssQuote\Model\Source\StockConfiguration</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
+                            <rule name="validate-number" xsi:type="boolean">true</rule>
+                        </validation>
+                    </settings>
+                </field>
+                <field name="use_config_bss_maximum_qty_quote">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="description" xsi:type="string" translate="true">Use Config Settings</item>
+                            <item name="formElement" xsi:type="string">checkbox</item>
+                            <item name="dataScope" xsi:type="string">use_config_bss_maximum_qty_quote</item>
+                            <item name="valueMap" xsi:type="array">
+                                <item name="true" xsi:type="string">1</item>
+                                <item name="false" xsi:type="string">0</item>
+                            </item>
+                            <item name="keyInConfiguration" xsi:type="string">bss_max_qty_quote</item>
+                            <item name="component" xsi:type="string">Magento_CatalogInventory/js/components/use-config-settings</item>
+                            <item name="class" xsi:type="string">Magento\CatalogInventory\Ui\Component\Product\Form\Element\UseConfigSettings</item>
+                            <item name="links" xsi:type="array">
+                                <item name="linkedValue" xsi:type="string">${$.provider}:data.product.stock_data.bss_max_qty_quote</item>
+                            </item>
+                            <item name="exports" xsi:type="array">
+                                <item name="checked" xsi:type="string">${$.parentName}.bss_max_qty_quote:disabled</item>
+                            </item>
+                            <item name="sortOrder" xsi:type="string">2</item>
+                            <item name="value" xsi:type="string">1</item>
+                        </item>
+                    </argument>
+                </field>
+            </container>
+        </fieldset>
+    </modal>
+</form>

@@ -1,0 +1,20 @@
+<?php $data = $block->filterParameters(); ?>
+
+<div class="card-item card-store-item" data-title="<?= $block->getData('title') ?>" 
+    data-latitude="<?= $block->getData('latitude') ?>"
+    data-longitude="<?= $block->getData('longitude') ?>" data-address="<?= $block->getData('address') ?>">
+    <div class="card-title store-toggle-pop">
+        <span><?= strtolower($block->getData('title')) ?></span>
+    </div>
+    <div class="card-content" data-action="slide">
+        <div class="col-content-detail">
+            <div>
+                <?= html_entity_decode($block->getData('address')) ?>
+                <div class="direction mt-4">
+                    <a target="_blank" href="https://www.google.com/maps?q=<?= $block->getData('latitude') ?>,<?= $block->getData('longitude') ?>" class="small-title color-yellow-2"><?= __('Get Directions') ?>
+                        <i class="pl-4 text-body-20 icomoon-directions"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

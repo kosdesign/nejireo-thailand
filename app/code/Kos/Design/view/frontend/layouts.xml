@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page_layouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/PageLayout/etc/layouts.xsd">
+    <layout id="homepage">
+        <label translate="true">HS Home page</label>
+    </layout>
+    <layout id="all-categories">
+        <label translate="true">HS All Categories</label>
+    </layout>
+    <layout id="contact-us">
+        <label translate="true">HS Contact Us</label>
+    </layout>
+</page_layouts>

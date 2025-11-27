@@ -1,0 +1,21 @@
+{
+    "name": "kos/module-widgetdesign",
+    "description": "Create KOS Widget for Magento2",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "email": "info@kos.co.th",
+            "name": "Kos design"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Kos\\Design\\": ""
+        }
+    }
+} 

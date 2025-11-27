@@ -1,0 +1,271 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .card-title {
+        margin-bottom: 0.75rem;
+    }
+
+    .card-request-quotation {
+        .detail {
+            &:extend(.has-custom-bullet all);
+            ul {
+                li {
+                    position: relative;
+                    padding-left: 60px;
+                    margin-bottom: 30px;
+                }
+            }
+        }
+
+        .card-link {
+            margin-top: @indent__base;
+            a {
+                max-width: 300px;
+                &:extend(.hs-action-button-as-link all);
+            }
+        }
+    }
+
+    .card-about-content {
+        .card-content {
+            &:before {
+                content: '';
+                background-image: url('@{baseDirMedia}/banner/20221129-101613.jpeg');
+                position: absolute;
+                right: 0;
+                width: 525px;
+                height: 100%;
+                top: 0;
+                max-width: 50%;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            .card-image {
+                > img {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            .card-text {
+                background-color: @color-white;
+                padding: 50px 30px;
+                .box-shadow();
+            }
+
+            .card-link {
+                margin-top: 36px;
+            }
+
+            .card-link-plus-unbox > a {
+                &:extend(.hs-action-link all);
+            }
+        }
+    }
+
+    .block {
+        &__terms-conditions {
+            .page-title {
+                padding: 50px 0;
+                margin: 0;
+                border-bottom: @border-hs;
+                .title {
+                    margin-bottom: 0;
+                }
+            }
+
+            .page-content {
+                padding: 70px 0 100px;
+                .card-content-row {
+                    border-bottom: @border-hs;
+                    padding-bottom: 60px;
+                    margin-bottom: 60px;
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .card-banner-slider {
+        .bx-wrapper {
+            padding-bottom: 70px;
+            position: relative;
+            margin: 0 auto;
+            *zoom: 1;
+
+            img {
+                max-width: 100%;
+                display: block;
+            }
+
+            .bx-viewport {
+                background-color: @color-orange;
+                .d-sm-block {
+                    width: 100%;
+                }
+            }
+
+            .bx-pager.bx-default-pager {
+                z-index: 55;
+                bottom: 0;
+                padding: 0;
+                margin: auto;
+                left: 0;
+                right: 0;
+
+                a {
+                    width: 24px;
+                    height: 24px;
+                    font-size: 0;
+                    background-image: url(../images/icon/bx-dot.svg);
+                    background-color: transparent !important;
+                    .background-style(center, contain);
+                    margin: 0 9px;
+                    opacity: 0.5;
+                    text-indent: -9999px;
+                    display: block;
+                    outline: 0;
+                    -moz-border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                    border-radius: 5px;
+                    .transform(rotate(45deg));
+                    .transition(all 1s);
+                    &.active,
+                    &:hover {
+                        opacity: 1;
+                        .transform(rotate(225deg));
+
+                    }
+                }
+            }
+
+            .bx-pager, .bx-controls-auto {
+                position: absolute;
+                bottom: 20px;
+                width: auto;
+                z-index: 9;
+                right: 20px;
+            }
+
+            .bx-pager {
+                text-align: center;
+                font-size: .85em;
+                font-family: Arial;
+                font-weight: bold;
+                color: #666;
+                padding-top: 20px;
+            }
+
+            .bx-pager .bx-pager-item, .bx-controls-auto .bx-controls-auto-item {
+                display: inline-block;
+                *zoom: 1;
+                *display: inline;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .cms-index-index {
+        .hs-main {
+            > .page-wrapper {
+                padding: 0;
+            }
+        }
+    }
+
+    .page-wrapper {
+        padding: 0 @indent__l;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .card-request-quotation {
+        padding: 50px 0;
+        &.user-guide{
+            .user-guide-content{
+                padding: 0;
+                h2,.detail{
+                    margin-bottom: 25px;
+                }
+            }
+        }
+    }
+
+    .card-about-content {
+        .card-content {
+            padding: 100px 0;
+            position: relative;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .card-request-quotation {
+        .card-link {
+            margin-top: 50px;
+        }
+    }
+
+    .card-request-quotation {
+        padding: 130px 0;
+
+        &.user-guide{
+            padding-top: 0;
+            padding-bottom: 50px;
+            .user-guide-content{
+                display: inline-flex;
+                align-items: center;
+            }
+        }
+    }
+
+    .card-about-content {
+        .card-content {
+            padding: 100px 0;
+            position: relative;
+        }
+    }
+}
+
+
+.user-guide .user-guide-content .contact-form-modal-button{
+    position: inherit;
+    &:after {
+        content: url('/pub/media/20220630-020128.png');
+        position: absolute;
+        right: 40px;
+        top: 15px;
+
+        @media(max-width: 1199px){
+            right: 30px;
+        }
+        @media(max-width: 991px) and (min-width: 768px){
+            right: 15px;
+        }
+    }
+}
+

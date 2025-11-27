@@ -1,0 +1,10 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_quote_save_after">
+        <observer name="Kos_CustomBssQuote_Save" instance="Kos\CustomBssQuote\Observer\SalesQuoteSaveAfterCustom" />
+    </event>
+<!--    Customize max qty Quote-->
+    <event name="catalog_product_save_after">
+        <observer name="bss_max_qty_quote_add_data" instance="Kos\CustomBssQuote\Model\ProductSaveAfter" />
+    </event>
+<!--    End-->
+</config>

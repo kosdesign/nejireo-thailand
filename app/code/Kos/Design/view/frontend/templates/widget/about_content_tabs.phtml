@@ -1,0 +1,77 @@
+<?php $data = $block->filterParameters(); ?>
+<?php //print_r($data); 
+?>
+<div class="content-tabs-toggle">
+    <div class="container">
+        <div class="nav-list d-none d-lg-flex">
+            <?php if ($block->getData('title_one')) : ?>
+                <div class="nav-item active"><?= $block->getData('title_one') ?></div>
+            <?php endif; ?>
+            <?php if ($block->getData('title_two')) : ?>
+                <div class="nav-item"><?= $block->getData('title_two') ?></div>
+            <?php endif; ?>
+            <?php if ($block->getData('title_three')) : ?>
+                <div class="nav-item"><?= $block->getData('title_three') ?></div>
+            <?php endif; ?>
+        </div>
+        <div class="content-list">
+            <?php if ($block->getData('title_one')) : ?>
+                <div class="content-item" style="display:block;">
+                    <?php if ($block->getData('title_one')) : ?>
+                        <div class="xs-title d-lg-none small-title toggle-pop" data-pop="content-toggle-1"><span><?= $block->getData('title_one') ?></span></div>
+                    <?php endif; ?>
+                    <div class="content" id="content-toggle-1" data-action="slide">
+                        <div class="row align-items-center">
+                            <?php if ($block->getData('detail_image_one')) : ?>
+                                <div class="col-lg-6 mb-5 mb-lg-0">
+                                    <img src="/pub/media/<?= $block->getData('detail_image_one') ?>" alt="" />
+                                </div>
+                            <?php endif; ?>
+                            <div class="<?php if ($block->getData('detail_image_one')) : ?>col-lg-6<?php else : ?>col-md-12<?php endif; ?>  text-body-16">
+                                <?= html_entity_decode($block->getData('detail_text_one')) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ($block->getData('title_two')) : ?>
+                <div class="content-item">
+                    <?php if ($block->getData('title_two')) : ?>
+                        <div class="xs-title d-lg-none small-title toggle-pop" data-pop="content-toggle-2"><span><?= $block->getData('title_two') ?></span></div>
+                    <?php endif; ?>
+                    <div class="content" id="content-toggle-2" data-action="slide">
+                        <div class="row align-items-center">
+                            <?php if ($block->getData('detail_image_two')) : ?>
+                                <div class="col-lg-6 mb-5 mb-lg-0">
+                                    <img src="/pub/media/<?= $block->getData('detail_image_two') ?>" alt="" />
+                                </div>
+                            <?php endif; ?>
+                            <div class="<?php if ($block->getData('detail_image_two')) : ?>col-lg-6<?php else : ?>col-md-12<?php endif; ?>  text-body-16">
+                                <?= html_entity_decode($block->getData('detail_text_two')) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ($block->getData('title_three')) : ?>
+                <div class="content-item">
+                    <?php if ($block->getData('title_three')) : ?>
+                        <div class="xs-title d-lg-none small-title toggle-pop" data-pop="content-toggle-3"><span><?= $block->getData('title_three') ?></span></div>
+                    <?php endif; ?>
+                    <div class="content"  id="content-toggle-3" data-action="slide">
+                        <div class="row align-items-center">
+                            <?php if ($block->getData('detail_image_three')) : ?>
+                                <div class="col-lg-6 mb-5 mb-lg-0">
+                                    <img src="/pub/media/<?= $block->getData('detail_image_three') ?>" alt="" />
+                                </div>
+                            <?php endif; ?>
+                            <div class="<?php if ($block->getData('detail_image_three')) : ?>col-lg-6<?php else : ?>col-md-12<?php endif; ?>  text-body-16">
+                                <?= html_entity_decode($block->getData('detail_text_three')) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

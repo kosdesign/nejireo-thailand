@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="1column"/>
+
+    <referenceContainer name="content">
+        <container name="hs.page.contact.us" htmlTag="div" htmlClass="page-contact-content mt-4" after="-">
+            <container name="hs.page.contact.us.page.wrapper" htmlTag="div" htmlClass="page-wrapper" before="-">
+                <container name="hs.page.contact.us.background.white" htmlTag="div" htmlClass="background-white" before="-">
+                    <container name="hs.page.contact.us.page.content" htmlTag="div" htmlClass="page-content" before="-">
+                        <container name="hs.page.contact.us.container" htmlTag="div" htmlClass="container" before="-">
+                            <block class="Magento\Cms\Block\Block" name="block-contact-us" before="-">
+                                <arguments>
+                                    <argument name="block_id" xsi:type="string">contact-us</argument>
+                                </arguments>
+                            </block>
+                            <block 
+                                class="Kos\Design\Block\Widget\ContactUsMap" 
+                                name="hs.top.search" template="Kos_Design::widget/contact_us_map_address.phtml" 
+                                after="block-contact-us" />
+                        </container>
+                    </container>
+                </container>
+            </container>
+        </container>
+    </referenceContainer>
+    
+    <referenceContainer name="page.bottom.container">
+        <block class="Magento\Cms\Block\Block" name="card-seo-banner" after="-">
+            <arguments>
+                <argument name="block_id" xsi:type="string">card-seo-banner-contact-us</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+
+</layout>

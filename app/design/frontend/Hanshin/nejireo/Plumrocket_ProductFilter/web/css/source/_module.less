@@ -1,0 +1,268 @@
+
+//
+//  Common Customize
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .plumrocket-product-filter {
+        &.ppf-pos-toolbar {
+            .filter-content {
+                .filter-subtitle {
+                    display: none;
+                }
+            }
+
+            .action-multiselect-crumb {
+                display: inline-block;
+                font-size: 1.2rem;
+                position: relative;
+                padding: 0 10px;
+                border: 1px solid #e6552f;
+                color: #e6552f;
+                margin: 0 1px;
+
+                .action-close {
+                    bottom: 0;
+                    font-size: .5em;
+                    position: absolute;
+                    right: -5px;
+                    top: 0;
+                    width: 2rem;
+                }
+            }
+
+            .filter-options {
+                margin-left: -2rem;
+                margin-right: -2rem;
+                display: block;
+
+                .action-select-wrap {
+                    width: 100%;
+                }
+
+                .col-actions {
+                    float: right;
+                    margin-top: 10px;
+                    
+                    .content {
+                        font-weight: 700;
+                        display: none;
+                        padding-right: 30px;
+                        position: relative;
+                        top: -3px;
+                    }
+
+                    .main-actions {
+                        display: inline-block;
+                        border-right: 1px solid #e9e9ee;
+                        padding-right: 10px;
+
+                        .manual-filter {
+                            color: #e6552f;
+                            background: transparent;
+                            border: none;
+                            font-size: 10px;
+                            padding-right: 24px;
+                            height: auto;
+                        }
+                    }
+
+                    .filter-actions {
+                        display: inline-block;
+
+                        .action-clear {
+                            background: 0 0;
+                            border: none;
+                            color: #e6552f;
+                            padding-left: 10px;
+
+                            span {
+                                position: relative;
+                                top: -3px;
+                            }
+                        }
+                    }
+                }
+
+                .filter-options-item {
+                    margin: 0;
+                    padding: 0 2rem 10px;
+                    width: 100%;
+                    float: left;
+                    border: 0;
+
+                    &.active {
+                        &:after,
+                        &:before {
+                            display: none;
+                        }
+
+                        .filter-options-title:before {
+                            transform: rotate(180deg);
+                        }
+
+                        .action-menu {
+                            z-index: 9;
+                            height: 100%;
+                            overflow-y: inherit;
+                            display: table;
+                            width: 100%;
+
+                            .action-done {
+                                border: none;
+                                border-top: 1px solid #e3e3e3;
+                                margin: 0 1rem;
+                                padding: 1.7rem 0;
+                                text-align: center;
+                                width: 90%;
+                                font-size: 1.3rem;
+                                min-width: 13rem;
+                                background: 0 0;
+                            }
+                        }
+                    }
+
+                    .title {
+                        display: block;
+                        margin: 0 0 .3rem;
+                        text-align: left;
+                    }
+
+                    .filter-options-title {
+                        padding: 15px 10px;
+                        margin-bottom: 0;
+                        border: 1px solid #e9e9ee;
+                        cursor: pointer;
+                        display: block;
+                        white-space: normal;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        background-color: #fff;
+                        font-weight: 400;
+                        text-align: left;
+                        width: 100%;
+
+                        .text {
+                            margin-right: 5px;
+                        }
+
+                        &:before {
+                            border-color: #000 transparent transparent;
+                            border-style: solid;
+                            border-width: .5rem .4rem 0;
+                            content: '';
+                            height: 0;
+                            margin-top: -.2rem;
+                            position: absolute;
+                            right: 1.2rem;
+                            top: 50%;
+                            transition: all .2s linear;
+                            width: 0;
+                        }
+                    }
+
+                    .filter-options-content {
+                        color: #41362f;
+                        margin: 0;
+                        padding: 0;
+                        max-height: 46rem;
+                        position: static;
+                        width: 100%;
+                        box-shadow: none;
+                        border: 0;
+
+                        .item {
+                            a {
+                                padding: .6875em 0;
+
+                                > span {
+                                    font-size: 14px;
+                                    color: #41362f;
+
+                                    &:first-child:before {
+                                        border: 0;
+                                        width: 1.6rem;
+                                        height: 1.6rem;
+                                        position: relative;
+                                        display: inline-block;
+                                        margin-right: 5px;
+                                    }
+                                }
+
+                                &.selected {
+                                    > span {
+                                        color: #e6552f;
+
+                                        &:first-child:before {
+                                            content: '\e62d';
+                                            font-size: 1.1rem;
+                                            line-height: 125%;
+                                            font-family: 'Admin Icons';
+                                            color: #e6552f;
+                                            background: transparent;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .plumrocket-product-filter {
+        &.ppf-pos-toolbar {
+            .filter-options {
+                .filter-options-item {
+                    width: 50%;
+                    margin-bottom: 2em;
+                }
+
+                col-actions {
+                    max-width: calc(~'100% - 230px');
+                }
+            }
+
+
+            .block__filter.card-category-nav-list {
+                .nav-mobile {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__ml) {
+    .plumrocket-product-filter {
+        &.ppf-pos-toolbar {
+            .filter-options {
+                .filter-options-item {
+                    width: 25%;
+                    margin: 0 0 4.5em;
+                }
+
+                .col-actions {
+                    .content {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .plumrocket-product-filter{
+        &.ppf-pos-toolbar {
+            .filter-options {
+                .col-actions {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}

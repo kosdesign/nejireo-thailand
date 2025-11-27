@@ -1,0 +1,44 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_OneStepCheckout
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<div class="container">
+    <div data-role="spinner" id="checkout-loader-spinner" class="loading-mask" style="display: none;">
+        <div class="spinner">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+    <div class="button-action-list button-action-list--final align-items-center">
+        <p class="pr-md-4 mb-4 mb-md-0" data-bind="i18n: 'Forgot an Item?'"></p>
+        <a class="action action-edit action-box-border" data-bind="attr: {href: getCheckoutCartUrl()}"><span data-bind="i18n: 'Edit your cart'"></span></a>
+        <div class="primary">
+            <button class="action primary checkout btn-placeorder"
+                    type="submit"
+                    data-bind="
+                enable: isPlaceOrderActionAllowed(),
+                click: placeOrder,
+                attr: {
+                    title: placeOrderLabel()
+                },
+                css: {disabled: !isPlaceOrderActionAllowed()},
+                fadeVisible: isVisible
+                " disabled>
+                <span data-bind="text: placeOrderLabel()"></span>
+            </button>
+        </div>
+    </div>
+</div>

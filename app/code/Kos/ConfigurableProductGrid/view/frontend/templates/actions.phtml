@@ -1,0 +1,90 @@
+<?php
+/** @var $block \Kos\ConfigurableProductGrid\Block\Actions */
+
+?>
+<?php
+$_product = $block->getProduct();
+$buttonTitle = __('Add to Cart');
+//Customize max qty Quote
+$_helper = $this->helper('Kos\CustomBssQuote\Helper\MaxQtyHelper');
+$qtyQuoteMax = $_helper->getValidateQuote($_product);
+?>
+<div class="product-add-form">
+    <form data-product-sku="<?= $block->escapeHtmlAttr($_product->getSku()) ?>"
+          action="<?= $block->getSubmitUrl() ?>" method="post"
+          id="product_addtocart_form_<?= $_product->getId() ?>">
+        <input type="hidden" name="product" value="<?= (int)$_product->getId() ?>"/>
+        <input name="form_key" type="hidden" value="<?= $block->getFormKey() ?>"/>
+        <?php foreach ($block->getSuperAtribute() as $key) : ?>
+            <input type="hidden" name="super_attribute[<?= $key['attribute_id'] ?>]" value="<?= $block->getAttribute($key['attribute_code']); ?>" />
+        <?php endforeach; ?>
+        <div class="box-tocart">
+            <div class="fieldset">
+                <div class="box-qty">
+                    <div class="field qty">
+                        <div class="control">
+                            <input type="number"
+                                   name="qty"
+                                   id="qty_<?= $_product->getId() ?>"
+                                   min="0"
+                                   value="<?= $block->getProductDefaultQty() * 1 ?>"
+                                   title="<?= __('Qty') ?>"
+                                   class="input-text qty"
+                                   data-validate="<?= $block->escapeHtmlAttr(json_encode($block->getQuantityValidators())) ?>"
+                            />
+                            <div class="qty-changer">
+                                <a href="javascript:void(0)" class="qty-inc"><span class="hs-icon-up-dir"></span></a>
+                                <a href="javascript:void(0)" class="qty-dec"><span class="hs-icon-down-dir"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions <?= ($_product->getIsActiveRequest4QuoteProductPage())? 'quote-action' : ''; ?>">
+                    <button type="submit"
+                            title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                            class="action hs-add-tocart tocart"
+                            id="product-addtocart-button-<?= $_product->getId() ?>" disabled>
+                        <i class="icomoon-cart"></i>
+                        <span><?= $block->escapeHtml($buttonTitle) ?></span>
+                    </button>
+                    <?= $block->getChildHtml('', true) ?>
+                    <?php if ($_product->getIsActiveRequest4QuoteProductPage()) : ?>
+                        <div class="box-tocart box-toquote quote_extension_<?= $_product->getId() ?>">
+                            <button type="button" title="<?= $block->getButtonQuoteTitle() ?>"
+                                    class="action toquote <?php if(!$block->isLoggedIn()) : ?>disable<?php endif; ?>"
+                                    id="product-addtoquote-button_<?= $_product->getId() ?>">
+                                <span><?= $block->getButtonQuoteTitle() ?></span>
+                            </button>
+                            <?php if(!$block->isLoggedIn()) : ?>
+                                <div class="popup-login">
+                                    <div class="content">
+                                        <?= __('Please %1 Sign In %2 to add to quote','<a href="'.$block->escapeUrl($block->getLoginUrl()) . '">','</a>') ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <script type="text/x-magento-init">
+            {
+                "#product_addtocart_form_<?= $_product->getId() ?>": {
+                    "Magento_Catalog/js/validate-product": {},
+                    "Magento_Theme/js/component/qty-changer": {}
+                },
+                "#product-addtoquote-button_<?= $_product->getId() ?>": {
+                    "Bss_QuoteExtension/js/catalog-add-to-quote": {
+                        "validateQty" : "<?= $block->validateQuantity() ?>",
+                        "addToQuoteButtonTextDefault" : "<?= $block->getButtonQuoteTitle() ?>",
+                        "maxQtyQuote": "<?php echo $qtyQuoteMax ?>"
+                    }
+                }
+            }
+
+        </script>
+        <script>
+            require('mage/apply/main').apply();
+        </script>
+    </form>
+</div>

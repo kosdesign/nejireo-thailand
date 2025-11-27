@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Edit account page layout.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_edit">
+            <container name="form.additional.info.custom" as="form_additional_info_custom"/>
+        </referenceBlock>
+        
+        <move element="custom_customer_attribute_edit" destination="form.additional.info.custom" before="-"/>
+    </body>
+</page>

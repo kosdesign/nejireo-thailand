@@ -1,0 +1,36 @@
+<?php $data = $block->filterParameters(); ?>
+<?php //print_r($data); 
+?>
+
+
+<?php if ($block->getData('image')) : ?>
+    <div class="section-banner">
+        <img class="w-100" src="/pub/media/<?= $block->getData('image') ?>" alt="" />
+    </div>
+<?php endif; ?>
+
+<div class="section-find-form">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-text mb-5 mb-lg-0">
+                <?php if ($block->getData('title')) : ?>
+                    <h1 class="small-title"><?= $block->getData('title') ?></h1>
+                <?php endif; ?>
+                <?php if ($block->getData('body_text')) : ?>
+                    <?= html_entity_decode($block->getData('body_text')) ?>
+                <?php endif; ?>
+            </div>
+            <div class="col-lg-6 col-form">
+                <div>
+                    <h3 class="small-title color-yellow"><?= __('Find your store closest to you.') ?></h3>
+                    <form id="form-search-store" action="" autocomplete="off">
+                        <div class="input-box">
+                            <input type="text" id="input-search" placeholder="<?= __('Enter Postcode or town/city') ?>">
+                            <button ><i class="icomoon-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

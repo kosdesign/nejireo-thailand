@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**  @var $block \Magento\Checkout\Block\Cart */
+?>
+
+<div class="image-top" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut2.png'); ?>);"></div>
+<h1 class="text-center"><img src="<?php echo $this->getViewFileUrl('images/screw.svg'); ?>" width="125" /></h1>
+<?= $block->getChildHtml('checkout_cart_empty_widget') ?>
+<h1 class="text-center"><?php echo __('You have no items in your shopping cart.'); ?></h1>
+<div class="action-button">
+    <button type="button" onclick="window.location='<?=$block->escapeUrl($block->getContinueShoppingUrl())?>'"><span><?= $block->escapeHtml(__('Click here to continue shopping')) ?></span></button>
+</div>
+<?= $block->getChildHtml('shopping.cart.table.after') ?>
+<div class="image-bottom" style="background-image:url(<?php echo $this->getViewFileUrl('images/banner/nut1.png'); ?>)"></div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Checkout/js/empty-cart": {}
+    }
+}
+</script>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($, ui, $t) {
+        ({
+            init: function () {
+                $('main#maincontent .columns').removeClass('columns');
+            },
+        }).init()
+    });
+</script>

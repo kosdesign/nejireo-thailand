@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Success Page</title>
+    </head>
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Home</item>
+                    <item name="label" xsi:type="string" translate="true">Home</item>
+                    <item name="link" xsi:type="string">/home</item>
+                </argument>
+            </action> 
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">success-page</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Thank you</item>
+                    <item name="label" xsi:type="string" translate="true">Thank you</item>
+                </argument>
+            </action> 
+        </referenceBlock>
+
+        <referenceContainer name="main.content" htmlClass="hs-main"/>
+        <referenceContainer name="columns" htmlClass="page-contact-content page-not-found mt-4"/>
+
+        <referenceContainer name="content">
+            <container name="content.background.white" htmlTag="div" htmlClass="background-white">
+                <container name="content.page.content" htmlTag="div" htmlClass="page-content">
+                    <container name="contact.form.container" label="Contact Form Container" htmlTag="div" htmlClass="container">
+                        <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.success" template="Magento_Checkout::success.phtml" cacheable="false">
+                            <container name="order.success.additional.info" label="Order Success Additional Info"/>
+                            <container name="order.success.additional.button" as="order_success_additional_button"/>
+                        </block>
+                        <block class="Magento\Checkout\Block\Registration" name="checkout.registration" template="Magento_Checkout::registration.phtml" cacheable="false"/>
+                        <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.success.print.button" template="Magento_Checkout::button_print.phtml" after="-"/>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="page.main.title" remove="true" />
+        <referenceBlock name="checkout.registration" remove="true" />
+        <move element="breadcrumbs" destination="columns.top" before="-"/>
+        <move element="checkout.success.print.button" destination="order.success.additional.button" before="-"/>
+        <referenceBlock name="checkout.success.print.button" remove="true" />
+    </body>
+</page>

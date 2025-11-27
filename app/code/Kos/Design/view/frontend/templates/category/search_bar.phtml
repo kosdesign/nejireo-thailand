@@ -1,0 +1,21 @@
+<?php
+/**
+ * @var \Kos\Design\Block\Category\Navigation $block
+ */
+$params = $this->getRequest()->getParams();
+$q = isset($params['q']) ? $params['q'] : '';
+?>
+<div class="card-search-bar">
+    <div class="card-wrapper">
+        <form action="<?=$this->getUrl('catalogsearch/result')?>" id="category_search_bar" method="get">
+            <div class="card-row">
+                <div class="card-input-box">
+                    <input type="text" name="q" placeholder="<?php echo __('What are you looking for…'); ?>" value="<?php echo $q; ?>" />
+                    <button class="button-search">
+                        <span class="d-none d-lg-inline"><?php echo __('SEARCH'); ?></span><i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

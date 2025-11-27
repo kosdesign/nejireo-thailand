@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.container" htmlTag="header"
+                            htmlClass="page-header hs-header background-white"/>
+        <referenceContainer name="page.wrapper" htmlTag="div" htmlClass="page-hanshin"/>
+        <referenceContainer name="main.content" htmlClass="hs-main">
+            <container name="page.wrapper.hs" label="Page Wrapper Hanshin" htmlTag="div" htmlClass="page-wrapper"/>
+            <container name="page.bottom.container" htmlTag="div" htmlClass="page-bottom" after="page.wrapper.hs">
+                <container name="page.bottom.content" htmlTag="div" htmlClass="container" before="-" />
+            </container>
+        </referenceContainer>
+        <referenceContainer name="header.container" htmlTag="header" htmlClass="page-header hs-header background-white" />
+        <referenceContainer name="footer-container" htmlTag="footer" htmlClass="page-footer hs-footer"/>
+        <referenceContainer name="footer-container">
+            <container name="footer-container-wrapper" as="footer.wrapper" label="Footer Container Wrapper"
+                       htmlTag="div" htmlClass="container">
+                <container name="footer-container-row" as="footer.wrapper.row" label="Footer Container Row"
+                           htmlTag="div" htmlClass="row">
+                    <container name="footer-container-column" as="footer.wrapper.column" label="Footer Container Column"
+                               htmlTag="div" htmlClass="col-md-12 m-auto">
+                        <container name="footer.hs.content.cols" htmlTag="div" htmlClass="footer-content-cols"
+                                   before="-">
+                            <block class="Magento\Cms\Block\Block" name="footer-layer-one" before="-">
+                                <arguments>
+                                    <argument name="block_id" xsi:type="string">footer-layer-one</argument>
+                                </arguments>
+                            </block>
+                            <block class="Magento\Cms\Block\Block" name="footer-layer-two" after="footer-layer-one">
+                                <arguments>
+                                    <argument name="block_id" xsi:type="string">footer-layer-two</argument>
+                                </arguments>
+                            </block>
+                            <block class="Magento\Cms\Block\Block" name="footer-layer-three" after="footer-layer-two">
+                                <arguments>
+                                    <argument name="block_id" xsi:type="string">footer-layer-three</argument>
+                                </arguments>
+                            </block>
+                        </container>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+        </referenceContainer>
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="copyright" remove="true"/>
+        <referenceBlock name="footer" remove="true"/>
+
+        <move element="columns" destination="page.wrapper.hs" before="-"/>
+        <move element="footer" destination="footer-container-column" before="-"/>
+
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components" name="default_page_head_components" after='-'
+                   template="Magento_Theme::html/js_components.phtml"/>
+        </referenceBlock>
+
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/nejireo-by-hanshin-neji-thailand-logo.svg</argument>
+                <argument name="logo_img_width" xsi:type="number">257</argument>
+                <argument name="logo_img_height" xsi:type="number">77</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="header.panel.wrapper" remove="true"/>
+        <referenceBlock name="top.search" remove="true"/>
+        <referenceBlock name="top.links" remove="true"/>
+        <move element="logo" destination="header-left" before="-"/>
+        <move element="miniquoteextension" destination="head-actions" before="minicart"/>
+        <move element="minicart" destination="head-actions" after="-"/>
+        <move element="store_language" destination="header-second-left" before="-"/>
+        <referenceContainer name="header-wrapper">
+            <container name="header-main" htmlTag="div" htmlClass="header-main">
+                <container name="header-row" htmlTag="div" htmlClass="header-row">
+                    <container name="header-left" htmlTag="div" htmlClass="head-left">
+                        <block class="Magento\Cms\Block\Block" name="slogan.header" after='logo'>
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">header_slogan</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Cms\Block\Block" name="blog.header" after='slogan.header'>
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">header-blog-link</argument>
+                            </arguments>
+                        </block>
+                    </container>
+
+
+                    <block class="Magento\Cms\Block\Block" name="content.header" after='header-left'>
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">content_header</argument>
+                        </arguments>
+                    </block>
+                    <container name="header-right" htmlTag="div" htmlClass="head-right" after="content.header">
+                        <container name="head-account" htmlTag="div" htmlClass="head-account">
+                            <container name="head-account-ul" htmlTag="ul">
+                                <block class="Magento\Customer\Block\Account\AuthorizationLink" name="login-link"
+                                       template="Magento_Customer::account/link/authorization.phtml">
+                                    <arguments>
+                                        <argument name="label" xsi:type="string" translate="true">Login</argument>
+                                    </arguments>
+                                </block>
+                                <block class="Magento\Customer\Block\Account\RegisterLink" name="register-link"
+                                       after="login-link">
+                                    <arguments>
+                                        <argument name="label" xsi:type="string" translate="true">Register</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                        </container>
+                        <container name="head-actions" htmlTag="div" htmlClass="head-actions" after="-">
+                            <container name="head-actions-ul" htmlTag="ul">
+                                <block class="Magento\Customer\Block\Account\Link" name="my-account-link"
+                                       after="head-account">
+                                    <arguments>
+                                        <argument name="label" xsi:type="string" translate="true">My Account</argument>
+                                    </arguments>
+                                </block>
+                                <block class="Magento\Wishlist\Block\Link" name="wish-list-link"
+                                       after="my-account-link"/>
+                            </container>
+                        </container>
+                    </container>
+                </container>
+            </container>
+            <container name="header-second" htmlTag="div" htmlClass="header-row header-second">
+                <container name="header-second-left" htmlTag="div" htmlClass="col-md-4 head-second-left">
+                    <block class="Magento\Cms\Block\Block" name="business.header">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">header_business_help_center</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="header-second-right" htmlTag="div" htmlClass="col-md-8 head-second-right">
+                    <block class="Magento\Cms\Block\Block" name="contact.header">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">header_contact</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+            <container name="header-mobile" htmlTag="div" htmlClass="header-mobile" after="header-second">
+                <container name="header-content-mobile" htmlTag="div" htmlClass="header-content-mobile">
+                    <container name="head-account-mobie" htmlTag="div" htmlClass="head-account">
+                        <container name="head-account-ul-mobie" htmlTag="ul">
+                            <block class="Magento\Customer\Block\Account\AuthorizationLink" name="login-link-mobie"
+                                   template="Magento_Customer::account/link/authorization.phtml">
+                                <arguments>
+                                    <argument name="label" xsi:type="string" translate="true">Login</argument>
+                                </arguments>
+                            </block>
+                            <block class="Magento\Customer\Block\Account\RegisterLink" name="register-link-mobie"
+                                   after="login-link">
+                                <arguments>
+                                    <argument name="label" xsi:type="string" translate="true">Register</argument>
+                                </arguments>
+                            </block>
+                        </container>
+                    </container>
+                    <container name="head-actions-mobie" htmlTag="div" htmlClass="head-actions head-actions-mobile"
+                               after="head-account-mobie">
+                        <container name="head-actions-ul-mobie" htmlTag="ul">
+                            <block class="Magento\Customer\Block\Account\Link" name="my-account-link-mobie"
+                                   after="head-account-mobie">
+                                <arguments>
+                                    <argument name="label" xsi:type="string" translate="true">My Account</argument>
+                                </arguments>
+                            </block>
+                            <block class="Magento\Wishlist\Block\Link" name="wish-list-link-mobile"
+                                   after="my-account-link-mobie"/>
+                        </container>
+                    </container>
+
+                    <block class="Magento\Cms\Block\Block" name="blog.header-mobile" after='header-actions-mobie'>
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">header-blog-link</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Cms\Block\Block" name="content.header-mobie" after='blog.header'>
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">content_header</argument>
+                        </arguments>
+                    </block>
+                    <container name="header-second-left-mobie" htmlTag="div" htmlClass="head-second-left"
+                               after='content.header-mobie'>
+                        <block class="Magento\Store\Block\Switcher" name="store_language-mobile"
+                               template="Magento_Store::switch/languages.phtml">
+                            <arguments>
+                                <argument name="view_model" xsi:type="object">
+                                    Magento\Store\ViewModel\SwitcherUrlProvider
+                                </argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Cms\Block\Block" name="business.header-mobie" after="-">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">header_business_help_center</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="header-second-right-mobie" htmlTag="div" htmlClass="head-second-right"
+                               after='header-second-left-mobie'>
+                        <block class="Magento\Cms\Block\Block" name="contact.header-mobie">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">header_contact</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

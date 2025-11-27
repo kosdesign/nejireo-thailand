@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+
+        <referenceContainer name="content.top">
+            <container name="row.section.top" htmlTag="div" htmlClass="row-top card-row" before="-">
+                <container name="cms.banner.contact" htmlTag="div" htmlClass="card-banner-contact" after="-">
+                    <container name="cms.contact.support" htmlTag="div" htmlClass="card-contact-support" after="-">
+                        <block class="Magento\Cms\Block\Block" name="card-support-banner" after="-">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">card-support</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                </container>
+                <container name="cms.contact.support.mobile" htmlTag="div" htmlClass="card-contact-support d-sm-none d-block order-3 w-100 px-4" after="-">
+                    <block class="Magento\Cms\Block\Block" name="card-support-banner-mobile" after="-">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">card-support</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="main.content">
+            <block class="Magento\Framework\View\Element\Template" name="hs.top.search" as="topSearch" template="Magento_Search::form.mini.phtml" before="page.wrapper.hs" />
+            <block class="Magento\Cms\Block\Block" name="homepage-request-quotation" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage-request-quotation</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Cms\Block\Block" name="homepage-about-us" after="homepage-request-quotation">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage-about-us</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <move element="kos.catalog.topnav" destination="row.section.top" before="-"/>
+    </body>
+</page>

@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+<?php
+/**
+ * Blog recent posts widget
+ *
+ * @var $block \Magefan\Blog\Block\Widget\SimpleContent
+ */
+?>
+
+<?php //$data = $block->filterParameters(); 
+?>
+
+
+<div class="parallax" <?php if ($block->getData('image')) : ?> style="background-image:url('/pub/media/<?= $block->getData('image') ?>')" <?php endif; ?>>
+    <div class="section__content">
+        <?php if ($block->getData('title')) : ?><h2 class="color-gold"><?= $block->getData('title') ?></h2><?php endif; ?>
+        <?php if ($block->getData('body_text')) : ?><?= html_entity_decode($block->getData('body_text')) ?> <?php endif; ?>
+        <?php if ($block->getData('link')) : ?><div class="link"><a href="<?= $block->getData('link') ?>">
+        <?php echo ($block->getData('linktext')) ? $block->getData('linktext') : 'Read More'; ?></a></div><?php endif; ?>
+    </div>
+</div> 

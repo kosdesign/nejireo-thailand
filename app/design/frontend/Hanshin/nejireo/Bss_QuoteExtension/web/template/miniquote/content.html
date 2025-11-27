@@ -1,0 +1,111 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_QuoteExtension
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<button type="button"
+    id="btn-miniquote-close"
+    class="minicart-close"
+    data-action="close"
+    data-bind="attr: { title: $t('Close') },click: closeMiniQuote()">
+    <span translate="'Close'"/>
+</button>
+
+<if args="getQuoteParam('summary_count')">
+    <div class="items-total">
+        My quote,
+        <span class="count" if="maxItemsToDisplay < getQuoteLineItemsCount()" text="maxItemsToDisplay"/>
+        <translate args="'of'" if="maxItemsToDisplay < getQuoteLineItemsCount()"/>
+        <span class="count" text="getQuoteParam('summary_count')"/>
+            <!-- ko if: (getQuoteLineItemsCount() === 1) -->
+                <span class="count-text" translate="'item'"/>
+            <!--/ko-->
+            <!-- ko if: (getQuoteLineItemsCount() > 1) -->
+                <span class="count-text" translate="'items'"/>
+            <!--/ko-->
+    </div>
+    
+    <div class="card-table-data">
+        <table>
+            <thead>
+                <tr class="row d-none d-sm-flex">
+                    <th class="col col-image"/>
+                    <th class="col col-name">
+                        <span translate="'DETAIL'"></span>
+                    </th>
+                    <th class="col text-center col-qty">
+                        <span translate="'QTY'"></span>
+                    </th>
+                    <th class="col text-center col-price">
+                        <span translate="'TOTAL'"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="mini-quote" data-bind="foreach: { data: getQuoteItems(), as: 'item' }">
+            <each args="$parent.getRegion($parent.getItemRenderer(item.product_type))"
+                    render="{name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}}"
+            />
+        </div>
+    </div>
+</if>
+
+<ifnot args="getQuoteParam('summary_count')">
+    <div class="subtitle empty"
+            data-bind="visible: closeSidebar()"
+            translate="'You have no items in your quote.'"
+    />
+    <if args="getQuoteParam('quote_empty_message')">
+        <p class="minicart empty text" text="getQuoteParam('quote_empty_message')"/>
+        <div class="actions">
+            <div class="secondary">
+                <a class="action viewcart" data-bind="attr: {href: quoteExtensionUrl}">
+                    <span translate="'View and Edit Quote'"/>
+                </a>
+            </div>
+        </div>
+    </if>
+</ifnot>
+
+<if args="getQuoteParam('summary_count')">
+    <div class="card-table-footer">
+        <each args="getRegion('subtotalContainer')" render=""/>
+        <div class="background-orange" if="getQuoteParam('summary_count')">
+            <div class="button-actions">
+                <div class="button-item"><a data-bind="attr: {href: quoteExtensionUrl}"><span translate="'view quote'"/><i class="icomoon-quote"></i></a></div>
+                <div class="button-item">
+                    <a
+                        href="#"
+                        class="action secondary clear quote"
+                        data-bind="
+                            attr: {
+                                title: $t('Clear Quote')
+                            }
+                        "
+                    ><span translate="'Clear Quote'"/></a>
+                </div>
+            </div>
+        </div>
+        <each args="getRegion('extraInfo')" render=""/>
+    </div>
+</if>
+
+<div id="miniquote-widgets" class="minicart-widgets" if="getRegion('promotion').length">
+    <each args="getRegion('promotion')" render=""/>
+</div>
+<each args="getRegion('sign-in-popup')" render=""/>

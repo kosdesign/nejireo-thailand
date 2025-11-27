@@ -1,0 +1,6 @@
+<?php if ($block->getData('image')) : ?>
+    <img class="<?php if ($block->getData('image_mobile')) : ?>d-none d-sm-block<?php endif; ?>" src="/pub/media/<?= $block->getData('image') ?>" alt="">
+<?php endif; ?>
+<?php if ($block->getData('image_mobile')) : ?>
+    <img class="d-sm-none" src="/pub/media/<?= $block->getData('image_mobile') ?>" alt="">
+<?php endif; ?>

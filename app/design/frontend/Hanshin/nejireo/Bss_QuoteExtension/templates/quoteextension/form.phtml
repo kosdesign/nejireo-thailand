@@ -1,0 +1,65 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_QuoteExtension
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+/**  @var $block \Bss\QuoteExtension\Block\QuoteExtension */
+?>
+<?php $form = $block->getForm(); ?>
+<?php
+    $countItem = count($block->getItems());
+?>
+<div class="page-title-wrapper">
+    <h1 class="page-title">
+        <span class="base" data-ui-id="page-title-wrapper"><?= __('Request for Quotation'); ?></span>
+        <span class="count-item"><?= ($countItem > 0) ? '('.$countItem.')' : '' ?></span>
+    </h1>
+</div>
+<form action="<?php echo $block->getUrl('quoteextension/quote/updateQuote') ?>" method="post" id="form-validate"
+      data-mage-init='{"validation":{}}' class="form form-cart">
+    <?php echo $block->getBlockHtml('formkey'); ?>
+    <?php echo $block->getCustomerNote() ?>
+
+    <div class="cart table-wrapper">
+        <table id="shopping-cart-table" class="cart items data table">
+            <thead>
+            <tr>
+                <th class="col col-image attr-image" scope="col"></th>
+                <th class="col attr-part-number" scope="col"><span><?php echo __('Part Number') ?></span></th>
+                <th class="col attr-name" scope="col"><span><?php echo __('Name') ?></span></th>
+                <th class="col attr-material" scope="col"><span><?php echo __('Material') ?></span></th>
+                <th class="col attr-plating" scope="col"><span><?php echo __('Plating') ?></span></th>
+                <th class="col attr-diameter" scope="col"><span><?php echo __('Diameter') ?></span></th>
+                <th class="col attr-length" scope="col"><span><?php echo __('Length') ?></span></th>
+                <th class="col attr-price" scope="col"><span><?php echo __('Unit price') ?></span></th>
+                <th class="col attr-day-to-ship" scope="col"><span><?php echo __('Days to Ship') ?></span></th>
+                <th class="col col-qty attr-qty" scope="col"><span><?php echo __('QTY') ?></span></th>
+                <th class="col attr-subtotal" scope="col"><span><?php echo __('Total Price') ?></span></th>
+                <th class="col attr-actions" scope="col"><span></th>
+            </tr>
+            </thead>
+            <tbody class="cart item">
+            <?php foreach ($block->getItems() as $_item) :?>
+                <?= $block->getItemHtml($_item) ?>
+            <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+</form>
+<?php echo $block->getChildHtml('quoteextension.quote.order.actions') ?>
+<?php echo $block->getChildHtml('quoteextension.quote.table.after'); ?>
+<?php echo $form; ?>
+

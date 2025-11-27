@@ -1,0 +1,64 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_ProductAttachment
+ */
+?>
+<?php
+/** @var \Amasty\ProductAttachment\Block\Widgets\AttachmentsList $block */
+?>
+<?php if ($files = $block->getAttachments()) : ?>
+    <?php $widgetId = $block->getWidgetType(); ?>
+    <?php if ($widgetId == 3): //Current Product ?>
+        <div class="am-fileline hs-am-filelink">
+            <?php foreach ($files as $file) : ?>
+                <a href="<?= $block->escapeUrl($file->getFrontendUrl()) ?>" class="am-filelink <?php if(!$block->isLoggedIn()) : ?>disabled<?php endif; ?>" target="_blank">
+                    <span class="icon text-body-24 pr-3">
+                        <?php if ($block->isShowIcon() && $file->getIconUrl()) : ?>
+                            <img src="<?= $block->escapeUrl($file->getIconUrl()) ?>" class="am-fileicon" />
+                        <?php else: ?>
+                            <i class="icomoon-pdf"></i>
+                        <?php endif; ?>
+                    </span>
+                    <?= __('DRAWING DOWNLOAD'); ?>
+                    <?php if ($block->isShowFilesize() && $file->getFileSize()) : ?>
+                        <span class="am-filesize">(<?= $block->escapeHtml($file->getReadableFileSize()) ?>)</span>
+                    <?php endif ?>
+                </a>
+                <?php if(!$block->isLoggedIn()) : ?>
+                <div class="popup-login">
+                    <div class="content">
+                        <?= __('Please %1 Sign In %2 to download drawing','<a href="'.$block->escapeUrl($block->getLoginUrl()) . '">','</a>') ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <div class="widget am-attachments am-attachments-<?= $block->escapeHtml($this->getWidgetType()); ?>">
+            <?php if ($block->getBlockTitle()) : ?>
+                <div class="block-title">
+                    <strong><?= $block->escapeHtml($block->getBlockTitle()); ?></strong>
+                </div>
+            <?php endif; ?>
+
+            <?php foreach ($files as $file) : ?>
+                <div class="am-fileline">
+                    <?php if ($block->isShowIcon() && $file->getIconUrl()) : ?>
+                        <img src="<?= $block->escapeUrl($file->getIconUrl()) ?>" class="am-fileicon" />
+                    <?php else: ?>
+                        <i class="icomoon-pdf"></i>
+                    <?php endif; ?>
+                    <a href="<?= $block->escapeUrl($file->getFrontendUrl()) ?>" class="am-filelink" target="_blank">
+                        <?= $block->escapeHtml($file->getLabel()); ?>
+                    </a>
+
+                    <?php if ($block->isShowFilesize() && $file->getFileSize()) : ?>
+                        <span class="am-filesize">(<?= $block->escapeHtml($file->getReadableFileSize()) ?>)</span>
+                    <?php endif ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

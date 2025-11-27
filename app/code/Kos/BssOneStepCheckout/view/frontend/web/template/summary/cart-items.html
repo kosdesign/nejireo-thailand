@@ -1,0 +1,40 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="block items-in-cart">
+    <div class="content summary-items" data-role="content">
+        <ol class="items-title product-table">
+            <li class="col col-image attr-image"></li>
+            <li class="col d-lg-table-cell d-none attr-part-number"><span data-bind="i18n: 'Part Number'"></span></li>
+            <li class="col attr-name"><span data-bind="i18n: 'Name'"></span></li>
+            <li class="col d-lg-table-cell d-none attr-material"><span data-bind="i18n: 'Material'"></span></li>
+            <li class="col d-lg-table-cell d-none attr-plating"><span data-bind="i18n: 'Plating'"></span></li>
+            <li class="col d-lg-table-cell col-small d-none attr-diameter"><span data-bind="i18n: 'Diameter'"></span></li>
+            <li class="col d-lg-table-cell col-small d-none attr-length"><span data-bind="i18n: 'Length'"></span></li>
+            <li class="col col-large d-lg-table-cell d-none attr-price"><span data-bind="i18n: 'Unit price'"></span></li>
+            <li class="col text-center col-qty attr-qty"><span data-bind="i18n: 'QTY'"></span></li>
+            <li class="col text-center attr-subtotal"><span data-bind="i18n: 'Total Price'"></span></li>
+        </ol>
+        <div class="summary-items-wrapper overflowed">
+            <ol class="summary-items cart items data table">
+                <each args="items()">
+                    <li class="product">
+                        <ul class="product-table">
+                            <each args="$parent.elems()" render=""/>
+                        </ul>
+                    </li>
+                </each>
+            </ol>
+        </div>
+    </div>
+    <div class="actions-toolbar" if="maxCartItemsToDisplay < getCartLineItemsCount()">
+        <div class="secondary">
+            <a class="action viewcart" data-bind="attr: {href: cartUrl}">
+                <span data-bind="i18n: 'View and Edit Cart'"></span>
+            </a>
+        </div>
+    </div>
+</div>

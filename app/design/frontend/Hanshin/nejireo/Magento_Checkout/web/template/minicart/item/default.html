@@ -1,0 +1,68 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<tr class="row" data-role="product-item">
+    <td class="col col-image px-2">
+        <div class="d-flex d-sm-block align-items-center justify-content-center">
+            <!-- ko if: product_has_url -->
+            <a data-bind="attr: {href: product_url, title: product_name}" tabindex="-1" class="product-item-photo">
+                <!-- ko foreach: $parent.getRegion('itemImage') -->
+                    <!-- ko template: {name: getTemplate(), data: item.product_image} --><!-- /ko -->
+                <!-- /ko -->
+            </a>
+            <!-- /ko -->
+            <!-- ko ifnot: product_has_url -->
+            <span class="product-item-photo">
+                <!-- ko foreach: $parent.getRegion('itemImage') -->
+                    <!-- ko template: {name: getTemplate(), data: item.product_image} --><!-- /ko -->
+                <!-- /ko -->
+            </span>
+            <!-- /ko -->
+        </div>
+    </td>
+
+    <td class="col col-name">
+        <!-- ko if: product_has_url -->
+        <div class="name color-black" data-bind="html: product_name"></div>
+        <!-- /ko -->
+        <!-- ko ifnot: product_has_url -->
+            <!-- ko text: product_name --><!-- /ko -->
+        <!-- /ko -->
+    </td>
+
+    <td class="col text-center col-qty">
+        <span data-bind="html: qty"></span>
+        <div class="product actions">
+            <!-- ko if: is_visible_in_site_visibility -->
+            <div class="primary">
+                <a data-bind="attr: {href: configure_url, title: $t('Edit item')}" class="action edit">
+                    <span data-bind="i18n: 'Edit'"></span>
+                </a>
+            </div>
+            <!-- /ko -->
+            <div class="secondary">
+                <a href="#" data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}"
+                   class="action delete"/>
+            </div>
+        </div>
+    </td>
+
+    <td class="col text-center col-price">
+        <!-- ko if: canApplyMsrp -->
+
+        <div class="details-map">
+            <span class="label" data-bind="i18n: 'Price'"></span>
+            <span class="value" data-bind="i18n: 'See price before order confirmation.'"></span>
+        </div>
+        <!-- /ko -->
+        <!-- ko ifnot: canApplyMsrp -->
+        <!-- ko foreach: $parent.getRegion('priceSidebar') -->
+            <!-- ko template: {name: getTemplate(), data: item.product_price, as: 'price'} --><!-- /ko -->
+        <!-- /ko -->
+        <!-- /ko -->
+        <input type="hidden" class="input-price" value=""/>
+    </td>
+</tr>

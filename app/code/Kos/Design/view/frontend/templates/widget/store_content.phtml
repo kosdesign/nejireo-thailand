@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+<?php
+/**
+ * Blog recent posts widget
+ *
+ * @var $block \Magefan\Blog\Block\Widget\SimpleContent
+ */
+?>
+
+<?php $data = $block->filterParameters(); ?>
+
+<div class="section__title mb-5">
+    <h2><?= $data['title'] ?></h2>
+</div>
+<div class="section__content">
+    <div class="row">
+        <?php if (array_key_exists('image', $data) && trim($data['image']) != '') : ?>
+            <div class="col-md-8 card__image">
+                <div>
+                    <img src="/pub/media/<?= $data['image'] ?>" alt="" />
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="card__text d-flex align-items-center">
+            <div>
+                <ul> 
+                    <?php if (array_key_exists('google_map', $data) && trim($data['google_map']) != '') : ?>
+                        <li><i class="icomoon-location"></i><a href="<?= $data['google_map'] ?>" target="_blank">Google Map</a></li>
+                    <?php endif; ?>
+                    <?php if (array_key_exists('google_map', $data) && trim($data['google_map']) != '') : ?>
+                        <li><i class="icomoon-clock"></i>
+                            <p><?= html_entity_decode($data['time']) ?></p>
+                        </li>
+                    <?php endif; ?>
+                    <?php if (array_key_exists('tel', $data) && trim($data['tel']) != '') : ?>
+                        <li><i class="icomoon-phone"></i>
+                            <p><?= html_entity_decode($data['tel']) ?></p>
+                        </li>
+                    <?php endif; ?>
+                    <?php if (array_key_exists('email', $data) && trim($data['email']) != '') : ?>
+                        <li><i class="icomoon-email"></i><a href="mailto:<?= $data['email'] ?>"><?= $data['email'] ?></a></li>
+                    <?php endif; ?>
+                </ul> 
+            </div>
+        </div>
+    </div>
+</div>

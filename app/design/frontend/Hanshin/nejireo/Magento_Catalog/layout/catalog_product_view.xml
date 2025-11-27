@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="main.content">
+            <block class="Magento\Framework\View\Element\Template" name="hs.top.search" as="topSearch" template="Magento_Search::form.mini.phtml" before="page.wrapper.hs" />
+        </referenceContainer>
+        <referenceContainer name="main">
+            <container name="product.info.container" label="Product Info Container" htmlTag="div" htmlClass="product-container" before="-" />
+        </referenceContainer>
+        <referenceContainer name="product.info.main">
+            <container name="product.tabs.overview" label="Product Overview Container" htmlTag="div" htmlClass="product-tabs-overview" before="-">
+                <block class="Magento\Catalog\Block\Product\View\Details" name="product.info.overview.hs"
+                       template="Magento_Catalog::product/view/details.phtml"
+                       before="-"/>
+            </container>
+            <container name="product.info.actions" label="Product Info Actions Block" as="hs.actions" htmlTag="div" htmlClass="product-info-actions" before="extrahint" />
+        </referenceContainer>
+        <referenceBlock name="product.info.overview">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Product Details</argument>
+            </arguments>
+        </referenceBlock>
+
+
+        <referenceBlock name="product.info.description">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Features</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="content.aside">
+            <block class="Magento\Catalog\Block\Widget\RecentlyViewed"
+                   name="recently_viewed_product"
+                   template="Magento_Catalog::product/widget/viewed/grid.phtml" after="-">
+                <arguments>
+                    <argument name="uiComponent" xsi:type="string">widget_recently_viewed</argument>
+                    <argument name="page_size" xsi:type="number">8</argument>
+                    <argument name="show_attributes" xsi:type="string">name,image,learn_more</argument>
+                    <argument name="show_buttons" xsi:type="string">add_to_wishlist</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="reviews.tab" remove="true" />
+        <referenceBlock name="view.addto.compare" remove="true" />
+        <referenceBlock name="product.attributes" remove="true" />
+        <referenceBlock name="related.product.addto.compare" remove="true" />
+        <referenceContainer name="product.info.stock.sku" remove="true" />
+        <referenceBlock name="product.info.review" remove="true"/>
+        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <move element="content" destination="product.info.container" before="-"/>
+        <move element="product.info.overview" destination="content" after="product.info.media"/>
+        
+        <move element="product.info.description" destination="product.info.overview.hs" after="product.info.overview"/>
+        <move element="content.aside" destination="page.bottom.content" />
+
+
+        
+    </body>
+</page>

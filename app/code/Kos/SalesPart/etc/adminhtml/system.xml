@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_Core
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="bss_request4quote" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <group id="identity" translate="label" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>R4Q PDF template</label>
+                <field id="signature" translate="label comment" type="image" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Signature for PDF (390x35)</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image\Pdf</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">sales/quote/logo</upload_dir>
+                    <base_url type="media" scope_info="1">sales/quote/logo</base_url>
+                </field>
+            </group>
+            <group id="kos_b2b" translate="label" sortOrder="100" showInDefault="1">
+                <label>R4Q B2B PDF template</label>
+                <field id="payment_condition" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Condition</label>
+                </field>
+                <field id="validity" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Validity</label>
+                </field>
+                <field id="term" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Terms &amp; Conditions</label>
+                </field>
+                <field id="bank_info" translate="label comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bank Info</label>
+                </field>
+                <field id="person_name" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Person in charge Name:</label>
+                </field>
+                <field id="person_phone" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Person in charge Tel:</label>
+                </field>
+            </group>
+            <group id="kos_b2c" translate="label" sortOrder="200" showInDefault="1">
+                <label>R4Q B2C PDF template</label>
+                <field id="payment_condition" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Condition</label>
+                </field>
+                <field id="validity" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Validity</label>
+                </field>
+                <field id="term" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Terms &amp; Conditions</label>
+                </field>
+                <field id="bank_info" translate="label comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bank Info</label>
+                </field>
+                <field id="person_name" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Person in charge Name:</label>
+                </field>
+                <field id="person_phone" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Person in charge Tel:</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

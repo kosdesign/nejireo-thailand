@@ -1,0 +1,45 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_QuoteExtension
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+/** @var $block \Bss\QuoteExtension\Block\QuoteExtension\View\Info */
+?>
+<?php // @codingStandardsIgnoreFile ?>
+
+<?php
+$requestQuote = $block->getRequestQuote();
+$expiredDay = $requestQuote->getExpiry();
+$quote = $block->getQuoteExtension();
+?>
+<div class="quote-title quote-date">
+    <span ><?= $block->escapeHtml(__('Quote Information')); ?></span>
+</div>
+<div class="order-date">
+    <span class="quote-label"><?= /* @escapeNotVerified */ $block->escapeHtml(__('Quote Date: %1', $block->formatDate($requestQuote->getCreatedAt(), \IntlDateFormatter::LONG))); ?></span>
+</div>
+<?php if ($expiredDay) : ?>
+<div class="quote-expiry order-date">
+    <?php if ($requestQuote->getStatus() != \Bss\QuoteExtension\Model\Config\Source\Status::STATE_EXPIRED): ?>
+        <span ><?= /* @escapeNotVerified */ $block->escapeHtml(__('Expire At: %1', $block->formatDate($expiredDay, \IntlDateFormatter::LONG))); ?></span>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
+<?php if ($block->canShowCurrentSubtotal()) : ?>
+<div class="current-total">
+    <span><strong><?= /* @escapeNotVerified */ __('Current Total: %1', $block->formatPrice($quote->getGrandTotal(), $quote->getStoreId(), $quote->getQuoteCurrencyCode())); ?></strong></span>
+</div>
+<?php endif; ?>

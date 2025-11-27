@@ -1,0 +1,975 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <!--aljflasf-->
+    <widget id="head-slogan" class="Kos\Design\Block\Widget\Slogan">
+        <label translate="true">Slogan</label>
+        <description>Display slogan</description>
+        <parameters>
+            <parameter xsi:type="text" name="body_text" visible="true" sort_order="10">
+                <label translate="true">Text</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="head-slogan" value="Kos_Design::widget/slogan.phtml" selected="true">
+                        <label translate="true">Slogan</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <!--aljflasf-->
+
+     <!--blog-->
+    <widget id="head-blog" class="Kos\Design\Block\Widget\Blog">
+        <label translate="true">Blog</label>
+        <description>Display blog</description>
+        <parameters>
+            <parameter xsi:type="text" name="body_text" visible="true" sort_order="10">
+                <label translate="true">Text</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="head-bog" value="Kos_Design::widget/blog.phtml" selected="true">
+                        <label translate="true">Blog</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <!--blog-->
+
+    <!--footer1-->
+    <widget id="footer_layer1" class="Kos\Design\Block\Widget\FooterLayer1">
+        <label translate="true">Footerlayer1</label>
+        <description>Display Footerlayer1</description>
+        <parameters>
+            <parameter xsi:type="block" name="image" visible="true" sort_order="10">
+                <label translate="true">Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter xsi:type="text" name="body_text" visible="true" sort_order="20">
+                <label translate="true">Text</label>
+            </parameter>
+            <parameter xsi:type="text" name="body_text2" visible="true" sort_order="30">
+                <label translate="true">Detail</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="footer_layer1" value="Kos_Design::widget/footerLayer1.phtml" selected="true">
+                        <label translate="true">Footer Layer One</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <!--footer1-->
+    <!--footer2-->
+    <widget id="footer_layer2" class="Kos\Design\Block\Widget\FooterLayer2">
+        <label translate="true">Footerlayer2</label>
+        <description>Display Footerlayer2</description>
+        
+        <parameters>
+            <parameter xsi:type="text" required="true"  name="title" visible="true" sort_order="2">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="body_text" visible="true" sort_order="3">
+                <label translate="true">Body Text</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="typeline1" xsi:type="select" visible="true" sort_order="4">
+                <label translate="true">Type Line 1</label>
+                <options>
+                    <option name="type1_1" value="link" selected="true">
+                        <label translate="true">Link</label>
+                    </option>
+                    <option name="type1_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type1_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                    <option name="type1_4" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter xsi:type="text" name="link_contact_line1" visible="true" sort_order="5">
+                <label translate="true">Link/Contact Line 1</label>
+            </parameter>
+            <parameter xsi:type="text" name="Label_line1" visible="true" sort_order="6">
+                <label translate="true">Label Line 1</label>
+            </parameter>
+            <parameter name="typeline2" xsi:type="select" visible="true" sort_order="7">
+                <label translate="true">Type Line 2</label>
+                <options>
+                    <option name="type2_1" value="link" selected="true">
+                        <label translate="true">Link</label>
+                    </option>
+                    <option name="type2_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type2_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                    <option name="type2_4" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter xsi:type="text" name="link_contact_line2" visible="true" sort_order="8">
+                <label translate="true">Link/Contact Line 2</label>
+            </parameter>
+            <parameter xsi:type="text" name="Label_line2" visible="true" sort_order="9">
+                <label translate="true">Label Line 2</label>
+            </parameter>
+            <parameter name="typeline3" xsi:type="select" visible="true" sort_order="10">
+                <label translate="true">Type Line 3</label>
+                <options>
+                    <option name="type3_1" value="link" selected="true">
+                        <label translate="true">Link</label>
+                    </option>
+                    <option name="type3_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type3_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                    <option name="type3_4" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter xsi:type="text" name="link_contact_line3" visible="true" sort_order="11">
+                <label translate="true">Link/Contact Line 3</label>
+            </parameter>
+            <parameter xsi:type="text" name="Label_line3" visible="true" sort_order="12">
+                <label translate="true">Label Line 3</label>
+            </parameter>
+            <parameter name="typeline4" xsi:type="select" visible="true" sort_order="13">
+                <label translate="true">Type Line 4</label>
+                <options>
+                    <option name="type4_1" value="link" selected="true">
+                        <label translate="true">Link</label>
+                    </option>
+                    <option name="type4_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type4_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                    <option name="type4_4" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter xsi:type="text" name="link_contact_line4" visible="true" sort_order="14">
+                <label translate="true">Link/Contact Line 4</label>
+            </parameter>
+            <parameter xsi:type="text" name="Label_line4" visible="true" sort_order="15">
+                <label translate="true">Label Line 4</label>
+            </parameter>
+            <parameter name="typeline5" xsi:type="select" visible="true" sort_order="16">
+                <label translate="true">Type Line 5</label>
+                <options>
+                    <option name="type5_1" value="link" selected="true">
+                        <label translate="true">Link</label>
+                    </option>
+                    <option name="type5_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type5_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                    <option name="type5_4" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter xsi:type="text" name="link_contact_line5" visible="true" sort_order="17">
+                <label translate="true">Link/Contact Line 5</label>
+            </parameter>
+            <parameter xsi:type="text" name="Label_line5" visible="true" sort_order="18">
+                <label translate="true">Label Line 5</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="footer_layer2" value="Kos_Design::widget/footerLayer2.phtml" selected="true">
+                        <label translate="true">Footer Layer Two</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+        
+    </widget>
+    <!--end footer2-->
+    <!--footer3-->
+    <widget id="footer_layer3" class="Kos\Design\Block\Widget\FooterLayer3">
+        <label translate="true">Footerlayer3</label>
+        <description>Display Footerlayer3</description>
+        <parameters>
+            <parameter xsi:type="block" name="image" visible="true" sort_order="2">
+                <label translate="true">Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter xsi:type="block" name="footer_logo" visible="true" sort_order="3">
+                <label translate="true">Footer Logo</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter xsi:type="block" name="body_text" visible="true" sort_order="4">
+                <label translate="true">Text</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="footer_layer3" value="Kos_Design::widget/footerLayer3.phtml" selected="true">
+                        <label translate="true">Footer Layer Two</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters> 
+    </widget>
+    <!--end footer3-->
+    <widget id="hs_header_business_help_center_list" class="Kos\Design\Block\Widget\HeaderBusinessHelpCenterList">
+        <label translate="true">HS Header Business Help Center List</label>
+        <description>Display business help center list</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="email" xsi:type="text" visible="true" sort_order="40">
+                <label translate="true">Email</label>
+            </parameter>
+            <parameter name="telephone" xsi:type="text" visible="true" sort_order="50">
+                <label translate="true">Telephone</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="header_business_help_center_list" value="Kos_Design::widget/header_business_help_center_list.phtml">
+                        <label translate="true">Header Business Help Center List</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="hs_card_support" class="Kos\Design\Block\Widget\HsCardSupport">
+        <label translate="true">HS Card Support</label>
+        <description>Display card support</description>
+        <parameters>
+            <parameter name="btn_contact_identifier" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Identifier contact page</label>
+            </parameter>
+            <parameter name="btn_contact_name" xsi:type="text" visible="true" sort_order="20">
+                <label translate="true">Button contact name</label>
+            </parameter>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="30">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="email" xsi:type="text" visible="true" sort_order="40">
+                <label translate="true">Email</label>
+            </parameter>
+            <parameter name="telephone" xsi:type="text" visible="true" sort_order="50">
+                <label translate="true">Telephone</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="card_support" value="Kos_Design::widget/card_support.phtml">
+                        <label translate="true">Card Support</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="hs_banner_homepage" class="Kos\Design\Block\Widget\HsBannerHomePage">
+        <label translate="true">Hs banner homepage item</label>
+        <description>Display banner homepage item</description>
+        <parameters>
+            <parameter xsi:type="block" name="desktop_image" visible="true" sort_order="20">
+                <label translate="true">Desktop Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter xsi:type="block" name="mobile_image" visible="true" sort_order="30">
+                <label translate="true">Mobile Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="link" xsi:type="text" visible="true" sort_order="40">
+                <label translate="true">Link</label>
+            </parameter>
+            <parameter name="fisrt" xsi:type="select" required="true" visible="true" sort_order="10">
+                <label translate="true">Fisrt Item</label>
+                <options>
+                    <option name="fisrtno" value="no" selected="true">
+                        <label translate="true">No</label>
+                    </option>
+                    <option name="fisrtyes" value="yes">
+                        <label translate="true">Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="banner_homepage" value="Kos_Design::widget/banner_homepage.phtml">
+                        <label translate="true">Hs banner homepage item</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="hs_homepage_about_us" class="Kos\Design\Block\Widget\HsHomepageAboutUs">
+        <label translate="true">Hs homepage about us</label>
+        <description>Hs homepage about us</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="sub_title" xsi:type="text" visible="true" sort_order="3">
+                <label translate="true">Sub Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="body_text" visible="true" sort_order="4">
+                <label translate="true">Content Text</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter xsi:type="text" name="lern_more" visible="true" sort_order="5">
+                <label translate="true">Learn More Link</label>
+            </parameter>
+            <parameter xsi:type="block" name="image" visible="true" sort_order="6">
+                <label translate="true">Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="homepage_about_us" value="Kos_Design::widget/homepage_about_us.phtml">
+                        <label translate="true">Hs homepage about us</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+<!--request quotation-->
+<widget id="homepage_request_quotation" class="Kos\Design\Block\Widget\HomepageRequestQuotation">
+        <label translate="true">homepage request quotation</label>
+        <description>homepage request quotation</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="body_text" visible="true" sort_order="3">
+                <label translate="true">Title more</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter xsi:type="text" name="steprequest1" visible="true" sort_order="5">
+                <label translate="true">Step Request 1</label>
+            </parameter>
+            <parameter xsi:type="text" name="steprequest2" visible="true" sort_order="6">
+                <label translate="true">Step Request 2</label>
+            </parameter>
+            <parameter xsi:type="text" name="steprequest3" visible="true" sort_order="7">
+                <label translate="true">Step Request 3</label>
+            </parameter>
+            <parameter xsi:type="text" name="steprequest4" visible="true" sort_order="8">
+                <label translate="true">Step Request 4</label>
+            </parameter>
+            <parameter xsi:type="text" name="steprequest5" visible="true" sort_order="9">
+                <label translate="true">Step Request 5</label>
+            </parameter>
+            <parameter xsi:type="text" name="title2" visible="true" sort_order="8">
+                <label translate="true">Title 2</label>
+            </parameter>
+            <parameter xsi:type="block" name="body_text2" visible="true" sort_order="11">
+                <label translate="true">Title more 2</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter xsi:type="text" name="display_name" visible="true" sort_order="12">
+                <label translate="true">Display name popup</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="homepage_request_quotation" value="Kos_Design::widget/homepage_request_quotation.phtml">
+                        <label translate="true">Homepage Request Quotation</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+<!--End request quotation-->
+<!--request BlockTermsConditions-->
+    <widget id="block_terms_conditions" class="Kos\Design\Block\Widget\BlockTermsConditions">
+        <label translate="true">block title and content page</label>
+        <description>block title and content page</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="content" visible="true" sort_order="4">
+                <label translate="true">Content</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="block_terms_conditions" value="Kos_Design::widget/block_terms_conditions.phtml">
+                        <label translate="true">Block title and content page</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+<!--End request BlockTermsConditions-->
+<!--sub  request BlockTermsConditions-->
+    <widget id="sub_block_terms_conditions" class="Kos\Design\Block\Widget\SubBlockTermsConditions">
+        <label translate="true">Paragraph content page</label>
+        <description>block paragraph content</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="3">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="detail" visible="true" sort_order="4">
+                <label translate="true">Detail</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="block_terms_conditions" value="Kos_Design::widget/sub_block_terms_conditions.phtml">
+                        <label translate="true">Paragraph content page</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+<!--End sub request BlockTermsConditions-->
+<!--header contact-->
+<widget id="header_contact" class="Kos\Design\Block\Widget\HeaderContact">
+        <label translate="true">Header Contact</label>
+        <description>header contact</description>
+        <parameters>
+            <parameter name="text1" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Text</label>
+            </parameter>
+            <parameter name="text2" xsi:type="text" visible="true" sort_order="3">
+                <label translate="true">Display popup name</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="block_terms_conditions" value="Kos_Design::widget/header_contact.phtml">
+                        <label translate="true">Header Contact</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+<!--End header contact-->
+<!--header content-->
+<widget id="header_content" class="Kos\Design\Block\Widget\HeaderContent">
+        <label translate="true">Header Content</label>
+        <description>header content</description>
+        <parameters>
+            <parameter name="text1" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Link facebook</label>
+            </parameter>
+            <parameter name="text2" xsi:type="text" visible="true" sort_order="3">
+                <label translate="true">Link instagram</label>
+            </parameter>
+            <parameter name="text3" xsi:type="text" visible="true" sort_order="4">
+                <label translate="true">Link youtube</label>
+            </parameter>
+            <parameter name="link4" xsi:type="text" visible="true" sort_order="5">
+                <label translate="true">Link Line Account</label>
+            </parameter>
+            <parameter name="text4" xsi:type="text" visible="true" sort_order="6">
+                <label translate="true">Line Account</label>
+            </parameter>
+            <parameter name="text5" xsi:type="text" visible="true" sort_order="7">
+                <label translate="true">Text</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="block_terms_conditions" value="Kos_Design::widget/header_content.phtml">
+                        <label translate="true">Header Content</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+<!--End header content-->
+<!--contact us-->
+<widget id="contact_us" class="Kos\Design\Block\Widget\ContactUs">
+        <label translate="true">Contact us</label>
+        <description>contact us</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="body_text" visible="true" sort_order="3">
+                <label translate="true">Content Head</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="typeline1" xsi:type="select" visible="true" sort_order="4">
+                <label translate="true">Type 1</label>
+                <options>
+                    <option name="type1_1" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                    <option name="type1_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type1_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="title1" xsi:type="text" visible="true" sort_order="5">
+                <label translate="true">Title 1</label>
+            </parameter>
+            <parameter name="text1" xsi:type="text" visible="true" sort_order="6">
+                <label translate="true">Text 1</label>
+            </parameter>
+            <parameter name="note1_1" xsi:type="text" visible="true" sort_order="7">
+                <label translate="true">Note 1-1</label>
+            </parameter>
+            <parameter name="note1_2" xsi:type="text" visible="true" sort_order="8">
+                <label translate="true">Note 1-2</label>
+            </parameter>
+            
+            <parameter name="typeline2" xsi:type="select" visible="true" sort_order="9">
+                <label translate="true">Type 2</label>
+                <options>
+                    <option name="type2_1" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                    <option name="type2_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type2_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="title2" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Title 2</label>
+            </parameter>
+            <parameter name="text2" xsi:type="text" visible="true" sort_order="11">
+                <label translate="true">Text 2</label>
+            </parameter>
+            <parameter name="note2_1" xsi:type="text" visible="true" sort_order="12">
+                <label translate="true">Note 2-1</label>
+            </parameter>
+            <parameter name="note2_2" xsi:type="text" visible="true" sort_order="13">
+                <label translate="true">Note 2-2</label>
+            </parameter>
+            
+            <parameter name="typeline3" xsi:type="select" visible="true" sort_order="14">
+                <label translate="true">Type 3</label>
+                <options>
+                    <option name="type3_1" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                    <option name="type3_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type3_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="title3" xsi:type="text" visible="true" sort_order="15">
+                <label translate="true">Title 3</label>
+            </parameter>
+            <parameter name="text3" xsi:type="text" visible="true" sort_order="16">
+                <label translate="true">Text 3</label>
+            </parameter>
+            <parameter name="note3_1" xsi:type="text" visible="true" sort_order="17">
+                <label translate="true">Note 3-1</label>
+            </parameter>
+            <parameter name="note3_2" xsi:type="text" visible="true" sort_order="18">
+                <label translate="true">Note 3-2</label>
+            </parameter>
+            
+            <parameter name="typeline4" xsi:type="select" visible="true" sort_order="19">
+                <label translate="true">Type 4</label>
+                <options>
+                    <option name="type4_1" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                    <option name="type4_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type4_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="title4" xsi:type="text" visible="true" sort_order="20">
+                <label translate="true">Title 4</label>
+            </parameter>
+            <parameter name="text4" xsi:type="text" visible="true" sort_order="21">
+                <label translate="true">Text 4</label>
+            </parameter>
+            <parameter name="note4_1" xsi:type="text" visible="true" sort_order="22">
+                <label translate="true">Note 4-1</label>
+            </parameter>
+            <parameter name="note4_2" xsi:type="text" visible="true" sort_order="23">
+                <label translate="true">Note 4-2</label>
+            </parameter>
+            
+            <parameter name="typeline5" xsi:type="select" visible="true" sort_order="24">
+                <label translate="true">Type 5</label>
+                <options>
+                    <option name="type5_1" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                    <option name="type5_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type5_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="title5" xsi:type="text" visible="true" sort_order="25">
+                <label translate="true">Title 5</label>
+            </parameter>
+            <parameter name="text5" xsi:type="text" visible="true" sort_order="26">
+                <label translate="true">Text 5</label>
+            </parameter>
+            <parameter name="note5_1" xsi:type="text" visible="true" sort_order="27">
+                <label translate="true">Note 5-1</label>
+            </parameter>
+            <parameter name="note5_2" xsi:type="text" visible="true" sort_order="28">
+                <label translate="true">Note 5-2</label>
+            </parameter>
+            
+            <parameter name="typeline6" xsi:type="select" visible="true" sort_order="29">
+                <label translate="true">Type 6</label>
+                <options>
+                    <option name="type6_1" value="Fax" selected="true">
+                        <label translate="true">Fax</label>
+                    </option>
+                    <option name="type6_2" value="Tel" selected="true">
+                        <label translate="true">Tel</label>
+                    </option>
+                    <option name="type6_3" value="Email" selected="true">
+                        <label translate="true">Email</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="title6" xsi:type="text" visible="true" sort_order="30">
+                <label translate="true">Title 6</label>
+            </parameter>
+            <parameter name="text6" xsi:type="text" visible="true" sort_order="31">
+                <label translate="true">Text 6</label>
+            </parameter>
+            <parameter name="note6_1" xsi:type="text" visible="true" sort_order="32">
+                <label translate="true">Note 6-1</label>
+            </parameter>
+            <parameter name="note6_2" xsi:type="text" visible="true" sort_order="33">
+                <label translate="true">Note 6-2</label>
+            </parameter>
+
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="contact_us" value="Kos_Design::widget/contact_us.phtml">
+                        <label translate="true">Contact us</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+<!--End contact us-->
+<!--card-->
+<widget id="card_seo_banner" class="Kos\Design\Block\Widget\CardSeoBanner">
+        <label translate="true">Card Seo Banner</label>
+        <description>card seo banner</description>
+        <parameters>
+            <parameter xsi:type="block" name="image" visible="true" sort_order="2">
+                <label translate="true">Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter xsi:type="block" name="body_text" visible="true" sort_order="3">
+                <label translate="true">Text 1</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="text2" xsi:type="text" visible="true" sort_order="4">
+                <label translate="true">Text 2</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="block_terms_conditions" value="Kos_Design::widget/card_seo_banner.phtml">
+                        <label translate="true">Card Seo Banner</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+<!--End card-->
+<!--Large Quantity and Custom Order-->
+<widget id="large_quantity_custom_order" class="Kos\Design\Block\Widget\LargeQuantityCustomOrder">
+        <label translate="true">Large Quantity and Custom Order</label>
+        <description>large quantity and custom order</description>
+        <parameters>
+            <parameter name="text1" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="image" visible="true" sort_order="3">
+                <label translate="true">Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="text2" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Head Detail</label>
+            </parameter>
+            <parameter xsi:type="block" name="body_text" visible="true" sort_order="4">
+                <label translate="true">Detail</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="block_terms_conditions" value="Kos_Design::widget/large_quantity_custom_order.phtml">
+                        <label translate="true">Large Quantity and Custom Order</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+<!--End Large Quantity and Custom Order-->
+<!--request payment-shipping-->
+<widget id="payment_shipping" class="Kos\Design\Block\Widget\PaymentShipping">
+        <label translate="true">Payment Shipping</label>
+        <description>payment shipping</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="sub_title_1" xsi:type="text" visible="true" sort_order="3">
+                <label translate="true">Sub Title 1</label>
+            </parameter>
+            <parameter xsi:type="block" name="detail_title_1" visible="true" sort_order="4">
+                <label translate="true">Detail 1</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="sub_title_2" xsi:type="text" visible="true" sort_order="5">
+                <label translate="true">Sub Title 2</label>
+            </parameter>
+            <parameter xsi:type="block" name="detail_title_2" visible="true" sort_order="6">
+                <label translate="true">Detail 2</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="block_terms_conditions" value="Kos_Design::widget/payment_shipping.phtml">
+                        <label translate="true">Payment Shipping</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <!--End FAQ-->
+    <widget id="faq" class="Kos\Design\Block\Widget\Faq">
+        <label translate="true">FAQ</label>
+        <description>FAQ</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="detail" visible="true" sort_order="3">
+                <label translate="true">Detail</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter xsi:type="block" name="image" visible="true" sort_order="4">
+                <label translate="true">Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="block_terms_conditions" value="Kos_Design::widget/faq.phtml">
+                        <label translate="true">FAQ</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <!--End FAQ-->
+    <!--End FAQ LIST-->
+    <widget id="faq_list" class="Kos\Design\Block\Widget\FaqList">
+        <label translate="true">FAQ List</label>
+        <description>FAQ List</description>
+        <parameters>
+            <parameter name="id" xsi:type="text" visible="true" sort_order="1" required="true">
+                <label translate="true">ID</label>
+            </parameter>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="2" required="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="detail" visible="true" sort_order="3">
+                <label translate="true">Detail</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="0">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="faq_list" value="Kos_Design::widget/faq_list.phtml">
+                        <label translate="true">FAQ</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <!--End FAQ LIST-->
+    <!--block content video-->
+    <widget id="block_content_video" class="Kos\Design\Block\Widget\BlockContentVideo">
+        <label translate="true">Block Content Video</label>
+        <description>block content video</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="2">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter xsi:type="block" name="detail" visible="true" sort_order="3">
+                <label translate="true">Detail</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter xsi:type="block" name="image" visible="true" sort_order="4">
+                <label translate="true">Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter xsi:type="block" name="body_text" visible="true" sort_order="5">
+                <label translate="true">Text 1</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\Wysiwyg" />
+            </parameter>
+            <parameter name="text2" xsi:type="text" visible="true" sort_order="6">
+                <label translate="true">Text 2</label>
+            </parameter>
+            
+            <parameter name="video_url" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Video Url</label>
+            </parameter>
+            <parameter xsi:type="block" name="video_image" visible="true" sort_order="20">
+                <label translate="true">Video Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="video_title" xsi:type="text" visible="true" sort_order="30">
+                <label translate="true">Video Title</label>
+            </parameter>
+
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="1">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="block_terms_conditions" value="Kos_Design::widget/block_content_video.phtml">
+                        <label translate="true">Block Content Video</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <!--End FAQ-->
+
+    <widget id="contact_form_image" class="Kos\Design\Block\Widget\HSContactFormImage">
+        <label translate="true">HS Contact Form Image</label>
+        <description>Display Contact Form Image</description>
+        <parameters>
+            <parameter xsi:type="block" name="image" visible="true" sort_order="10">
+                <label translate="true">Image</label>
+                <block class="Dmatthew\WidgetParameters\Block\Adminhtml\Widget\Type\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter xsi:type="text" name="url" visible="true" sort_order="20">
+                <label translate="true">Url Page</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="contact_form_image" value="Kos_Design::widget/contact_form_image.phtml" selected="true">
+                        <label translate="true">HS Contact Form Image</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+
+</widgets>

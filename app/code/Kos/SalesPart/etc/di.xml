@@ -1,0 +1,26 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Bss\QuoteExtension\Model\Pdf\PrintPdf" type="Kos\SalesPart\Model\Quote\Pdf"/>
+    <preference for="Bss\QuoteExtension\Model\PlaceQuote" type="Kos\SalesPart\Model\Rewrite\PlaceQuote"/>
+    <preference for="Bss\QuoteExtension\Helper\Mail" type="Kos\SalesPart\Helper\QuoteExtension\Mail"/>
+    <preference for="Magento\Sales\Model\Order\Pdf\Items\Invoice\DefaultInvoice" type="Kos\SalesPart\Model\Rewrite\Order\Pdf\Items\Invoice\DefaultInvoice" />
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Kos\SalesPart\Model\Rewrite\Order\Pdf\Invoice" />
+    <preference for="Magento\Sales\Model\Order\Pdf\Shipment" type="Kos\SalesPart\Model\Rewrite\Order\Pdf\Shipment" />
+    <preference for="Magento\Sales\Model\Order\Pdf\Creditmemo" type="Kos\SalesPart\Model\Rewrite\Order\Pdf\Creditmemo" />
+    <preference for="Magento\Sales\Model\Order\Pdf\Items\Creditmemo\DefaultCreditmemo" type="Kos\SalesPart\Model\Rewrite\Order\Pdf\Items\Creditmemo\DefaultCreditmemo" />
+    <preference for="Magento\Sales\Model\Order\Pdf\Items\Shipment\DefaultShipment" type="Kos\SalesPart\Model\Rewrite\Order\Pdf\Items\Shipment\DefaultShipment" />
+
+    <type name="Kos\SalesPart\Console\Command\PdfEmailCommand">
+        <arguments>
+            <argument name="name" xsi:type="string">kos:generate:pdf</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="salespart_pdfemailcommand" xsi:type="object">Kos\SalesPart\Console\Command\PdfEmailCommand
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

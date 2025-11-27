@@ -1,0 +1,107 @@
+<?php
+/**
+ * @var \Kos\Design\Block\Category\Navigation $block
+ */
+$category = $block->getCategory();
+$getDescription = $this->helper(Magento\Catalog\Helper\Output::class)->categoryAttribute($category,$category->getDescription(),'description');
+?>
+<div class="card-category-title">
+    <div class="page-wrapper">
+        <div class="row">
+            <?php if ($category->getLevel() > 2) :
+                if ($getDescription != '') : 
+                    if (strlen($category->getName() > 10)) : ?>
+                        <div class="col-lg-12">
+                            <h1 class="font-bold color-black text-body-40 text-body-lg-34 text-body-sm-30 text-body-md-30 mb-0"><?php echo $category->getName(); ?></h1>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="detail color-grey-5c" style="padding-left: 3px;">
+                                <?php echo $getDescription; ?>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <div class="col-lg-3">
+                            <h1 class="font-bold color-black text-body-40 text-body-lg-34 text-body-sm-30 text-body-md-30 mb-0"><?php echo $category->getName(); ?></h1>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="detail color-grey-5c">
+                                <?php echo $getDescription; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php else : ?>
+                    <div class="col-lg-12">
+                        <h1 class="font-bold color-black text-body-40 text-body-lg-34 text-body-sm-30 text-body-md-30 mb-0"><?php echo $category->getName(); ?></h1>
+                    </div>
+                <?php endif; ?>
+            <?php else : ?>
+                <div class="col-lg-12">
+                    <h1 class="font-bold color-black text-body-40 text-body-lg-34 text-body-sm-30 text-body-md-30 mb-0"><?php echo $category->getName(); ?></h1>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<?php if ($category->getChildren()) {
+    $childs = explode(',', $category->getChildren()); 
+    $childc = [];?>
+    <?php foreach ($childs as $child) { 
+        $_child = $block->getCategoryById($child);
+        $childc[$_child->getPosition()] = $_child->getId();
+    }
+    ksort($childc);?>
+    <div class="card-category-nav-slider d-none d-lg-block">
+        <div class="container">
+            <div class="card-list card-list-nav-slider top-cat">
+                <div class="col-md-2 card-item card-item--all text-body-18">
+                    <a href="#"><?php echo __('All').' '.$category->getName(); ?></a>
+                </div>
+                <?php foreach ($childc as $child) { 
+                    $_child = $block->getCategoryById($child);?>
+                    <div class="col-md-2 card-item">
+                        <a href="<?php echo $_child->getUrl(); ?>" id="top_cat_<?=$_child->getId()?>">
+                            <div class="card-name"><?php echo $_child->getName(); ?></div>
+                            <div class="card-image">
+                                <div class="image" style="background-image:url(<?php echo $_child->getImageUrl(); ?>)"></div>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="card-list card-list-nav-slider sub-cat">
+                <div class="col-md-2 card-item" data-left="0"></div>
+                <?php foreach ($childc as $child) { 
+                    $_child = $block->getCategoryById($child);?>
+                    <div class="col-md-2 card-item" data-left="0">
+                        <?php if ($_child->getChildren()) {
+                            $__childs = explode(',', $_child->getChildren()); ?>
+                            <div class="subcat-list" id="sub_top_cat_<?=$_child->getId()?>">
+                                <ul>
+                                    <?php foreach ($__childs as $__child) {
+                                        $ch = $block->getCategoryById($__child);?>
+                                        <li><a href="<?php echo $ch->getUrl(); ?>"><span><?php echo $ch->getName(); ?></span></a></li>
+                                    <?php }?>
+                                </ul>
+                            </div>
+                        <?php }?>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+        <div class="ws-container ws-container--left"></div>
+        <div class="ws-container ws-container--right"></div>
+    </div>
+<?php }?>
+<style type="text/css">
+    .card-category-title .color-grey-5c {
+        padding-left: 3px;
+    }
+
+    @media (max-width: 991px) {
+        .card-category-title .row > div{
+            padding: 0 30px;
+            margin: 10px 0;
+        }
+    }
+
+</style>

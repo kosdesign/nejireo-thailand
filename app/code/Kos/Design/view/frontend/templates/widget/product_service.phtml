@@ -1,0 +1,11 @@
+<div class="card-item">
+    <?php if ($block->getData('image')) : ?>
+        <span class="icon">
+            <img src="<?php echo $this->getViewFileUrl('images/' . $block->getData('image')); ?>" alt="" />
+        </span>
+    <?php endif; ?>
+    <?php if ($block->getData('body_text')) : ?>
+        <span class="text"> <?= html_entity_decode($block->getData('body_text')) ?>
+        </span>
+    <?php endif; ?>
+</div>

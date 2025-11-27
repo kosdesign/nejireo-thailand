@@ -1,0 +1,408 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+use Mageplaza\Blog\Model\Config\Source\Comments\Type;
+
+/** @var \Mageplaza\Blog\Block\Post\View $block */
+
+/** @var \Mageplaza\Blog\Helper\Data $helper */
+$helper = $block->getBlogHelper();
+
+$_post = $block->getPost();
+
+$author = $helper->getAuthorByPost($_post);
+$authorName = $author !== null ? $author->getName() : '';
+
+$modifier = $helper->getAuthorByPost($_post, true);
+$modifierName = $modifier !== null ? $modifier->getName() : '';
+$isLogged = ($block->isLoggedIn()) ? 'Yes' : 'No';
+$color = $helper->getBlogConfig('general/font_color');
+
+$data = $helper->getPostListHomePageById($_post->getPostId());
+$dataValue = [];
+
+foreach ($data as $key => $value) {
+    $dataValue = $value;
+}
+
+if($dataValue) {
+    $_post = $dataValue;
+}
+
+$category = $helper->getObjectByParam($_post->getCategoryId(), null, 'category');
+//$categoryUrl = $block->getCategoryUrl($category);
+
+?>
+
+
+<div class="mp-blog-view kos-blog-view">
+    <div class="mpcss post-view" id="mpblog-list-container">
+        <div class="post-view-image">
+            <?php if ($_post->getImage()) : ?>
+            <img class="img-fluid" src="<?= /* @noEscape */ $block->getImageUrl($_post->getImage()) ?>"
+                alt="<?= $block->escapeHtml($_post->getName()) ?>" />
+            <?php endif; ?>
+        </div>
+        <div class="post-list-content">
+
+            <div class="title-view">
+                <div class="title-view-in">
+                    <h1 class="name">
+                        <?= $block->escapeHtml($_post->getName()) ?>
+                    </h1>
+                    <div class="desc">
+                        <?= $block->escapeHtml($_post->getShortDescription()) ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-header">
+                <div class="row no-gutters">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 listview">
+                        <div class="date">
+                            <?= date( 'd M Y', strtotime($_post->getPublishDate())); ?>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 listview">
+                        <div class="catname" data-category-id="<?= $_post->getCategoryId() ?>"><?= $category->getName() ?></div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 listview share-list">
+                        <div class="share">Share</div>
+                    </div>
+                </div>
+
+                <div class="copy-text-noti"><?= $block->escapeHtml(__("Copy url is done!"));?></div>
+
+            </div>
+
+            <div class="post-post_content">
+                <div class="post_content-in">
+                    <div class="row">
+                        <div class="col-12">
+                            <?= /* @noEscape */ $block->getPageFilter($_post->getPostContent()?:'') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <?php if ($helper->getSeoConfig('snippet/enabled')) : ?>
+    <?php
+        $logo = $helper->getSeoConfig('snippet/upload_image_id');
+        $logo = $logo ? $helper->getImageHelper()->getMediaUrl($logo) : $block->getDefaultImageUrl();
+        ?>
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://google.com/article"
+        },
+        "headline": "<?= /* @noEscape */ $_post->getName() ?>",
+        "image": {
+            "@type": "ImageObject",
+            "url": "<?= /* @noEscape */ $_post->getImage() ?
+                    $block->getImageUrl($_post->getImage()) : $block->getDefaultImageUrl() ?>",
+            "height": 800,
+            "width": 800
+        },
+        "datePublished": "<?= /* @noEscape */ $block->getDateFormat($_post->getPublishDate()) ?>",
+        "dateModified": "<?= /* @noEscape */ $block->getDateFormat($_post->getUpdatedAt()) ?>",
+        "author": {
+            "@type": "Person",
+            "name": "<?= /* @noEscape */ $authorName; ?>"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "<?= /* @noEscape */ $helper->getSeoConfig('snippet/organize_name') ?>",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "<?= /* @noEscape */ $logo ?>",
+                "width": 600,
+                "height": 60
+            }
+        },
+        "description": "<?= /* @noEscape */ $_post->getShortDescription() ?>"
+    }
+    </script>
+    <?php endif; ?>
+</div>
+
+
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $(".list-header .catname").on("click", function () {
+            var currentUrl = window.location.href;
+            var desiredUrl = currentUrl.substring(0, currentUrl.indexOf("/post/"));
+            var cateId = $(".list-header .catname").attr("data-category-id");
+
+            window.location.replace(desiredUrl + "/?categoryId=" + cateId);
+        });
+
+        $(".share-list .share").on("click", function () {
+            var currentUrl = window.location.href;
+
+            var tempInput = $("<input>");
+            $("body").append(tempInput);
+            tempInput.val(currentUrl).select();
+
+            if (document.execCommand("copy")) {
+                $(".copy-text-noti").css('max-height','30px');
+                var unsetMaxHeight = setInterval(function(){
+                        $(".copy-text-noti").css('max-height','0');
+                        clearInterval(unsetMaxHeight);
+                    },3000);
+
+            } else {
+                console.error("Copy to clipboard failed.");
+            }
+
+            tempInput.remove();
+        });
+    });
+</script>
+
+<style>
+
+.addthis-smartlayers.addthis-smartlayers-desktop {
+    display: none;
+}
+.at-share-dock-outer.addthis-smartlayers.addthis-smartlayers-mobile {
+    display: none;
+}
+.page-wrapper {
+    padding: 0;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.kos-blog-view {
+    margin-bottom: 50px;
+}
+
+.kos-blog-view .title-view {
+    /* max-width: 80%; */
+
+}
+
+.kos-blog-view .post-view-image img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+.kos-blog-view .post-list-content {
+    width: 775px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.post-list-content .title-view {
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.post-list-content .title-view .name {
+    color: #024D77;
+    font-size: 35px;
+    font-weight: 600;
+    margin: unset;
+}
+
+.post-list-content .title-view .desc {
+    font-size: 15px;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: #676666;
+}
+
+
+.post-list-content .list-header {
+    text-align: center;
+}
+
+.post-list-content .list-header .row {
+
+    border-top: 1px solid #EAEAEA;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.post-list-content .list-header .row .listview {
+    height: 50px;
+    padding-top: 15px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #1D3557;
+}
+
+.post-list-content .list-header .row .listview .date::before {
+    content: url(<?= $block->getViewFileUrl('/images/blog-calendar.svg') ?>);
+    position: absolute;
+    left: 25%;
+    top: 25%;
+}
+
+.post-list-content .list-header .row .listview .catname{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.post-list-content .list-header .row .listview .catname:hover{
+    color: #e6552f;
+}
+
+.post-list-content .list-header .row .listview .catname::before {
+    content: url(<?= $block->getViewFileUrl('/images/blog-cat.svg') ?>);
+    /*position: absolute;*/
+    left: 29%;
+    top: 33%;
+    position: inherit;
+    margin-right: 10px;
+}
+
+.post-list-content .list-header .row .listview.share-list {
+    cursor: pointer;
+    position: relative;
+}
+
+.post-list-content .list-header .row .listview.share-list:hover > .share-content{
+    display: block;
+}
+
+.post-list-content .list-header .row .listview .share::before {
+    content: url(<?= $block->getViewFileUrl('/images/blog-share.svg') ?>);
+    position: absolute;
+    left: 29%;
+    top: 33%;
+}
+
+.post-list-content .list-header .row .listview .share-content {
+    display: none;
+    position: absolute;
+    top: -145%;
+    left: 15%;
+}
+
+.post-list-content .list-header .row .listview .share-content #sharing  .row {
+    border-top: 0px solid #EAEAEA;
+    border-bottom: 0px solid #EAEAEA;
+}
+
+.post-list-content .list-header .row .listview .share-content #sharing {
+    margin-top: 0;
+    padding: 10px;
+    background: white;
+    box-shadow: 0px 18px 26px -20px rgba(2, 77, 119, 0.25);
+    border: 1px solid #E7E8E8;
+
+}
+
+.post-list-content .list-header .row .listview .share-content #sharing::before {
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 9px solid #000;
+    border-color: #FFF transparent transparent transparent;
+    z-index: 99;
+    bottom: -17px;
+    left: 45%;
+}
+
+
+.post-list-content .list-header .row .listview .share-content #sharing .at-label {
+    display: none;
+}
+.post-list-content .list-header .row .listview .share-content #sharing .at-resp-share-element .at-share-btn {
+    background: transparent;
+    background-color: transparent !important;
+}
+
+.post-list-content .list-header .row .listview .share-content #sharing .at-resp-share-element .at-icon, .at-resp-share-element .at-label {
+    cursor: pointer;
+    fill: #024D77 !important;
+}
+
+
+.post-list-content .list-header .row .listview:first-child {
+    border-right: 1px solid #EAEAEA;
+}
+
+.post-list-content .list-header .row .listview:last-child {
+    border-left: 1px solid #EAEAEA;
+}
+.post-post_content {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+@media only screen and (max-width: 870px) {
+    .kos-blog-view .post-list-content {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .post-list-content .list-header .row .listview:first-child {
+    border-right: 0px solid #EAEAEA;
+    }
+
+    .post-list-content .list-header .row .listview:last-child {
+        border-left: 0px solid #EAEAEA;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .kos-blog-view .post-view-image img {
+        height: 200px;
+    }
+}
+
+.copy-text-noti{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddffdd;
+    max-height: 0;
+    height: 30px;
+    color: #000;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+
+
+
+
+</style>

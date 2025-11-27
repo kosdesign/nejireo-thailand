@@ -1,0 +1,10 @@
+<?php
+
+/** @var $block BrunoCanada\HrefLang\Block\HrefLang */
+$alternatives = $block->getAlternatives();
+$storeCode = $block->getCurrentStoreCode();
+$currentUrl= $block->getCurrentUrl();
+?>
+<?php if ($storeCode): ?>
+    <link rel="alternate" hreflang="<?php echo $storeCode ?>" href="<?php echo $currentUrl ?>" />
+<?php endif ?>

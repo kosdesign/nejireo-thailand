@@ -1,0 +1,6 @@
+<div class="card-item"<?php if($block->getData('fisrt')=="no") : ?> style="display: none;"<?php endif;?>>
+    <a href="<?php if($block->getData('link') != '') : echo $block->getData('link'); else : echo '#'; endif;?>"> 
+        <img class="d-none d-sm-block w-100" src="/pub/media/<?= $block->getData('desktop_image') ?>" alt=""> 
+        <img class="d-sm-none w-100" src="/pub/media/<?= $block->getData('mobile_image') ?>" alt=""> 
+    </a>
+</div>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <bss_request4quote>
+            <identity>
+                <signature>default/neji_signature.png</signature>
+            </identity>
+            <kos_b2b>
+                <payment_condition>Credit Term 30 Days</payment_condition>
+                <validity>30 Days</validity>
+                <term><![CDATA[a. If mill sheet and inspection are needed, please let us know in advance before making an order. Otherwise, we may unable to support those documents.
+b. Replacement or return of the product must be inform within 30 days
+c. We accept claim and replacement in case of our mistake but need to be made within 7 days after received the product.
+d. Please be noted that lead time which have mentioned on the quotation is our standard lead time, which is not include unexpected situation of transportation.]]></term>
+                <bank_info><![CDATA[Bank: SCB
+Account No: 46XXXXXXXX
+Account Name: Hanshin Neji (Thailand) Co.,Ltd.
+Currency: THB]]></bank_info>
+                <person_name>Ms.Nilobon XXXX</person_name>
+                <person_phone>0987654321</person_phone>
+            </kos_b2b>
+            <kos_b2c>
+                <payment_condition>Payment in Advance</payment_condition>
+                <validity>30 Days</validity>
+                <term><![CDATA[a. If mill sheet and inspection are needed, please let us know in advance before making an order. Otherwise, we may unable to support those documents.
+b. Replacement or return of the product must be inform within 30 days
+c. We accept claim and replacement in case of our mistake but need to be made within 7 days after received the product.
+d. Please be noted that lead time which have mentioned on the quotation is our standard lead time, which is not include unexpected situation of transportation.]]></term>
+                <person_name>Ms.Nilobon XXXX</person_name>
+                <person_phone>0987654321</person_phone>
+            </kos_b2c>
+        </bss_request4quote>
+    </default>
+</config>

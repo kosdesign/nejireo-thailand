@@ -1,0 +1,20 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="data-grid-filters-actions-wrap" collapsible="openClass: false, closeOnOuter: false"></div>
+<div class="title col-md-4 col-title font-bold color-black text-body-18 mb-4 mb-md-0" translate="'Specification/Dimensions'"/>
+<div class="admin__data-grid-filters-wrap" data-part="filter-form" css="_show: hasVisible() && $collapsible.opened()"
+     keyboard="{ 13: apply }">
+    <fieldset class="admin__fieldset admin__data-grid-filters">
+        <legend class="admin__filters-legend">
+            <span translate="'Advanced filter'"/>
+        </legend>
+        <fieldset class="admin__form-field" outereach="getRanges()" visible="$parent.isFilterVisible($data)" render=""/>
+        <div class="admin__form-field" outereach="getPlain()" visible="$parent.isFilterVisible($data)" render=""/>
+    </fieldset>
+    <scope args="chips" render=""/>
+    <input type="hidden" name="filter-apply" value="" click="apply" data-action="grid-filter-apply"/>
+</div>

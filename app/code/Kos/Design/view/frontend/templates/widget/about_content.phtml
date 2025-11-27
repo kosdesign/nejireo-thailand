@@ -1,0 +1,16 @@
+<?php $data = $block->filterParameters(); ?> 
+<?php //print_r($data); ?>
+ 
+<div class="about-content parallax" <?php if ($block->getData('image')) : ?> style="background-image:url(/pub/media/<?= $block->getData('image') ?>)"<?php endif; ?>> 
+    <div class="container">
+        <div class="card-text"> 
+            <?php if ($block->getData('title')) : ?><div class="card-title text-center"><?= html_entity_decode($block->getData('title')) ?></div><?php endif; ?>
+            <div class="card-detail font-light text-body-16">
+                <div class="row">
+                <?php if ($block->getData('body_text_col_left')) : ?><div class="col-md-6"><?= html_entity_decode($block->getData('body_text_col_left')) ?></div><?php endif; ?>
+                <?php if ($block->getData('body_text_col_right')) : ?><div class="col-md-6"><?= html_entity_decode($block->getData('body_text_col_right')) ?></div><?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

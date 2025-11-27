@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_QuoteExtension
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Home</item>
+                    <item name="label" xsi:type="string" translate="true">Home</item>
+                    <item name="link" xsi:type="string">/home</item>
+                </argument>
+            </action> 
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">account</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">My Quotation</item>
+                    <item name="label" xsi:type="string" translate="true">My Quotation</item>
+                    <item name="link" xsi:type="string">/quoteextension/quote/history</item>
+                </argument>
+            </action> 
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">quote-info</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Quote Information</item>
+                    <item name="label" xsi:type="string" translate="true">Quote Information</item>
+                </argument>
+            </action> 
+        </referenceBlock>
+        <referenceBlock name="page.main.title" remove="false" />
+        <referenceBlock name="quoteextension.quote.submit" remove="true" />
+        <referenceBlock name="quote_totals" template="Bss_QuoteExtension::quoteextension/view/totals.phtml" />
+        <move element="page.main.title" destination="main.content.wrapper" before="-"/>
+        <move element="quoteextension_date" destination="content" before="-"/>
+        <move element="quoteextension_actions" destination="content" after="quoteextension_date"/>
+    </body>
+</page>

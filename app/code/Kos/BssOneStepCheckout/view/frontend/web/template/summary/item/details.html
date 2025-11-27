@@ -1,0 +1,101 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_OneStepCheckout
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<li class="col col-image attr-image">
+    <!-- ko foreach: getRegion('before_details') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+</li>
+<li class="col attr-part-number clearfix">
+    <span class="label"><!-- ko i18n: 'Part No:' --><!-- /ko --></span>
+    <!-- ko if: getPartNo($parent) -->
+        <span class="value" data-bind="text: getPartNo($parent)"></span>
+    <!-- /ko -->
+</li>
+<li class="col attr-name clearfix">
+    <span class="label"><!-- ko i18n: 'Name:' --><!-- /ko --></span>
+    <!-- ko if: getProductName($parent) -->
+    <strong class="product-item-name">
+        <a data-bind="html: getProductName($parent), attr: {href: getProductUrl($parent.item_id)}"></a>
+    </strong>
+    <!-- /ko -->
+</li>
+<li class="col attr-material clearfix">
+    <span class="label"><!-- ko i18n: 'Material:' --><!-- /ko --></span>
+    <!-- ko if: getMaterial($parent) -->
+    <span class="value" data-bind="text: getMaterial($parent)"></span>
+    <!-- /ko -->
+</li>
+<li class="col attr-plating clearfix">
+    <span class="label"><!-- ko i18n: 'Plating:' --><!-- /ko --></span>
+    <!-- ko if: getPlating($parent) -->
+    <span class="value" data-bind="text: getPlating($parent)"></span>
+    <!-- /ko -->
+</li>
+<li class="col attr-diameter clearfix">
+    <span class="label"><!-- ko i18n: 'Diameter:' --><!-- /ko --></span>
+    <!-- ko if: getDiameter($parent) -->
+    <span class="value" data-bind="text: getDiameter($parent)"></span>
+    <!-- /ko -->
+</li>
+<li class="col attr-length clearfix">
+    <span class="label"><!-- ko i18n: 'Length:' --><!-- /ko --></span>
+    <!-- ko if: getLength($parent) -->
+    <span class="value" data-bind="text: getLength($parent)"></span>
+    <!-- /ko -->
+</li>
+<li class="col attr-price clearfix">
+    <span class="label"><!-- ko i18n: 'Unit price:' --><!-- /ko --></span>
+    <!-- ko foreach: getRegion('row_unitprice') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+</li>
+<!-- ko if: isQuoteCheckoutPage() -->
+<li class="details-qty col attr-qty clearfix">
+    <span class="label"><!-- ko i18n: 'QTY' --><!-- /ko --></span>
+    <div class="col-qty">
+        <span class="value" data-bind="text: $parent.qty"></span>
+    </div>
+</li>
+<!-- /ko -->
+<!-- ko ifnot: isQuoteCheckoutPage() -->
+<li class="details-qty col attr-qty clearfix">
+    <span class="label"><!-- ko i18n: 'QTY' --><!-- /ko --></span>
+    <div class="col-qty">
+        <input type="number" class="input-text qty" data-bind="
+                    value: $parent.qty,
+                    event: {
+                        change: function () {updateQty($parent);}
+                    },
+                    attr: {
+                        title: titleQtyBox
+                    }"/>
+        <span class="qty-button">
+                    <span class="increase" data-bind="attr: {action: 'increase', itemId: $parent.item_id}, click: updateQtyButton">&nbsp;</span>
+                    <span class="decrease" data-bind="attr: {action: 'decrease', itemId: $parent.item_id}, click: updateQtyButton">&nbsp;</span>
+                </span>
+    </div>
+    <span class="error-message" data-bind="attr: {itemId: $parent.item_id}"></span>
+</li>
+<!-- /ko -->
+<li class="col attr-subtotal clearfix">
+    <span class="label"><!-- ko i18n: 'Total Price:' --><!-- /ko --></span>
+    <!-- ko foreach: getRegion('after_details') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+</li>

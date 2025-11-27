@@ -1,0 +1,175 @@
+<?php $_post = $block->getPost(); ?>
+<div class="related-blog">
+    <div class="container related-blog-in">
+        <?php $relatedPosts = $_post->getRelatedPostsCollection(); ?>
+        <?php if ($relatedPosts && count($relatedPosts)) : ?>
+        <div class="header"><?= /* @noEscape */ __('Related Blog'); ?></div>
+        <div class="related-content-container">
+            <?php foreach ($relatedPosts as $post) : ?>
+            <div class="blog-related-items">
+                <?php if ($post->getImage()): ?>
+                <div class="post-image">
+                    <a href="<?= $post->getUrl() ?>">
+                        <img class="img-fluid" src="<?= $block->resizeImage($post->getImage()); ?>"
+                            alt="<?= $block->escapeHtml($post->getName()); ?>" />
+                    </a>
+                </div>
+                <?php endif; ?>
+                <div class="mp-post-info">
+                    <div class="date"><?= date( 'd M Y', strtotime($post->getPublishDate())); ?></div>
+                </div>
+
+                <div class="post-info-wraper">
+                    <h2 class="mp-post-title">
+                        <a class="post-link-title" title="<?= $block->escapeHtml($post->getName()); ?>"
+                            href="<?= $post->getUrl() ?>">
+                            <?= $post->getName(); ?>
+                        </a>
+                    </h2>
+                    <div class="post-short-description">
+                        <p><?= $block->maxShortDescription($post->getShortDescription()); ?></p>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+           
+        </div>
+        <div class="mp-clear"></div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<style>
+    .related-blog {
+        margin-top: 50px;
+        margin-bottom: 80px;
+    }
+    .related-blog-in .header {
+        font-size: 40px;
+        color: black;
+        font-weight: 600;
+        text-align: left;
+        margin-bottom: 50px;
+    }
+    .related-blog-in .related-content-container .post-image a img{
+        height: 277px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+
+    .related-blog  .post-short-description{
+        font-size: 15px;
+        font-weight: 400;
+        color: #6e7185;
+
+    }
+
+    .mp-post-info {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 400;
+        margin-top: -50px;
+        position: absolute;
+
+    }
+
+    .mp-post-info .catname  {
+        background: #024D77;
+        width: 165px;
+        color: white;
+        height: 50px;
+        text-align: center;
+        padding: 16px;
+    }
+
+    .mp-post-info .date {
+        background: #E6552F;
+        width: 135px;
+        color: white;
+        height: 50px;
+        text-align: center;
+        padding: 16px;
+    }
+
+    .related-blog-in .post-info-wraper .mp-post-title {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    .related-blog-in .post-info-wraper .mp-post-title .post-link-title{
+        font-size: 18px;
+        font-weight: 600;
+      
+    }
+
+    .related-blog-in .post-info-wraper .mp-post-title .post-link-title:hover{
+        color: #E6552F !important;
+    }
+    .blog-related-items {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    @media only screen and (max-width: 575px) {
+
+        .related-blog-in .related-content-container .post-image{
+            min-height: 180px;
+        }
+        .related-blog-in .related-content-container .post-image a img {
+            height: 180px;
+        }
+
+        .mp-post-info {
+            margin-top: -120px;
+        }
+
+        .related-content-container.slick-slider .slick-arrow {
+            display: none !important;
+        }
+    }
+
+  
+
+</style>
+
+<script>
+    require(["jquery", "slick"], function($) {
+        $(document).ready(function() {
+            console.log('rerawrawr');
+            var slider = $('.related-content-container');
+            slider.slick({
+                slide: 'div',
+                    dots: true,
+                    infinite: true,
+                    speed: 1000,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    arrows : true,
+                    autoplay: true,
+                    autoplaySpeed: 1000,
+                    responsive: [
+                        {
+                            breakpoint: 1200,
+                            settings: {
+                                slidesToShow: 3,
+                            }
+                        },
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 2,
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                            }
+                        }
+                    ]
+            });
+        })
+
+    })
+</script>

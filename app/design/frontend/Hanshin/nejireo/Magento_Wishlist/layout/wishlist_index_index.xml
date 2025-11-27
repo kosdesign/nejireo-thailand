@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Home</item>
+                    <item name="label" xsi:type="string" translate="true">Home</item>
+                    <item name="link" xsi:type="string">/home</item>
+                </argument>
+            </action> 
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">wishlist</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Wish List</item>
+                    <item name="label" xsi:type="string" translate="true">Wish List</item>
+                </argument>
+            </action> 
+        </referenceBlock>
+        <referenceBlock name="customer.wishlist.items">
+            <block class="Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Actions" name="customer.wishlist.item.actions" template="Magento_Wishlist::item/column/actions.phtml" cacheable="false" after="-">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">card-actions</argument>
+                </arguments>
+                <block class="Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Edit" name="customer.wishlist.item.edit" template="Magento_Wishlist::item/column/edit.phtml" before="-" cacheable="false"/>
+                <block class="Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Remove" name="customer.wishlist.item.remove" template="Magento_Wishlist::item/column/remove.phtml" cacheable="false"/>
+            </block>
+        </referenceBlock>     
+        <move element="customer.wishlist.item.cart" destination="customer.wishlist.item.actions" before="-"/>
+        <move element="customer.wishlist.item.name" destination="customer.wishlist.items" before="customer.wishlist.item.image"/>
+        <referenceBlock name="customer.wishlist.item.inner" remove="true" />
+        <referenceBlock name="customer.wishlist.item.review" remove="true" />
+        <referenceBlock name="customer.wishlist.item.price" remove="true" />
+        <referenceBlock name="customer.wishlist.item.comment" remove="true" />
+        <referenceBlock name="customer.wishlist.item.edit" remove="true" />
+        <referenceBlock name="customer.wishlist.button.update" remove="true" />
+        <referenceBlock name="customer.wishlist.button.share" remove="true" />
+        <referenceBlock name="customer.wishlist.button.toCart" remove="true" />
+    </body>
+</page>

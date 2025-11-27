@@ -1,0 +1,9 @@
+<a class="card-video-link" href="<?php if ($block->getData('video_url')) : echo $block->getData('video_url'); endif; ?>" data-fancybox="">
+    <div class="card-video-image"><img alt="" src="/pub/media/<?= $block->getData('image') ?>"></div>
+    <div class="card-video-text">
+        <div class="card-icon-play"></div>
+        <div class="card-text-play">
+            <h4 class="m-0"><?php if ($block->getData('title')) : echo $block->getData('title'); endif; ?></h4>
+        </div>
+    </div>
+</a>

@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Top menu for store
+ *
+ * @var $block \Kos\CatalogExtend\Block\Category\Tree
+ */
+
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
+?>
+
+<nav class="card-category-nav-list card-category-list pt-5 pt-sm-0 categories" data-action="navigation">
+    <div class="card-title font-bold text-body-18 color-black text-sm-left  toggle-title text-center">
+        <a href="<?php echo $this->getUrl('all-categories');?>">
+            <?= /* @escapeNotVerified */ __('Categories'); ?>
+        </a>
+    </div>
+    <div class="card-list">
+        <div class="cat-nav-content all-categories" data-mage-init='{"Kos_CatalogExtend/js/categoryScroll":{}}'>
+            <ul class="level-root submenu">
+                <?= /* @noEscape */ $_menuHtml?>
+                <?= $block->getChildHtml() ?>
+            </ul>
+        </div>
+    </div>
+    <div class="card-all">
+        <a href="<?php echo $this->getUrl('all-categories');?>">
+            <span><i class="icomoon-screw text-body-26 color-orange"></i></span>
+            <span class="text small-title"><?= __('All Categories') ?></span>
+        </a>
+    </div>
+</nav>

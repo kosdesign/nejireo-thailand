@@ -1,0 +1,120 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Description
+ */
+?>
+<?php
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+
+if (!$_product instanceof \Magento\Catalog\Model\Product) {
+    return;
+}
+
+$_call = $block->getAtCall();
+$_code = $block->getAtCode();
+$_className = $block->getCssClass();
+$_attributeLabel = $block->getAtLabel();
+$_attributeType = $block->getAtType();
+$_attributeAddAttribute = $block->getAddAttribute();
+
+$renderLabel = true;
+// if defined as 'none' in layout, do not render
+if ($_attributeLabel == 'none') {
+    $renderLabel = false;
+}
+
+if ($_attributeLabel && $_attributeLabel == 'default') {
+    $_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel();
+}
+if ($_attributeType && $_attributeType == 'text') {
+    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code))
+        ? $_product->getAttributeText($_code)
+        : '';
+} else {
+    $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
+}
+?>
+
+<?php if ($_attributeValue) :?>
+    
+<div class="product attribute <?= $block->escapeHtmlAttr($_className) ?>">
+
+    <?php if(isset($_className) && $_className == 'overview'): ?>
+        <h2 class="title font-bold text-body-18 text-body-sm-15"><?= $block->escapeHtml(__('Product Details')) ?></h2>
+    <?php endif; ?>
+
+    <?php if ($renderLabel) :?>
+        <strong class="type"><?= $block->escapeHtml($_attributeLabel) ?></strong>
+    <?php endif; ?>
+    <div class="value" <?= /* @noEscape */ $_attributeAddAttribute ?>>
+   
+        <?= /* @noEscape */ $_attributeValue ?>
+    </div>
+</div>
+<?php endif; ?>
+
+<style>
+    .overview {
+        width: 100%;
+        clear: both;
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #F2F2F5;
+    }
+
+    .overview .title {
+        color: #000;
+        padding-bottom: 35px;
+        margin-bottom: 0;
+    }
+
+    .overview .value {
+        display: flex;
+        flex-wrap: wrap;
+	justify-content: center;
+    }
+
+    .table.additional-attributes tbody{
+        display: grid;
+    }
+
+    .table.additional-attributes tr{
+        padding-bottom: 20px;
+        width: 100%;
+        display: flex;
+    }
+
+    .table.additional-attributes tr th.label{
+        width: 30%
+    }
+
+    .table.additional-attributes tr td.data{
+        width: 70%;
+    }
+    
+    @media (min-width: 768px) {
+        .product.data.items>.item.content {
+            margin-top: 0;
+            border-top: 0px solid #c8c8c8
+        }
+    }
+
+    .product-tabs-overview .product.data.items>.item.content .product.attribute.description {
+        margin-top: 30px;        padding: 0;
+        margin: 0;
+        margin-top: 10px;
+        padding-top: 30px;
+        border-top: 1px solid #F2F2F5;
+    }
+
+</style>
