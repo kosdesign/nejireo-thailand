@@ -144,12 +144,15 @@ class ProductList extends ProductDataProvider
                     $qty_old = '';
 
                     for ($i = 0; $i < $countTier; $i++) {
+                        $isAskPrice = !empty($tierPrices[$i]['ask_price']) && $tierPrices[$i]['ask_price'] == '1';
                         if (!empty($tierPrices[$i + 1])) {
                             $qty_old = (int)$tierPrices[$i]['price_qty'];
                             if($qty_old < ((int)$tierPrices[$i + 1]['price_qty'] - 1)) {
-                                $tier_price = $tier_price . $qty_old . '-' . ((int)$tierPrices[$i + 1]['price_qty'] - 1) . ' : ' . $this->formatPrice($tierPrices[$i]['price']) . '</br>';
+                               $priceDisplay = $isAskPrice ? __('-') : $this->formatPrice($tierPrices[$i]['price']);
+                               $tier_price = $tier_price . $qty_old . '-' . ((int)$tierPrices[$i + 1]['price_qty'] - 1) . ' : ' . $priceDisplay . '</br>';
                             }else {
-                                $tier_price = $tier_price . $qty_old . ' : ' . $this->formatPrice($tierPrices[$i]['price']) . '</br>';
+                                $priceDisplay = $isAskPrice ? __('-') : $this->formatPrice($tierPrices[$i]['price']);
+                                $tier_price = $tier_price . $qty_old . ' : ' . $priceDisplay . '</br>';
                             }
                             $qty_old = (int)$tierPrices[$i + 1]['price_qty'];
                         } else {
@@ -157,7 +160,8 @@ class ProductList extends ProductDataProvider
                                 $qty_old = (int)$tierPrices[$i]['price_qty'];
                             }
 
-                            $tier_price = $tier_price . $qty_old . '+ : ' . $this->formatPrice($tierPrices[$i]['price']);
+                            $priceDisplay = $isAskPrice ? __('-') : $this->formatPrice($tierPrices[$i]['price']);
+                            $tier_price = $tier_price . $qty_old . '+ : ' . $priceDisplay;
                         }
 
                         if (empty($tierPrices[$i]['day_to_ship'])) {

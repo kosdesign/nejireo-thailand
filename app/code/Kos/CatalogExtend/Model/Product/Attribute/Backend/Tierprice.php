@@ -23,10 +23,12 @@ class Tierprice extends \Magento\Catalog\Model\Product\Attribute\Backend\Tierpri
     {
         $percentageValue = $this->getPercentage($objectArray);
         $dayToShipValue = $this->getDayToShip($objectArray);
+        $askPriceValue = $this->getAskPrice($objectArray);
         return [
             'value' => $percentageValue ? null : $objectArray['price'],
             'percentage_value' => $percentageValue ?: null,
             'day_to_ship' => $dayToShipValue ? $dayToShipValue : null,
+            'ask_price' => $askPriceValue ? $askPriceValue : null,
         ];
     }
 
@@ -46,13 +48,15 @@ class Tierprice extends \Magento\Catalog\Model\Product\Attribute\Backend\Tierpri
             if ((!empty($value['value']) && $oldValues[$key]['price'] != $value['value'])
                 || $this->getPercentage($oldValues[$key]) != $this->getPercentage($value)
                 || $this->getDayToShip($oldValues[$key]) != $this->getDayToShip($value)
+                || $this->getAskPrice($oldValues[$key]) != $this->getAskPrice($value)
             ) {
                 $price = new \Magento\Framework\DataObject(
                     [
                         'value_id' => $oldValues[$key]['price_id'],
                         'value' => $value['value'],
                         'percentage_value' => $this->getPercentage($value),
-                        'day_to_ship' => $this->getDayToShip($value)
+                        'day_to_ship' => $this->getDayToShip($value),
+                        'ask_price' => $this->getAskPrice($value)
                     ]
                 );
                 $this->_getResource()->savePriceData($price);
@@ -103,6 +107,19 @@ class Tierprice extends \Magento\Catalog\Model\Product\Attribute\Backend\Tierpri
     {
         return isset($priceRow['day_to_ship'])
             ? $priceRow['day_to_ship']
+            : null;
+    }
+
+        /**
+     * Check whether price has ask price value.
+     *
+     * @param $priceRow
+     * @return null
+     */
+    private function getAskPrice($priceRow)
+    {
+        return isset($priceRow['ask_price'])
+            ? $priceRow['ask_price']
             : null;
     }
 }

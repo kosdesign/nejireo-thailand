@@ -22,6 +22,15 @@ class AdvancedPricing extends AdvancedPricingCore
 {
     /**
      * @inheritdoc
+     */
+    public function modifyData(array $data)
+    {
+        $data = parent::modifyData($data);
+        return $data;
+    }
+
+    /**
+     * @inheritdoc
      *
      * @since 101.0.0
      */
@@ -536,6 +545,25 @@ class AdvancedPricing extends AdvancedPricingCore
                                         'label' => __('Day to ship'),
                                         'dataScope' => 'day_to_ship',
                                         'sortOrder' => 45,
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'ask_price' => [
+                            'arguments' => [
+                                'data' => [
+                                    'config' => [
+                                        'formElement' => Select::NAME,
+                                        'componentType' => Field::NAME,
+                                        'dataType' => Text::NAME,
+                                        'label' => __('Ask Price'),
+                                        'dataScope' => 'ask_price',
+                                        'sortOrder' => 46,
+                                        'value' => '0',
+                                        'options' => [
+                                            ['value' => '1', 'label' => __('Yes')],
+                                            ['value' => '0', 'label' => __('No')],
+                                        ],
                                     ],
                                 ],
                             ],

@@ -22,6 +22,11 @@ class Actions extends \Magento\Framework\View\Element\Template
      */
     protected $customerUrl;
 
+        /**
+     * @var \Magento\Framework\App\ResourceConnection
+     */
+    protected $resourceConnection;
+
     public function __construct(
         Context $context,
         \Magento\Catalog\Block\Product\View $block,
@@ -36,6 +41,7 @@ class Actions extends \Magento\Framework\View\Element\Template
         \Magento\Catalog\Model\ProductFactory $productloader,
         \Magento\Customer\Model\Session $session,
         \Magento\Customer\Model\Url $customerUrl,
+        \Magento\Framework\App\ResourceConnection $resourceConnection,
         array $data = []
     )
     {
@@ -52,6 +58,7 @@ class Actions extends \Magento\Framework\View\Element\Template
         $this->productloader = $productloader;
         $this->session = $session;
         $this->customerUrl = $customerUrl;
+        $this->resourceConnection = $resourceConnection;
     }
 
 
@@ -146,5 +153,32 @@ class Actions extends \Magento\Framework\View\Element\Template
     public function getLoginUrl()
     {
         return $this->customerUrl->getLoginUrl();
+    }
+
+
+    /**
+     * Check if product has ask_price enabled in tier price
+     *
+     * @return bool
+     */
+    public function hasAskPrice()
+    {
+        $product = $this->getProduct();
+        if (!$product || !$product->getId()) {
+            return false;
+        }
+
+        $connection = $this->resourceConnection->getConnection();
+        $tableName = $this->resourceConnection->getTableName('catalog_product_entity_tier_price');
+
+        $select = $connection->select()
+            ->from($tableName, ['ask_price'])
+            ->where('entity_id = ?', $product->getId())
+            ->where('ask_price = ?', '1')
+            ->limit(1);
+
+        $result = $connection->fetchOne($select);
+
+        return $result == '1';
     }
 }

@@ -33,6 +33,20 @@ class Data extends AbstractHelper
             : null;
     }
 
+    /**
+     * Check whether price has ask price value.
+     *
+     * @param $priceRow
+     * @return null
+     */
+    public function getAskPrice($priceRow)
+    {
+        return isset($priceRow['ask_price'])
+            ? $priceRow['ask_price']
+            : null;
+    }
+
+
     public function getOptionsFilterAttribute($attribute)
     {
         $attribute = $this->eavConfig->getAttribute('catalog_product', $attribute);

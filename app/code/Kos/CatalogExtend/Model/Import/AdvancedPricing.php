@@ -10,6 +10,7 @@ use Magento\CatalogImportExport\Model\Import\Product\RowValidatorInterface as Va
 class AdvancedPricing extends \Magento\AdvancedPricingImportExport\Model\Import\AdvancedPricing
 {
     const COL_DAY_TO_SHIP = 'day_to_ship';
+    const COL_ASK_PRICE = 'price_ask';
 
     /**
      * Valid column names.
@@ -23,7 +24,8 @@ class AdvancedPricing extends \Magento\AdvancedPricingImportExport\Model\Import\
         self::COL_TIER_PRICE_QTY,
         self::COL_TIER_PRICE,
         self::COL_TIER_PRICE_TYPE,
-        self::COL_DAY_TO_SHIP
+        self::COL_DAY_TO_SHIP,
+        self::COL_ASK_PRICE
     ];
 
     /**
@@ -63,6 +65,8 @@ class AdvancedPricing extends \Magento\AdvancedPricingImportExport\Model\Import\
                 $rowSku = $rowData[self::COL_SKU];
                 $listSku[] = $rowSku;
                 if (!empty($rowData[self::COL_TIER_PRICE_WEBSITE])) {
+                    // Map price_ask (CSV column) to ask_price (DB column)
+                    $askPriceValue = isset($rowData[self::COL_ASK_PRICE]) ? $rowData[self::COL_ASK_PRICE] : null;
                     $tierPrices[$rowSku][] = [
                         'all_groups' => $rowData[self::COL_TIER_PRICE_CUSTOMER_GROUP] == self::VALUE_ALL_GROUPS,
                         'customer_group_id' => $this->getCustomerGroupId(
@@ -75,6 +79,7 @@ class AdvancedPricing extends \Magento\AdvancedPricingImportExport\Model\Import\
                             ? $rowData[self::COL_TIER_PRICE] : null,
                         'website_id' => $this->getWebSiteId($rowData[self::COL_TIER_PRICE_WEBSITE]),
                         'day_to_ship' => $rowData[self::COL_DAY_TO_SHIP],
+                        'ask_price' => $askPriceValue, // DB column name
                     ];
                 }
             }
@@ -132,7 +137,7 @@ class AdvancedPricing extends \Magento\AdvancedPricingImportExport\Model\Import\
                 $this->_connection->insertOnDuplicate(
                     $tableName,
                     $priceIn,
-                    ['value', 'percentage_value', 'day_to_ship']
+                    ['value', 'percentage_value', 'day_to_ship', 'ask_price']
                 );
             }
         }

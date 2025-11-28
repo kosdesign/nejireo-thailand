@@ -145,10 +145,12 @@ class UpdateHandler extends AbstractHandler
     {
         $percentageValue = $this->getPercentage($objectArray);
         $dayToShipValue = $this->catalogKosHelper->getDayToShip($objectArray);
+        $askPriceValue = $this->catalogKosHelper->getAskPrice($objectArray);
         return [
             'value' => $percentageValue ? null : $objectArray['price'],
             'percentage_value' => $percentageValue ?: null,
             'day_to_ship' => $dayToShipValue ? $dayToShipValue : null,
+            'ask_price' => $askPriceValue ? $askPriceValue : null,
         ];
     }
 
@@ -163,18 +165,21 @@ class UpdateHandler extends AbstractHandler
     {
         $isChanged = false;
         foreach ($valuesToUpdate as $key => $value) {
-            $oldValue = $this->catalogKosHelper->getDayToShip($oldValues[$key]);
+            $oldDayToShip = $this->catalogKosHelper->getDayToShip($oldValues[$key]);
+            $oldAskPrice = $this->catalogKosHelper->getAskPrice($oldValues[$key]);
             if ((!empty($value['value'])
                     && (float)$oldValues[$key]['price'] !== $this->localeFormat->getNumber($value['value']))
                 || $this->getPercentage($oldValues[$key]) !== $this->getPercentage($value)
-                || $oldValue !== $this->catalogKosHelper->getDayToShip($value)
+                || $oldDayToShip !== $this->catalogKosHelper->getDayToShip($value)
+                || $oldAskPrice !== $this->catalogKosHelper->getAskPrice($value)
             ) {
                 $price = new \Magento\Framework\DataObject(
                     [
                         'value_id' => $oldValues[$key]['price_id'],
                         'value' => $value['value'],
                         'percentage_value' => $this->getPercentage($value),
-                        'day_to_ship' => $value['day_to_ship']
+                        'day_to_ship' => $value['day_to_ship'],
+                        'ask_price' => $value['ask_price']
                     ]
                 );
                 $this->tierPriceResource->savePriceData($price);

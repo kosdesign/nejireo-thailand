@@ -131,10 +131,12 @@ class SaveHandler extends AbstractHandler
     {
         $percentageValue = $this->getPercentage($objectArray);
         $dayToShipValue = $this->catalogKosHelper->getDayToShip($objectArray);
+        $askPriceValue = $this->catalogKosHelper->getAskPrice($objectArray);
         return [
             'value' => $percentageValue ? null : $objectArray['price'],
             'percentage_value' => $percentageValue ?: null,
             'day_to_ship' => $dayToShipValue ? $dayToShipValue : null,
+            'ask_price' => $askPriceValue ? $askPriceValue : null,
         ];
     }
 }

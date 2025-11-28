@@ -38,5 +38,14 @@ class InstallSchema implements InstallSchemaInterface
                 'COMMENT' => 'Day To Ship'
             ]
         );
+        $installer->getConnection()->addColumn(
+            $tableName,
+            'ask_price',
+            [
+                'TYPE' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                'LENGTH' => null,
+                'COMMENT' => 'Ask Price'
+            ]
+        );
     }
 }

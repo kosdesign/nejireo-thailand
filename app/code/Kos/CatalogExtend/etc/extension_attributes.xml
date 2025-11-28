@@ -13,5 +13,10 @@
                 <field>day_to_ship</field>
             </join>
         </attribute>
+        <attribute code="ask_price" type="string">
+            <join reference_table="catalog_product_entity_tier_price" reference_field="product_id" join_on_field="entity_id">
+                <field>ask_price</field>
+            </join>
+        </attribute>
     </extension_attributes>
 </config>

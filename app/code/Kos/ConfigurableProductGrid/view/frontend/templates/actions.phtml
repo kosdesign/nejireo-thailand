@@ -40,19 +40,31 @@ $qtyQuoteMax = $_helper->getValidateQuote($_product);
                     </div>
                 </div>
                 <div class="actions <?= ($_product->getIsActiveRequest4QuoteProductPage())? 'quote-action' : ''; ?>">
-                    <button type="submit"
+                    <?php if($block->hasAskPrice()) : ?>
+                            <button type="button"
+                            title="Contact us for price"
+                            class="action hs-add-tocart contact-for-price-btn"
+                            onclick="openSocialWidget()">
+                            <i class="icomoon-chat"></i>
+
+                        <?php else : ?>
+
+                        <button type="submit"
                             title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
                             class="action hs-add-tocart tocart"
-                            id="product-addtocart-button-<?= $_product->getId() ?>" disabled>
-                        <i class="icomoon-cart"></i>
-                        <span><?= $block->escapeHtml($buttonTitle) ?></span>
+                            id="product-addtocart-button-<?= $_product->getId() ?>" disabled >
+                            <i class="icomoon-cart"></i>
+                        <?php endif; ?>
+
+                
+                        <span><?= $block->hasAskPrice() ? __('Contact us for price') : $buttonTitle ?></span>
                     </button>
                     <?= $block->getChildHtml('', true) ?>
                     <?php if ($_product->getIsActiveRequest4QuoteProductPage()) : ?>
                         <div class="box-tocart box-toquote quote_extension_<?= $_product->getId() ?>">
                             <button type="button" title="<?= $block->getButtonQuoteTitle() ?>"
-                                    class="action toquote <?php if(!$block->isLoggedIn()) : ?>disable<?php endif; ?>"
-                                    id="product-addtoquote-button_<?= $_product->getId() ?>">
+                                    class="action toquote <?php if(!$block->isLoggedIn() || $block->hasAskPrice()) : ?>disable<?php endif; ?>"
+                                    id="product-addtoquote-button_<?= $_product->getId() ?>" <?= $block->hasAskPrice() ? 'disabled' : '' ?>>
                                 <span><?= $block->getButtonQuoteTitle() ?></span>
                             </button>
                             <?php if(!$block->isLoggedIn()) : ?>
@@ -88,3 +100,17 @@ $qtyQuoteMax = $_helper->getValidateQuote($_product);
         </script>
     </form>
 </div>
+<script>
+function openSocialWidget() {
+    require(["jquery"], function ($) {
+        var $socialButton = $('.social-button-image');
+        var $social = $('.social');
+
+        if ($socialButton.length && !$social.hasClass('show')) {
+            $socialButton.trigger('click');
+        } else if (!$socialButton.length) {
+            alert('<?= __("Please contact us for pricing information") ?>');
+        }
+    });
+}
+</script>

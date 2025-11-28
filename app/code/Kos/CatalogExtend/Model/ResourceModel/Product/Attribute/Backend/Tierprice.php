@@ -24,6 +24,7 @@ class Tierprice extends \Magento\Catalog\Model\ResourceModel\Product\Attribute\B
         $columns['price_qty'] = 'qty';
         $columns['percentage_value'] = 'percentage_value';
         $columns['day_to_ship'] = 'day_to_ship';
+        $columns['ask_price'] = 'ask_price';
         return $columns;
     }
 }
