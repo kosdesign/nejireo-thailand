@@ -10,6 +10,8 @@ atlassian*
 /pub/robots.txt
 /sitemap
 /sitemap.xml
+/pub/sitemap_th.xml
+/pub/sitemap_us.xml
 /pub/sitemap
 /pub/sitemap.xml
 /.idea
@@ -60,6 +62,8 @@ atlassian*
 /pub/media/captcha/*
 /pub/static/*
 !/pub/static/.htaccess
+pub/media/customer_address/*
+pub/media/mageplaza/blog/*
 
 /var/*
 !/var/.htaccess
